@@ -1,0 +1,1707 @@
+/* ============================================================
+   MUSEO DE ARTE MODERNO DE BARRANQUILLA — MAMB
+   styles.css — Hoja de estilos principal
+   Paleta: Tangerine, Butter, Blush, Sea, Matcha
+   Fuentes: Fredoka One (títulos) + Nunito (cuerpo)
+   ============================================================ */
+
+/* ── 1. VARIABLES DE DISEÑO (tokens globales) ──────────────── */
+:root {
+  /* Colores principales */
+  --tangerine: #f08c21;
+  /* Naranja principal */
+  --tangerine-light: #fde8c4;
+  --butter: #f2d88f;
+  /* Amarillo suave */
+  --butter-dark: #d4a830;
+  --blush: #e36888;
+  /* Rosa artístico */
+  --blush-light: #fad4de;
+  --sea: #6698cc;
+  /* Azul museístico */
+  --sea-light: #d0e2f5;
+  --matcha: #b4b534;
+  /* Verde tecnología */
+  --matcha-light: #e8eaa0;
+
+  /* Neutros */
+  --white: #ffffff;
+  --offwhite: #fff9f5;
+  --ink: #3a2418;
+  /* Texto oscuro */
+  --muted: #9a7a6a;
+  /* Texto secundario */
+  --bg: #fff5ee;
+  /* Fondo general */
+
+  /* Bordes y radios */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
+
+  /* Sombras */
+  --shadow-card:
+    0 6px 0 var(--butter-dark), 0 8px 24px rgba(240, 140, 33, 0.15);
+  --shadow-sm: 0 3px 0 rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ── 2. RESET BÁSICO ───────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* Hace que el scroll sea suave entre secciones */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Fondo punteado artístico en toda la página */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle,
+      rgba(240, 140, 33, 0.12) 1.5px,
+      transparent 1.5px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── 3. UTILIDADES GENERALES ───────────────────────────────── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-title-block {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* Número decorativo antes del título de sección */
+.section-num {
+  font-family: "Fredoka One", cursive;
+  font-size: 80px;
+  color: var(--butter);
+  -webkit-text-stroke: 3px var(--butter-dark);
+  display: block;
+  line-height: 1;
+  margin-bottom: -20px;
+}
+
+/* Título principal de sección */
+.section-heading {
+  font-family: "Fredoka One", cursive;
+  font-size: clamp(28px, 4vw, 42px);
+  color: var(--tangerine);
+  position: relative;
+  display: inline-block;
+}
+
+
+
+/* ── 4. BARRA DE NAVEGACIÓN ────────────────────────────────── */
+.navbar {
+  position: fixed;
+  /* Fija en la parte superior */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  /* Encima de todo */
+  background: var(--tangerine);
+  border-bottom: 5px solid var(--butter-dark);
+  padding: 0 32px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: box-shadow 0.3s;
+}
+
+/* Sombra que aparece al hacer scroll */
+.navbar.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo del museo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.nav-logo-badge {
+  width: 48px;
+  height: 48px;
+  background: var(--white);
+  border-radius: 50%;
+  border: 3px solid var(--butter-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fredoka One", cursive;
+  font-size: 11px;
+  color: var(--tangerine);
+  line-height: 1.1;
+  box-shadow: 0 3px 0 var(--butter-dark);
+}
+
+.nav-logo-text {
+  font-family: "Fredoka One", cursive;
+  font-size: 20px;
+  color: var(--white);
+  line-height: 1;
+}
+
+.nav-logo-sub {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Links de navegación (escritorio) */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition:
+    background 0.2s,
+    color 0.2s;
+  letter-spacing: 0.3px;
+}
+
+/* Efecto hover en links del navbar */
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--white);
+}
+
+/* Botón especial "App del Museo" */
+.nav-btn-app {
+  background: var(--white) !important;
+  color: var(--tangerine) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 8px 16px !important;
+  font-size: 12px !important;
+  box-shadow: 0 3px 0 var(--butter-dark);
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s !important;
+}
+
+.nav-btn-app:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--butter-dark) !important;
+}
+
+/* Botón hamburguesa (móvil) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: var(--white);
+  border-radius: 2px;
+  transition:
+    transform 0.3s,
+    opacity 0.3s;
+}
+
+/* ── 5. HERO SECTION ───────────────────────────────────────── */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 32vh;
+  display: flex;
+  align-items: center;
+  padding-top: 70px;
+  overflow: hidden;
+}
+
+/* Fondo degradado del hero */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      var(--tangerine) 0%,
+      #f49559 50%,
+      var(--blush) 100%);
+  z-index: -1;
+}
+
+/* Formas geométricas decorativas */
+.hero-shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+}
+
+.hero-shape-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--butter);
+  top: -100px;
+  right: -100px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-shape-2 {
+  width: 300px;
+  height: 300px;
+  background: var(--white);
+  bottom: -50px;
+  left: -50px;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+.hero-shape-3 {
+  width: 200px;
+  height: 200px;
+  background: var(--matcha);
+  top: 40%;
+  left: 30%;
+  animation: float 7s ease-in-out infinite 2s;
+}
+
+/* Animación de flotación */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  /* ← cambiar grid por flex */
+  flex-direction: column;
+  /* ← agregar */
+  align-items: center;
+  /* ← centra horizontalmente */
+  justify-content: center;
+  /* ← centra verticalmente */
+  max-width: 1400px;
+  /* ← reducir ancho */
+  margin: 0 auto;
+  /* ← mantener */
+  padding: 30px 24px;
+  width: 100%;
+  text-align: center;
+ min-height: 180px;
+  padding: 0px 40px;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-xl);
+  padding: 6px 18px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-family: "Fredoka One", cursive;
+  font-size: clamp(42px, 5vw, 88px);
+  line-height: 1;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 0 rgba(0,0,0,.12);
+}
+
+.hero-title span {
+  display: inline-block;
+  background: #efe28a;
+  color: #d88b1f;
+  padding: 6px 18px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.hero-slogan {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  margin-bottom: 32px;
+  font-style: italic;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Botón primario */
+.btn-primary {
+  background: var(--white);
+  color: var(--tangerine);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: 14px 28px;
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 5px 0 var(--butter-dark);
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 var(--butter-dark);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 var(--butter-dark);
+}
+
+/* Botón secundario */
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-xl);
+  padding: 11px 28px;
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--white);
+}
+
+/* Panel derecho del hero: mockup de la app */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Marco simulado de teléfono */
+.phone-mockup {
+  width: 240px;
+  background: var(--ink);
+  border-radius: 36px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 2px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.phone-notch {
+  width: 80px;
+  height: 20px;
+  background: var(--ink);
+  border-radius: 0 0 14px 14px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.phone-screen {
+  background: linear-gradient(160deg, var(--tangerine), #c44e08);
+  padding: 12px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.phone-screen-logo {
+  font-family: "Fredoka One", cursive;
+  font-size: 22px;
+  color: var(--white);
+  text-align: center;
+  padding: 10px 0 0;
+}
+
+.phone-screen-logo span {
+  display: block;
+  font-size: 10px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  opacity: 0.7;
+  letter-spacing: 2px;
+}
+
+.phone-artwork {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.phone-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.phone-card-label {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.phone-card-value {
+  font-family: "Fredoka One", cursive;
+  font-size: 14px;
+  color: var(--white);
+}
+
+.phone-bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 8px 0;
+  margin-top: auto;
+}
+
+.phone-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 700;
+}
+
+.phone-nav-item.active {
+  color: var(--white);
+}
+
+.phone-nav-item span {
+  font-size: 16px;
+}
+
+/* ── 6. SECCIÓN SOBRE EL MUSEO ─────────────────────────────── */
+.about {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Tarjeta de imagen del museo */
+.about-image-wrap {
+  position: relative;
+}
+
+.about-image {
+  width: 100%;
+  height: 420px;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  border: 5px solid var(--tangerine);
+  box-shadow: 10px 10px 0 var(--butter-dark);
+}
+
+/* Imagen placeholder cuando no hay foto real */
+.about-image-placeholder {
+  width: 100%;
+  height: 420px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--tangerine-light), var(--sea-light));
+  border: 5px solid var(--tangerine);
+  box-shadow: 10px 10px 0 var(--butter-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.about-image-placeholder span {
+  font-size: 80px;
+}
+
+.about-image-placeholder p {
+  font-family: "Fredoka One", cursive;
+  font-size: 18px;
+  color: var(--tangerine);
+}
+
+/* Badge flotante sobre la imagen */
+.about-badge {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: var(--tangerine);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  border: 4px solid var(--white);
+  box-shadow: var(--shadow-card);
+  font-family: "Fredoka One", cursive;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.about-text h2 {
+  font-family: "Fredoka One", cursive;
+  font-size: 36px;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.about-text p {
+  color: var(--muted);
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Grid de datos del museo (horarios, ubicación, etc.) */
+.about-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.info-card {
+  background: var(--offwhite);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  border: 3px solid var(--butter);
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+}
+
+.info-card:hover {
+  border-color: var(--tangerine);
+  transform: translateY(-2px);
+}
+
+.info-card-icon {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.info-card-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.info-card-value {
+  font-family: "Fredoka One", cursive;
+  font-size: 14px;
+  color: var(--ink);
+  margin-top: 2px;
+}
+
+/* ── 7. SECCIÓN ARTISTAS ───────────────────────────────────── */
+.artists {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0;
+  background: var(--bg);
+}
+
+.artists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+/* Tarjeta de artista */
+.artist-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 4px solid var(--butter);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+  cursor: pointer;
+}
+
+.artist-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 14px 0 var(--butter-dark),
+    0 20px 40px rgba(240, 140, 33, 0.2);
+}
+
+/* Imagen del artista */
+.artist-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Placeholder de imagen artista */
+.artist-img-placeholder {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 72px;
+}
+
+.artist-body {
+  padding: 20px;
+}
+
+.artist-style-badge {
+  display: inline-block;
+  background: var(--tangerine-light);
+  color: var(--tangerine);
+  border-radius: var(--radius-xl);
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 800;
+  border: 2px solid var(--tangerine);
+  margin-bottom: 10px;
+}
+
+.artist-name {
+  font-family: "Fredoka One", cursive;
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.artist-desc {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Obras como chips */
+.artist-works {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.work-tag {
+  background: var(--offwhite);
+  border: 2px solid var(--butter);
+  border-radius: var(--radius-sm);
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ── 8. SECCIÓN EXPOSICIONES ───────────────────────────────── */
+.expositions {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0;
+  background: var(--white);
+}
+
+/* Tabs para cambiar entre "actuales" y "próximas" */
+.expo-tabs {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.expo-tab {
+  background: var(--offwhite);
+  border: 3px solid var(--butter);
+  border-radius: var(--radius-xl);
+  padding: 10px 28px;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* Tab activo */
+.expo-tab.active {
+  background: var(--tangerine);
+  border-color: var(--butter-dark);
+  color: var(--white);
+  box-shadow: 0 4px 0 var(--butter-dark);
+}
+
+.expo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.expo-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 4px solid var(--butter);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s;
+}
+
+.expo-card:hover {
+  transform: translateY(-6px);
+}
+
+.expo-card-img {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  position: relative;
+}
+
+.expo-card-status {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--tangerine);
+  color: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 4px 14px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.expo-card-status.proxima {
+  background: var(--sea);
+}
+
+.expo-card-body {
+  background: var(--white);
+  padding: 20px;
+}
+
+.expo-card-dates {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--tangerine);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.expo-card-title {
+  font-family: "Fredoka One", cursive;
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.expo-card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* =========================
+   FONDOS DE CADA EXPOSICIÓN
+========================= */
+
+.expo-matcha {
+  background: linear-gradient(
+    135deg,
+    var(--matcha-light),
+    var(--matcha)
+  );
+}
+
+.expo-sea {
+  background: linear-gradient(
+    135deg,
+    var(--sea-light),
+    var(--sea)
+  );
+}
+
+.expo-blush {
+  background: linear-gradient(
+    135deg,
+    #f8e1d5,
+    var(--blush)
+  );
+}
+
+/* =========================
+   IMÁGENES EXPOSICIONES
+========================= */
+
+.imagen-carnaval,
+.imagen-2050,
+.imagen-ninos {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+}
+
+/* =========================
+   EFECTO HOVER IMAGEN
+========================= */
+
+.expo-card-img {
+  overflow: hidden;
+}
+
+.expo-card-img img {
+  transition: transform 0.4s ease;
+}
+
+.expo-card:hover .expo-card-img img {
+  transform: scale(1.05);
+}
+
+/* ── 9. SECCIÓN SERVICIOS ──────────────────────────────────── */
+.services {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0;
+  background: var(--tangerine);
+  overflow: hidden;
+}
+
+/* Fondo ondulado */
+.services::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle,
+      rgba(255, 255, 255, 0.08) 2px,
+      transparent 2px);
+  background-size: 32px 32px;
+}
+
+.services .section-heading {
+  color: var(--white);
+}
+
+.services .section-num {
+  color: rgba(255, 255, 255, 0.2);
+  -webkit-text-stroke-color: rgba(255, 255, 255, 0.4);
+}
+
+.services .section-sub {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 220px);
+  gap: 30px;
+
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* Tarjeta de servicio */
+.service-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 35px 30px;
+  text-align: center;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-card:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-4px);
+}
+
+.service-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.service-name {
+  font-family: "Fredoka One", cursive;
+  font-size: 16px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.service-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+}
+
+/* ── 10. SECCIÓN APP DEL MUSEO ─────────────────────────────── */
+.app-section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0;
+  background: var(--bg);
+}
+
+.app-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.app-text h2 {
+  font-family: "Fredoka One", cursive;
+  font-size: clamp(28px, 4vw, 42px);
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.app-text h2 span {
+  color: var(--tangerine);
+}
+
+.app-text p {
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+/* Lista de características de la app */
+.app-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.app-features li {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+}
+
+.feature-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--tangerine-light);
+  border: 2px solid var(--tangerine);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* Grid de 3 phones mostrando pantallas de la app */
+.app-phones {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* El teléfono central se ve más grande */
+.app-phones .phone-mockup:nth-child(2) {
+  transform: scale(1.08);
+  z-index: 2;
+}
+
+.app-phones .phone-mockup:nth-child(1),
+.app-phones .phone-mockup:nth-child(3) {
+  opacity: 0.85;
+}
+
+/* Colores de pantallas de la app */
+.screen-scanner {
+  background: linear-gradient(160deg, var(--matcha), #8a8a28);
+}
+
+.screen-gallery {
+  background: linear-gradient(160deg, var(--sea), #3a5a99);
+}
+
+.screen-ai {
+  background: linear-gradient(160deg, var(--blush), #c04068);
+}
+
+.screen-content {
+  padding: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── 11. SECCIÓN HORARIOS ──────────────────────────────────── */
+.schedule {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.schedule-table tr td {
+  padding: 12px 16px;
+  font-weight: 600;
+}
+
+.schedule-table tr td:first-child {
+  background: var(--tangerine-light);
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  border-left: 4px solid var(--tangerine);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.schedule-table tr td:last-child {
+  background: var(--offwhite);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--muted);
+  text-align: right;
+}
+
+.schedule-table .closed td:first-child {
+  opacity: 0.5;
+}
+
+.schedule-table .closed td:last-child {
+  color: var(--blush);
+  font-weight: 800;
+}
+
+/* Mapa placeholder */
+.map-placeholder {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--sea-light), var(--matcha-light));
+  border: 4px solid var(--sea);
+  height: 100%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 24px;
+}
+
+.map-placeholder span {
+  font-size: 48px;
+}
+
+.map-placeholder p {
+  font-family: "Fredoka One", cursive;
+  font-size: 16px;
+  color: var(--sea);
+}
+
+.map-placeholder small {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* ── 12. SECCIÓN CONTACTO ──────────────────────────────────── */
+.contact {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0;
+  background: var(--bg);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+/* Tarjetas de contacto */
+.contact-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  border: 4px solid var(--butter);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: transform 0.2s;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+}
+
+.contact-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--tangerine-light);
+  border: 3px solid var(--tangerine);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.contact-card-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.contact-card-value {
+  font-family: "Fredoka One", cursive;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+/* Formulario de contacto */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 3px solid var(--butter);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--tangerine);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ── 13. FOOTER ────────────────────────────────────────────── */
+footer {
+  position: relative;
+  z-index: 1;
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 64px 0 32px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+/* Columna principal del footer */
+.footer-brand .nav-logo-badge {
+  margin-bottom: 16px;
+}
+
+.footer-brand p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Redes sociales */
+.social-links {
+  display: flex;
+  gap: 10px;
+}
+
+.social-btn {
+    border: none;
+
+}
+
+.social-btn:hover {
+  background: var(--tangerine);
+  border-color: var(--tangerine);
+  transform: translateY(-2px);
+}
+
+/* Títulos de columnas del footer */
+.footer-col h4 {
+  font-family: "Fredoka One", cursive;
+  font-size: 16px;
+  color: var(--tangerine);
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.footer-col h4::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: var(--butter);
+  border-radius: 2px;
+  margin-top: 4px;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col ul li a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.footer-col ul li a:hover {
+  color: var(--tangerine);
+}
+
+/* Línea divisoria del footer */
+.footer-bottom {
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-bottom p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+}
+
+/* ── 14. BOTÓN FLOTANTE "APP" ───────────────────────────────── */
+/* Botón redondo que flota en la esquina inferior derecha */
+.fab-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 999;
+  background: var(--tangerine);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: 14px 22px;
+  font-family: "Nunito", sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow:
+    0 6px 0 var(--butter-dark),
+    0 8px 24px rgba(240, 140, 33, 0.4);
+  animation: pulse-fab 3s ease-in-out infinite;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.fab-btn:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 9px 0 var(--butter-dark),
+    0 12px 32px rgba(240, 140, 33, 0.5);
+}
+
+/* Animación de pulso del botón flotante */
+@keyframes pulse-fab {
+
+  0%,
+  100% {
+    box-shadow:
+      0 6px 0 var(--butter-dark),
+      0 8px 24px rgba(240, 140, 33, 0.4);
+  }
+
+  50% {
+    box-shadow:
+      0 6px 0 var(--butter-dark),
+      0 8px 36px rgba(240, 140, 33, 0.7);
+  }
+}
+
+/* ── 15. SECCIÓN OCULTA (paneles de exposición al hacer clic en tabs) */
+.expo-panel {
+  display: none;
+}
+
+.expo-panel.active {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── 16. RESPONSIVE — TABLETS (max 1024px) ──────────────────── */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-visual {
+    display: none;
+    /* Ocultar teléfono en tablets pequeñas */
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-badge {
+    right: 20px;
+    bottom: -10px;
+  }
+
+  .app-content {
+    grid-template-columns: 1fr;
+  }
+
+  .app-phones {
+    order: -1;
+    /* Los teléfonos van arriba */
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .schedule-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── 17. RESPONSIVE — MÓVILES (max 768px) ───────────────────── */
+@media (max-width: 768px) {
+
+  /* El navbar cambia a modo móvil */
+  .nav-links {
+    display: none;
+    /* Oculto por defecto */
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--tangerine);
+    border-bottom: 4px solid var(--butter-dark);
+    flex-direction: column;
+    padding: 20px 24px;
+    gap: 8px;
+    z-index: 999;
+  }
+
+  /* Se muestra cuando tiene la clase "open" */
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px 16px;
+    font-size: 15px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Botón hamburguesa visible en móvil */
+  .nav-toggle {
+    display: flex;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .artists-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .app-phones {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .app-phones .phone-mockup:nth-child(2) {
+    transform: none;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fab-btn {
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 18px;
+    font-size: 12px;
+  }
+}
+
+/* ── 18. SCROLL REVEAL (clases que agrega JS) ───────────────── */
+/* El elemento empieza invisible y abajo */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+/* Cuando JS le agrega .visible, aparece */
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Retrasos escalonados para animar los hijos en secuencia */
+.reveal:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.reveal:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.reveal:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+.reveal:nth-child(5) {
+  transition-delay: 0.4s;
+}
+
+.reveal:nth-child(6) {
+  transition-delay: 0.5s;
+}
+
+.imagen-museo {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+.imagen-cecilia {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+}
+
+.imagen-noe {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+}
+
+.imagen-obregon {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+}
+
+.imagen-cepeda {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+}
+
+.imagen-magdalena{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+}
+
+.imagen-ia{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+}
+
+.imagen-raices{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+}

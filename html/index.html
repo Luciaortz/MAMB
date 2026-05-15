@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- ============================================================
+       MUSEO DE ARTE MODERNO DE BARRANQUILLA — MAMB
+       index.html — Página principal
+       Proyecto educativo — Universidad Simón Bolívar
+       ============================================================ -->
+
+    <meta charset="UTF-8">
+    <!-- Este meta hace que el sitio se vea bien en celulares -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAMB · Museo de Arte Moderno de Barranquilla</title>
+    <meta name="description"
+      content="Museo de Arte Moderno de Barranquilla — Explora el arte, la historia y la cultura del Caribe colombiano. Exposiciones, artistas y mucho más.">
+
+    <!-- Fuentes de Google: Fredoka One para títulos, Nunito para textos -->
+    <!-- Estas fuentes le dan ese look artístico y moderno al sitio -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet">
+
+    <!-- Iconos (usamos emoji + iconos Unicode para no depender de librerías) -->
+
+    <!-- Nuestro archivo CSS separado -->
+    <link rel="stylesheet" href="../css/styles.css">
+  </head>
+  <body>
+
+    <!-- ══════════════════════════════════════════════════════
+       NAVBAR — Barra de navegación fija
+       Se mantiene arriba mientras el usuario hace scroll
+       ══════════════════════════════════════════════════════ -->
+    <nav class="navbar" id="navbar">
+
+      <!-- Logo del museo -->
+      <a href="#inicio" class="nav-logo">
+        <div class="nav-logo-badge">
+          MAM<br>BAQ
+        </div>
+        <div>
+          <div class="nav-logo-text">MAMB</div>
+          <div class="nav-logo-sub">Barranquilla · Arte</div>
+        </div>
+      </a>
+
+      <!-- Links de navegación -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio"> Inicio</a></li>
+        <li><a href="#museo"> Sobre el Museo</a></li>
+        <li><a href="#artistas"> Artistas</a></li>
+        <li><a href="#exposiciones"> Exposiciones</a></li>
+        <li><a href="#servicios"> Servicios</a></li>
+        <li><a href="#horarios"> Horarios</a></li>
+        <li><a href="#contacto"> Contacto</a></li>
+        <!-- Botón especial que lleva a la app del museo en otra pestaña -->
+        <!-- ⚠️ PARA CAMBIAR EL LINK DE LA APP: reemplaza el href="" con la URL de tu app -->
+        <li>
+          <a href="https://tu-app-museo.com" target="_blank"
+            class="nav-btn-app">
+            App del Museo
+          </a>
+        </li>
+      </ul>
+
+      <!-- Botón de menú para móvil (tres rayitas) -->
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </nav><!-- /navbar -->
+
+    <!-- ══════════════════════════════════════════════════════
+       SECCIÓN 1: HERO — Pantalla principal
+       Es lo primero que ve el usuario
+       ══════════════════════════════════════════════════════ -->
+    <section class="hero" id="inicio">
+
+      <!-- Fondo degradado naranja-rosa -->
+      <div class="hero-bg"></div>
+
+      <!-- Formas circulares decorativas (animadas con CSS) -->
+      <div class="hero-shape hero-shape-1"></div>
+      <div class="hero-shape hero-shape-2"></div>
+      <div class="hero-shape hero-shape-3"></div>
+
+      <div class="hero-content">
+
+        <!-- Texto principal del hero -->
+       
+          
+
+          <h1 class="hero-title">
+            Museo de Arte<br>
+            <span>Moderno de Barranquilla</span><br>
+            
+          </h1>
+
+  
+
+    
+
+      </div><!-- /hero-content -->
+    </section><!-- /hero -->
+
+    <!-- ══════════════════════════════════════════════════════
+       SECCIÓN 2: SOBRE EL MUSEO
+       Historia, misión y datos del museo
+       ══════════════════════════════════════════════════════ -->
+    <section class="about" id="museo">
+      <div class="container">
+
+        <!-- Encabezado de sección -->
+        <div class="section-title-block">
+          <h2 class="section-heading">El Museo</h2>
+          <p class="section-sub">Historia, misión y datos importantes del
+            MAMB</p>
+        </div>
+
+        <div class="about-grid">
+
+          <!-- Imagen del museo -->
+          <!-- ⚠️ PARA AGREGAR FOTO REAL: reemplaza el div placeholder por:
+             <img src="img/museo.jpg" alt="Museo MAMB" class="about-image"> -->
+          <div class="about-image-wrap reveal">
+            <div class="about-image-placeholder">
+              <span></span>
+
+              <!-- Instrucción: guarda tu imagen como img/museo.jpg -->
+
+              <img
+                class="imagen-museo"
+                src="https://upload.wikimedia.org/wikipedia/commons/2/20/EntradaMuseodeArteModernoBarranquilla-20251210.jpg"
+                alt="Entrada del Museo de Arte Moderno de Barranquilla">
+            </div>
+            <!-- Badge flotante sobre la imagen -->
+            <div class="about-badge">
+              Fundado<br>en 1979
+            </div>
+          </div>
+
+          <!-- Texto e información del museo -->
+          <div class="about-text reveal">
+            <h2>¿Qué es el MAMB?</h2>
+            <p>
+              El Museo de Arte Moderno de Barranquilla es uno de los espacios
+              culturales más
+              importantes del Caribe colombiano. Fundado para preservar y
+              difundir el arte
+              contemporáneo de la región, el MAMB es un puente entre la
+              tradición artística
+              local y las expresiones más innovadoras del arte moderno
+              latinoamericano.
+            </p>
+            <p>
+              El museo lleva el nombre del escritor <strong>Álvaro Cepeda
+                Samudio</strong>,
+              figura icónica de la cultura barranquillera, amigo de García
+              Márquez y pilar
+              del Grupo de Barranquilla. Su legado inspira cada rincón del
+              museo.
+            </p>
+
+            <!-- Grid de datos del museo -->
+            <div class="about-info-grid">
+
+              <div class="info-card">
+                <div class="info-card-icon"></div>
+                <div class="info-card-label">Ubicación</div>
+                <div class="info-card-value">Barranquilla, Colombia</div>
+              </div>
+
+              <div class="info-card">
+                <div class="info-card-icon"></div>
+                <div class="info-card-label">Teléfono</div>
+                <div class="info-card-value">(605) 379 5570</div>
+              </div>
+
+              <div class="info-card">
+                <div class="info-card-icon"></div>
+                <div class="info-card-label">Horarios</div>
+                <div class="info-card-value">Mar – Dom: 9am – 6pm</div>
+              </div>
+
+              <div class="info-card">
+                <div class="info-card-icon"></div>
+                <div class="info-card-label">Entrada general</div>
+                <div class="info-card-value">$10.000 COP</div>
+              </div>
+
+            </div><!-- /about-info-grid -->
+          </div>
+
+        </div><!-- /about-grid -->
+      </div>
+    </section><!-- /about -->
+
+    <!-- ══════════════════════════════════════════════════════
+       SECCIÓN 3: ARTISTAS
+       Artistas destacados del museo
+       ══════════════════════════════════════════════════════ -->
+    <section class="artists" id="artistas">
+      <div class="container">
+
+        <div class="section-title-block">
+          <h2 class="section-heading">Artistas Destacados</h2>
+          <p class="section-sub">Maestros del arte que forman parte de la
+            colección permanente</p>
+        </div>
+
+        <!-- Grid de tarjetas de artistas -->
+        <div class="artists-grid">
+
+          <!-- ── Artista 1 ── -->
+          <!-- ⚠️ Para agregar foto: <img src="img/artista1.jpg" alt="..." class="artist-img"> -->
+          <div class="artist-card reveal">
+            <img
+              class="artist-img"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAssgG1d_QJcgDbF3Nzl6u8a6PbmnSwcIVzw&s"
+              alt="Cecilia Porras">
+            <div class="artist-body">
+              <span class="artist-style-badge">Expresionismo</span>
+              <h3 class="artist-name">Cecilia Porras</h3>
+              <p class="artist-desc">
+                Pionera del arte moderno barranquillero. Su obra explora la
+                identidad
+                femenina y el folklore caribeño con colores vibrantes y formas
+                expresivas.
+              </p>
+              <div class="artist-works">
+                <span class="work-tag">Acuarela</span>
+                <span class="work-tag">Óleo</span>
+                <span class="work-tag">Retrato</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Artista 2 ── -->
+          <div class="artist-card reveal">
+            <img
+              class="artist-img"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxF4qZ2Jot5UxCC69RmEu6I3BHa41-Y8UhXA&s"
+              alt="Noé León">
+            <div class="artist-body">
+              <span class="artist-style-badge">Abstracción</span>
+              <h3 class="artist-name">Noé León</h3>
+              <p class="artist-desc">
+                Artista autodidacta que capturó la vida popular del Caribe. Sus
+                escenas
+                llenas de humor y color son un testimonio vivo de la cultura
+                barranquillera.
+              </p>
+              <div class="artist-works">
+                <span class="work-tag">Arte popular</span>
+                <span class="work-tag">Óleo</span>
+                <span class="work-tag">Murales</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Artista 3 ── -->
+          <div class="artist-card reveal">
+            <img
+              class="artist-img"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtOTyg7UZKBvgaG1DN1UYuAQuXkeXAAdni-g&s"
+              alt="Alejandro Obregón">
+            <div class="artist-body">
+              <span class="artist-style-badge">Realismo mágico</span>
+              <h3 class="artist-name">Alejandro Obregón</h3>
+              <p class="artist-desc">
+                Uno de los padres del arte moderno colombiano. Mezcló el
+                realismo
+                con elementos míticos del Caribe, creando un estilo único e
+                inconfundible.
+              </p>
+              <div class="artist-works">
+                <span class="work-tag">Óleo</span>
+                <span class="work-tag">Fauna caribeña</span>
+                <span class="work-tag">Surrealismo</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Artista 4 ── -->
+          <div class="artist-card reveal">
+            <img
+              class="artist-img"
+              src="https://ciudadseva.com/wp-content/uploads/2022/09/alvaro_cepeda_samudio_250.png"
+              alt="Álvaro Cepeda Samudio">
+            <div class="artist-body">
+              <span class="artist-style-badge">Literatura & Arte</span>
+              <h3 class="artist-name">Álvaro Cepeda Samudio</h3>
+              <p class="artist-desc">
+                Escritor, periodista y figura del Boom latinoamericano. Amigo de
+                García Márquez, su obra literaria se entrelaza con el arte
+                visual
+                de su época. El museo lleva su nombre en su honor.
+              </p>
+              <div class="artist-works">
+                <span class="work-tag">Literatura</span>
+                <span class="work-tag">Periodismo</span>
+                <span class="work-tag">Cultura</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /artists-grid -->
+      </div>
+    </section><!-- /artists -->
+
+    <!-- ══════════════════════════════════════════════════════
+       SECCIÓN 4: EXPOSICIONES
+       Actuales y próximas, con tabs interactivos
+       ══════════════════════════════════════════════════════ -->
+    <section class="expositions" id="exposiciones">
+      <div class="container">
+
+        <div class="section-title-block">
+          <h2 class="section-heading">Exposiciones</h2>
+          <p class="section-sub">Descubre lo que está pasando en el museo ahora
+            mismo</p>
+        </div>
+
+        <!-- Botones de tab para cambiar entre "actuales" y "próximas" -->
+        <div class="expo-tabs">
+          <button class="expo-tab active" data-tab="expo-actuales">
+            Actuales
+          </button>
+          <button class="expo-tab" data-tab="expo-proximas">
+            Próximas
+          </button>
+        </div>
+
+        <!-- ── PANEL: Exposiciones actuales ── -->
+        <!-- Este panel empieza visible (tiene clase "active") -->
+        <div class="expo-panel active" id="expo-actuales">
+
+          <!-- Tarjeta 1 -->
+          <div class="expo-card reveal">
+
+            <div class="expo-card-img"
+              style="background: linear-gradient(135deg, #FDE8C4, #F08C21);">
+
+              <img
+                class="imagen-raices"
+                src="https://www.bogotachirriada.com/cdn/shop/files/A_Carnaval.webp?v=1764709791&width=990"
+                alt="Raíces del Caribe">
+
+              <span class="expo-card-status">● En curso</span>
+
+            </div>
+
+            <div class="expo-card-body">
+              <div class="expo-card-dates">ENE – MAY 2025</div>
+
+              <h3 class="expo-card-title">
+                Raíces del Caribe
+              </h3>
+
+              <p class="expo-card-desc">
+                Una exploración del folclore y la identidad cultural del Caribe
+                colombiano a través de pinturas, esculturas y arte textil.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Tarjeta 2 -->
+          <div class="expo-card reveal">
+
+            <div class="expo-card-img"
+              style="background: linear-gradient(135deg, #D0E2F5, #6698CC);">
+
+              <img
+                class="imagen-ia"
+                src="https://www.artandobject.com/sites/default/files/styles/gallery_item/public/unsupervisedbyrefikanadol.jpg?itok=IQmCRFV5"
+                alt="Arte e Inteligencia Artificial">
+
+              <span class="expo-card-status">● En curso</span>
+
+            </div>
+
+            <div class="expo-card-body">
+              <div class="expo-card-dates">MAR – JUN 2025</div>
+
+              <h3 class="expo-card-title">
+                Arte e Inteligencia Artificial
+              </h3>
+
+              <p class="expo-card-desc">
+                Obras generadas y transformadas con IA, explorando los límites
+                entre la creatividad humana y las máquinas.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Tarjeta 3 -->
+          <div class="expo-card reveal">
+
+            <div class="expo-card-img"
+              style="background: linear-gradient(135deg, #FAD4DE, #E36888);">
+
+              <img
+                class="imagen-magdalena"
+                src="https://www.artistasdelatierra.com/obras/foto62605.jpg"
+                alt="Flora del Magdalena">
+
+              <span class="expo-card-status">● En curso</span>
+
+            </div>
+
+            <div class="expo-card-body">
+              <div class="expo-card-dates">FEB – JUL 2025</div>
+
+              <h3 class="expo-card-title">
+                Flora del Magdalena
+              </h3>
+
+              <p class="expo-card-desc">
+                Ilustraciones botánicas y obras inspiradas en la biodiversidad
+                del río Magdalena y la región caribeña.
+              </p>
+            </div>
+
+          </div>
+
+        </div><!-- /expo-actuales -->
+
+        <!-- ── PANEL: Próximas exposiciones ── -->
+        <!-- Este panel empieza oculto (sin clase "active") -->
+        <!-- =========================
+     PRÓXIMAS EXPOSICIONES
+========================= -->
+
+<div class="expo-panel active" id="expo-proximas">
+
+  <!-- Carnaval Eterno -->
+  <div class="expo-card reveal">
+
+    <div class="expo-card-img expo-matcha">
+      <img
+        class="imagen-carnaval"
+        src="https://imagenes2.eltiempo.com/files/image_600_455/uploads/2023/02/18/63f0eecc8bc45.jpeg"
+        alt="Carnaval Eterno"
+      />
+
+      <span class="expo-card-status proxima">
+        Próximamente
+      </span>
+    </div>
+
+    <div class="expo-card-body">
+      <div class="expo-card-dates">
+        AGO – OCT 2025
+      </div>
+
+      <h3 class="expo-card-title">
+        Carnaval Eterno
+      </h3>
+
+      <p class="expo-card-desc">
+        Celebración artística del Carnaval de Barranquilla Patrimonio de la Humanidad,
+        con instalaciones inmersivas y obras interactivas.
+      </p>
+    </div>
+  </div>
+
+  <!-- Barranquilla 2050 -->
+  <div class="expo-card reveal">
+
+    <div class="expo-card-img expo-sea">
+      <img
+        class="imagen-2050"
+        src="https://pertanto.com/wp-content/uploads/2023/09/Imagen-Destacada-Ciudades-Futuristicas-01.png"
+        alt="Barranquilla 2050"
+      />
+
+      <span class="expo-card-status proxima">
+        Próximamente
+      </span>
+    </div>
+
+    <div class="expo-card-body">
+      <div class="expo-card-dates">
+        SEP – DIC 2025
+      </div>
+
+      <h3 class="expo-card-title">
+        Barranquilla 2050
+      </h3>
+
+      <p class="expo-card-desc">
+        Visiones artísticas del futuro de la ciudad a través del urbanismo,
+        la tecnología y el medioambiente.
+      </p>
+    </div>
+  </div>
+
+  <!-- Arte Para Niños -->
+  <div class="expo-card reveal">
+
+    <div class="expo-card-img expo-blush">
+      <img
+        class="imagen-ninos"
+        src="https://www.arteescuela.com/wp-content/uploads/2022/02/como-desarrollar-creatividad-arte.jpg"
+        alt="Arte Para Niños"
+      />
+
+      <span class="expo-card-status proxima">
+        Próximamente
+      </span>
+    </div>
+
+    <div class="expo-card-body">
+      <div class="expo-card-dates">
+        NOV 2025
+      </div>
+
+      <h3 class="expo-card-title">
+        Arte Para Niños
+      </h3>
+
+      <p class="expo-card-desc">
+        Exposición interactiva diseñada especialmente para los más pequeños,
+        con talleres de pintura, escultura y arte digital.
+      </p>
+    </div>
+  </div>
+
+</div>
+      </div>
+    </section><!-- /expositions -->
+
+    <!-- ══════════════════════════════════════════════════════
+       SECCIÓN 5: SERVICIOS
+       Lo que ofrece el museo (con fondo naranja)
+       ══════════════════════════════════════════════════════ -->
+    <section class="services" id="servicios">
+      <div class="container">
+
+        <div class="section-title-block">
+          <h2 class="section-heading">Servicios del Museo</h2>
+          <p class="section-sub">Todo lo que puedes encontrar en el MAMB</p>
+        </div>
+
+        <!-- Grid de tarjetas de servicio -->
+        <div class="services-grid">
+
+          <div class="service-card reveal">
+            <div class="service-icon"></div>
+            <div class="service-name">Talleres de Arte</div>
+            <div class="service-desc">Aprende técnicas artísticas con nuestros
+              maestros. Para todas las edades.</div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"></div>
+            <div class="service-name">Arte Infantil</div>
+            <div class="service-desc">Actividades creativas especiales para los
+              más pequeños del hogar.</div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"></div>
+            <div class="service-name">Visitas Guiadas</div>
+            <div class="service-desc">Recorre el museo con expertos que te
+              explicarán cada obra y su historia.</div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"></div>
+            <div class="service-name">Cafetería</div>
+            <div class="service-desc">Descansa y disfruta de bebidas y snacks en
+              nuestro café con vista al jardín.</div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"></div>
+            <div class="service-name">Tienda</div>
+            <div class="service-desc">Llévate a casa piezas únicas, libros de
+              arte y souvenirs exclusivos del museo.</div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"></div>
+            <div class="service-name">Eventos Culturales</div>
+            <div class="service-desc">Conciertos, lanzamientos de libros,
+              conferencias y actividades culturales.</div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"></div>
+            <div class="service-name">Fotografía</div>
+            <div class="service-desc">Espacios instagrameables y servicio
+              fotográfico profesional dentro del museo.</div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"></div>
+            <div class="service-name">Accesibilidad</div>
+            <div class="service-desc">El museo está adaptado para personas con
+              movilidad reducida y discapacidad visual.</div>
+          </div>
+
+        </div><!-- /services-grid -->
+      </div>
+    </section><!-- /services -->
+
+    <!-- ══════════════════════════════════════════════════════
+       SECCIÓN 6: APP DEL MUSEO
+       Presentación de la aplicación móvil MAMBAQ
+       ══════════════════════════════════════════════════════ -->
+    <section class="app-section" id="app">
+      <div class="container">
+
+        <div class="section-title-block">
+          <h2 class="section-heading">App del Museo</h2>
+          <p class="section-sub">Lleva el arte en tu bolsillo con MAMBAQ ·
+            App</p>
+        </div>
+
+        <div class="app-content">
+
+          <!-- Texto explicativo de la app -->
+          <div class="app-text reveal">
+            <h2>
+              Transforma cualquier obra<br>
+              con <span>Inteligencia Artificial</span>
+            </h2>
+            <p>
+              La aplicación MAMBAQ te permite fotografiar obras de arte y
+              transformarlas
+              con 6 estilos artísticos aplicados por Inteligencia Artificial.
+              ¡Crea tu
+              propia obra de arte y compártela con el mundo!
+            </p>
+
+            <!-- Lista de características principales -->
+            <ul class="app-features">
+              <li>
+                <span><strong>Escáner de obras:</strong> Fotografía o sube
+                  cualquier imagen de arte desde tu galería</span>
+              </li>
+              <li>
+                <span><strong>6 estilos de IA:</strong> Impresionismo, Cubismo,
+                  Arte Pop, Acuarela Tropical y más</span>
+              </li>
+              <li>
+                <span><strong>Galería interactiva:</strong> Explora la colección
+                  completa del museo digitalmente</span>
+              </li>
+              <li>
+                <span><strong>Ficha técnica:</strong> Conoce el autor, fecha,
+                  estilo y contexto de cada obra</span>
+              </li>
+              <li>
+               
+                <span><strong>Sobre el museo:</strong> Historia del MAMB,
+                  artistas y programas universitarios</span>
+              </li>
+            </ul>
+
+            <!-- Botón para descargar la app -->
+            <!-- ⚠️ PARA CAMBIAR EL LINK DE LA APP: reemplaza el href="" -->
+            <a href="https://tu-app-museo.com" target="_blank"
+              class="btn-primary">
+              Abrir la App del Museo
+            </a>
+          </div>
+
+          <!-- Tres mockups de teléfono mostrando pantallas de la app -->
+          <div class="app-phones reveal">
+
+            <!-- Teléfono 1: Pantalla del escáner -->
+            <div class="phone-mockup">
+              <div class="phone-notch"></div>
+              <div class="phone-screen screen-scanner">
+                <div class="screen-content">
+                  <div
+                    style="font-family:'Fredoka One',cursive;color:white;font-size:14px;text-align:center;padding:8px 0">
+                    Escáner
+                  </div>
+                  <div
+                    style="background:rgba(255,255,255,.15);border-radius:16px;height:120px;display:flex;align-items:center;justify-content:center;font-size:40px;border:2px dashed rgba(255,255,255,.4)">
+
+                  </div>
+                  <div
+                    style="background:rgba(255,255,255,.1);border-radius:12px;padding:10px;border:2px solid rgba(255,255,255,.2)">
+                    <div
+                      style="font-size:9px;color:rgba(255,255,255,.6);font-weight:800;letter-spacing:1px">MODO</div>
+                    <div
+                      style="font-family:'Fredoka One',cursive;font-size:12px;color:white">Cámara
+                      · Galería · Archivo</div>
+                  </div>
+                  <div style="display:flex;gap:6px">
+                    <div
+                      style="flex:1;background:rgba(255,255,255,.1);border-radius:10px;padding:8px;text-align:center;font-size:18px"></div>
+                    <div
+                      style="flex:1;background:rgba(255,255,255,.1);border-radius:10px;padding:8px;text-align:center;font-size:18px"></div>
+                    <div
+                      style="flex:1;background:rgba(255,255,255,.1);border-radius:10px;padding:8px;text-align:center;font-size:18px"></div>
+                  </div>
+                </div>
+                <div class="phone-bottom-nav">
+                  <div class="phone-nav-item"><span></span>Galería</div>
+                  <div class="phone-nav-item active"><span></span>Crear</div>
+                  <div class="phone-nav-item"><span></span>Buscar</div>
+                  <div class="phone-nav-item"><span></span>Info</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Teléfono 2 (central, más grande): Pantalla de estilos IA -->
+            <div class="phone-mockup">
+              <div class="phone-notch"></div>
+              <div class="phone-screen screen-ai">
+                <div class="screen-content">
+                  <div
+                    style="font-family:'Fredoka One',cursive;color:white;font-size:14px;text-align:center;padding:8px 0">
+                    Estilos IA
+                  </div>
+                  <div
+                    style="background:rgba(255,255,255,.15);border-radius:16px;height:90px;display:flex;align-items:center;justify-content:center;font-size:36px;border:2px solid rgba(255,255,255,.3)">
+
+                  </div>
+                  <div
+                    style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+                    <div
+                      style="background:rgba(255,255,255,.15);border-radius:10px;padding:8px;text-align:center;border:2px solid rgba(255,255,255,.3)">
+                      <div style="font-size:16px"></div>
+                      <div
+                        style="font-size:8px;color:white;font-weight:800">Impresionismo</div>
+                    </div>
+                    <div
+                      style="background:rgba(255,255,255,.3);border-radius:10px;padding:8px;text-align:center;border:2px solid white">
+                      <div style="font-size:16px"></div>
+                      <div style="font-size:8px;color:white;font-weight:800">✓
+                        Cubismo</div>
+                    </div>
+                    <div
+                      style="background:rgba(255,255,255,.15);border-radius:10px;padding:8px;text-align:center;border:2px solid rgba(255,255,255,.3)">
+                      <div style="font-size:16px"></div>
+                      <div
+                        style="font-size:8px;color:white;font-weight:800">Arte
+                        Pop</div>
+                    </div>
+                    <div
+                      style="background:rgba(255,255,255,.15);border-radius:10px;padding:8px;text-align:center;border:2px solid rgba(255,255,255,.3)">
+                      <div style="font-size:16px"></div>
+                      <div
+                        style="font-size:8px;color:white;font-weight:800">Acuarela</div>
+                    </div>
+                  </div>
+                  <div
+                    style="background:rgba(255,255,255,.2);border-radius:30px;padding:10px;text-align:center">
+                    <div
+                      style="font-family:'Fredoka One',cursive;color:white;font-size:12px">
+                      Aplicar Estilo</div>
+                  </div>
+                </div>
+                <div class="phone-bottom-nav">
+                  <div class="phone-nav-item"><span></span>Galería</div>
+                  <div class="phone-nav-item active"><span></span>Crear</div>
+                  <div class="phone-nav-item"><span></span>Buscar</div>
+                  <div class="phone-nav-item"><span></span>Info</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Teléfono 3: Galería del museo -->
+            <div class="phone-mockup">
+              <div class="phone-notch"></div>
+              <div class="phone-screen screen-gallery">
+                <div class="screen-content">
+                  <div
+                    style="font-family:'Fredoka One',cursive;color:white;font-size:14px;text-align:center;padding:8px 0">
+                    Galería
+                  </div>
+                  <div
+                    style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+                    <div
+                      style="background:rgba(255,255,255,.15);border-radius:12px;height:60px;display:flex;align-items:center;justify-content:center;font-size:24px;border:2px solid rgba(255,255,255,.2)"></div>
+                    <div
+                      style="background:rgba(255,255,255,.15);border-radius:12px;height:60px;display:flex;align-items:center;justify-content:center;font-size:24px;border:2px solid rgba(255,255,255,.2)"></div>
+                    <div
+                      style="background:rgba(255,255,255,.15);border-radius:12px;height:60px;display:flex;align-items:center;justify-content:center;font-size:24px;border:2px solid rgba(255,255,255,.2)"></div>
+                    <div
+                      style="background:rgba(255,255,255,.2);border-radius:12px;height:60px;display:flex;align-items:center;justify-content:center;font-size:10px;color:white;font-weight:800;border:2px solid white;text-align:center"><br>NUEVA</div>
+                  </div>
+                  <div
+                    style="background:rgba(255,255,255,.1);border-radius:12px;padding:10px;border:2px solid rgba(255,255,255,.2)">
+                    <div
+                      style="font-size:9px;color:rgba(255,255,255,.6);font-weight:800">OBRA
+                      DESTACADA</div>
+                    <div
+                      style="font-family:'Fredoka One',cursive;font-size:12px;color:white">Carnaval
+                      del Caribe</div>
+                    <div
+                      style="font-size:9px;color:rgba(255,255,255,.6)">Cecilia
+                      Porras · 1967</div>
+                  </div>
+                </div>
+                <div class="phone-bottom-nav">
+                  <div class="phone-nav-item active"><span></span>Galería</div>
+                  <div class="phone-nav-item"><span></span>Crear</div>
+                  <div class="phone-nav-item"><span></span>Buscar</div>
+                  <div class="phone-nav-item"><span></span>Info</div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /app-phones -->
+        </div><!-- /app-content -->
+      </div>
+    </section><!-- /app-section -->
+
+    <!-- ══════════════════════════════════════════════════════
+       SECCIÓN 7: HORARIOS Y MAPA
+       Información práctica para visitantes
+       ══════════════════════════════════════════════════════ -->
+    <section class="schedule" id="horarios">
+      <div class="container">
+
+        <div class="section-title-block">
+          <h2 class="section-heading">Horarios y Ubicación</h2>
+          <p class="section-sub">Planifica tu visita al MAMB</p>
+        </div>
+
+        <div class="schedule-grid">
+
+          <!-- Tabla de horarios -->
+          <div class="reveal">
+            <h3
+              style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--ink);margin-bottom:20px">
+              Horarios de Atención
+            </h3>
+            <table class="schedule-table">
+              <tr>
+                <td>Martes – Viernes</td>
+                <td>9:00 am – 6:00 pm</td>
+              </tr>
+              <tr>
+                <td>Sábado</td>
+                <td>9:00 am – 7:00 pm</td>
+              </tr>
+              <tr>
+                <td>Domingo</td>
+                <td>10:00 am – 4:00 pm</td>
+              </tr>
+              <tr class="closed">
+                <td>Lunes</td>
+                <td>Cerrado</td>
+              </tr>
+            </table>
+
+            <!-- Precios -->
+            <div style="margin-top:28px">
+              <h3
+                style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--ink);margin-bottom:16px">
+                Tarifas de Entrada
+              </h3>
+              <table class="schedule-table">
+                <tr>
+                  <td>Entrada general</td>
+                  <td>$10.000 COP</td>
+                </tr>
+                <tr>
+                  <td>Estudiantes</td>
+                  <td>$5.000 COP</td>
+                </tr>
+                <tr>
+                  <td>Niños (hasta 12 años)</td>
+                  <td>Gratis </td>
+                </tr>
+                <tr>
+                  <td>Tercer domingo del mes</td>
+                  <td>Entrada libre</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <!-- Mapa de ubicación -->
+          <!-- ⚠️ PARA AGREGAR MAPA REAL: puedes incrustar un iframe de Google Maps aquí -->
+          <div class="map-placeholder reveal">
+            <span></span>
+            <p>Ubicación del MAMB</p>
+            <small>
+              Cra. 36 #1E-55, Barranquilla<br>
+              Atlántico, Colombia
+            </small>
+            <!-- ⚠️ Código para poner Google Maps real:
+          <iframe
+            src="https://www.google.com/maps/embed?pb=TU_EMBED_URL_AQUI"
+            width="100%"
+            height="100%"
+            style="border:0;border-radius:20px;"
+            loading="lazy">
+          </iframe>
+          -->
+            <a href="https://maps.google.com/?q=Museo+Arte+Moderno+Barranquilla"
+              target="_blank"
+              class="btn-primary"
+              style="margin-top:12px">
+              🗺 Abrir en Maps
+            </a>
+          </div>
+
+        </div><!-- /schedule-grid -->
+      </div>
+    </section><!-- /schedule -->
+
+    <!-- ══════════════════════════════════════════════════════
+       SECCIÓN 8: CONTACTO
+       Datos de contacto + formulario
+       ══════════════════════════════════════════════════════ -->
+    <section class="contact" id="contacto">
+      <div class="container">
+
+        <div class="section-title-block">
+          <h2 class="section-heading">Contáctanos</h2>
+          <p class="section-sub">Estamos aquí para ayudarte con cualquier
+            consulta</p>
+        </div>
+
+        <div class="contact-grid">
+
+          <!-- Columna izquierda: tarjetas de contacto -->
+          <div>
+            <div style="display:flex;flex-direction:column;gap:16px">
+
+              <div class="contact-card reveal">
+                <div>
+                  <div class="contact-card-label">Dirección</div>
+                  <div class="contact-card-value">Cra. 36 #1E-55,
+                    Barranquilla</div>
+                </div>
+              </div>
+
+              <div class="contact-card reveal">
+                <div>
+                  <div class="contact-card-label">Teléfono</div>
+                  <div class="contact-card-value">(605) 379 5570</div>
+                </div>
+              </div>
+
+              <div class="contact-card reveal">
+                <div>
+                  <div class="contact-card-label">Email</div>
+                  <div class="contact-card-value">info@mambarranquilla.org</div>
+                </div>
+              </div>
+
+              <div class="contact-card reveal">
+                
+                <div>
+                  <div class="contact-card-label">App del Museo</div>
+                  <!--  Cambia este link por el de tu app -->
+                  <div class="contact-card-value">
+                    <a href="https://tu-app-museo.com" target="_blank"
+                      style="color:var(--tangerine);text-decoration:none">
+                      tu-app-museo.com ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- /columna izquierda -->
+
+          <!-- Columna derecha: formulario de contacto -->
+          <div class="reveal">
+            <!-- id="contactForm" le dice al JavaScript cuál es el formulario -->
+            <form id="contactForm" class="contact-form">
+
+              <div class="form-group">
+                <label for="nombre">Tu nombre</label>
+                <input type="text" id="nombre" name="nombre"
+                  placeholder="¿Cómo te llamas?" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email"
+                  placeholder="tu@correo.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="asunto">Asunto</label>
+                <input type="text" id="asunto" name="asunto"
+                  placeholder="¿En qué podemos ayudarte?">
+              </div>
+
+              <div class="form-group">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje"
+                  placeholder="Cuéntanos más..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary"
+                style="width:100%;justify-content:center">
+                Enviar Mensaje
+              </button>
+
+            </form>
+          </div>
+
+        </div><!-- /contact-grid -->
+      </div>
+    </section><!-- /contact -->
+
+    <!-- ══════════════════════════════════════════════════════
+       FOOTER — Pie de página
+       ══════════════════════════════════════════════════════ -->
+    <footer>
+      <div class="container">
+
+        <!-- Grid del footer: 4 columnas en escritorio -->
+        <div class="footer-grid">
+
+          <!-- Columna 1: Marca del museo -->
+          <div class="footer-brand">
+            <div class="nav-logo"
+              style="margin-bottom:16px;text-decoration:none">
+              <div class="nav-logo-badge">MAM<br>BAQ</div>
+              <div>
+                <div class="nav-logo-text">MAMB</div>
+                <div class="nav-logo-sub" style="color:rgba(255,255,255,.5)">
+                  Barranquilla · Arte
+                </div>
+              </div>
+            </div>
+            <p>
+              El Museo de Arte Moderno de Barranquilla es un espacio abierto a
+              la cultura,
+              la creatividad y el arte del Caribe colombiano.
+            </p>
+            <!-- Redes sociales -->
+            <div class="social-links">
+              <a href="#" class="social-btn" aria-label="Instagram"></a>
+              <a href="#" class="social-btn" aria-label="Facebook"></a>
+              <a href="#" class="social-btn" aria-label="Twitter"></a>
+              <a href="#" class="social-btn" aria-label="YouTube"></a>
+            </div>
+          </div>
+
+          <!-- Columna 2: Navegación -->
+          <div class="footer-col">
+            <h4>Explorar</h4>
+            <ul>
+              <li><a href="#inicio">Inicio</a></li>
+              <li><a href="#museo">Sobre el Museo</a></li>
+              <li><a href="#artistas">Artistas</a></li>
+              <li><a href="#exposiciones">Exposiciones</a></li>
+              <li><a href="#app">App del Museo</a></li>
+            </ul>
+          </div>
+
+          <!-- Columna 3: Servicios -->
+          <div class="footer-col">
+            <h4>Servicios</h4>
+            <ul>
+              <li><a href="#servicios">Talleres de Arte</a></li>
+              <li><a href="#servicios">Arte Infantil</a></li>
+              <li><a href="#servicios">Visitas Guiadas</a></li>
+              <li><a href="#servicios">Cafetería</a></li>
+              <li><a href="#servicios">Tienda</a></li>
+            </ul>
+          </div>
+
+          <!-- Columna 4: Información de contacto -->
+          <div class="footer-col">
+            <h4>Visítanos</h4>
+            <ul>
+              <li><a href="#">Cra. 36 #1E-55, Barranquilla</a></li>
+              <li><a href="#">Mar – Dom: 9am – 6pm</a></li>
+              <li><a href="#">(605) 379 5570</a></li>
+              <li><a href="#">info@mambarranquilla.org</a></li>
+            </ul>
+          </div>
+
+        </div><!-- /footer-grid -->
+
+        <!-- Línea inferior del footer -->
+        <div class="footer-bottom">
+          <p>© 2025 Museo de Arte Moderno de Barranquilla (MAMB). Todos los
+            derechos reservados.</p>
+          <p>Desarrollado por estudiantes de la Universidad Simón Bolívar 🎓</p>
+        </div>
+
+      </div>
+    </footer><!-- /footer -->
+
+    <!-- ══════════════════════════════════════════════════════
+       BOTÓN FLOTANTE (FAB) — "App del Museo"
+       Aparece fijo en la esquina inferior derecha
+       ══════════════════════════════════════════════════════ -->
+    <!-- ⚠️ PARA CAMBIAR EL LINK DE LA APP: reemplaza el href="" -->
+    <a href="https://tu-app-museo.com" target="_blank" class="fab-btn">
+      App del Museo
+    </a>
+
+    <!-- Cargamos el JavaScript al final, después del HTML -->
+    <!-- Esto es importante: si lo pusiéramos en el <head>, el JS no encontraría los elementos HTML -->
+    <script src="../js/script.js"></script>
+
+  </body>
+</html>
