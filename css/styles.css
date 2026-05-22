@@ -242,7 +242,7 @@ body::before {
   min-height: 32vh;
   display: flex;
   align-items: center;
-  padding-top: 70px;
+  padding-top: 100px;
   overflow: hidden;
 }
 
@@ -252,7 +252,7 @@ body::before {
   inset: 0;
   background: linear-gradient(135deg,
       var(--tangerine) 0%,
-      #f49559 50%,
+      #f08c21 50%,
       var(--blush) 100%);
   z-index: -1;
 }
@@ -352,8 +352,8 @@ body::before {
 
 .hero-title span {
   display: inline-block;
-  background: #efe28a;
-  color: #d88b1f;
+  background: transparent;
+  color:white;
   padding: 6px 18px;
   border-radius: 10px;
   margin-top: 10px;
