@@ -1,14 +1,14 @@
-/* ============================================================
+/* 
    MUSEO DE ARTE MODERNO DE BARRANQUILLA — MAMB
-   script.js — Lógica interactiva de la página
-   ============================================================ */
+   
+  */
 
-/* ── 1. ESPERAR A QUE EL HTML ESTÉ LISTO ──────────────────── */
-// Esto se ejecuta cuando el navegador termina de cargar el HTML
+/* ──  ESPERAR A QUE EL HTML ESTÉ LISTO*/
+
 document.addEventListener('DOMContentLoaded', function() {
 
-  /* ── 2. NAVBAR: SOMBRA AL HACER SCROLL ────────────────────── */
-  // Seleccionamos el elemento navbar por su clase
+  /* ──  NAVBAR: SOMBRA AL HACER SCROLL ────────────────────── */
+ 
   var navbar = document.querySelector('.navbar');
 
   // Cada vez que el usuario hace scroll, revisamos qué tan lejos bajó
@@ -22,15 +22,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  /* ── 3. MENÚ HAMBURGUESA (móvil) ──────────────────────────── */
-  // El botón de las tres rayitas en móvil
+  /* ──  MENÚ HAMBURGUESA (móvil) ──────────────────────────── */
   var navToggle = document.querySelector('.nav-toggle');
-  // La lista de links del navbar
   var navLinks = document.querySelector('.nav-links');
 
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', function() {
-      // classList.toggle agrega la clase si no existe, o la quita si ya existe
       navLinks.classList.toggle('open');
     });
 
@@ -43,17 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  /* ── 4. TABS DE EXPOSICIONES ──────────────────────────────── */
-  // Seleccionamos todos los botones de tab
+  /* ──  TABS DE EXPOSICIONES ──────────────────────────────── */
   var expoTabs = document.querySelectorAll('.expo-tab');
-  // Seleccionamos todos los paneles de contenido
   var expoPanels = document.querySelectorAll('.expo-panel');
 
   expoTabs.forEach(function(tab) {
     tab.addEventListener('click', function() {
-      // Quitar clase "active" de todos los tabs
       expoTabs.forEach(function(t) { t.classList.remove('active'); });
-      // Ocultar todos los paneles
       expoPanels.forEach(function(p) { p.classList.remove('active'); });
 
       // Activar el tab que se clickeó
@@ -68,8 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  /* ── 5. SCROLL REVEAL (animación al hacer scroll) ─────────── */
-  // Seleccionamos todos los elementos con clase "reveal"
+  /* ── SCROLL REVEAL (animación al hacer scroll) ─────────── */
   var revealElements = document.querySelectorAll('.reveal');
 
   // IntersectionObserver detecta cuando un elemento entra en la pantalla
@@ -92,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(el);
   });
 
-  /* ── 6. SMOOTH SCROLL PARA LINKS INTERNOS ─────────────────── */
+  /* ──  SMOOTH SCROLL PARA LINKS INTERNOS ─────────────────── */
   // Cuando hacen clic en un link tipo "#seccion", hace scroll suave
   var internalLinks = document.querySelectorAll('a[href^="#"]');
 
@@ -112,10 +104,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  /* ── 7. EFECTO CONTADOR EN NÚMEROS DEL HERO ─────────────────── */
-  // Si hubiera números estadísticos, los animaría. Por ahora está listo.
 
-  /* ── 8. BOTÓN FAB: MOSTRAR DESPUÉS DE 2 SEGUNDOS ──────────── */
+  /* ──  BOTÓN FAB: MOSTRAR DESPUÉS DE 2 SEGUNDOS ──────────── */
   var fabBtn = document.querySelector('.fab-btn');
   if (fabBtn) {
     // Empieza oculto
@@ -130,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 2000);
   }
 
-  /* ── 9. FORMULARIO DE CONTACTO ─────────────────────────────── */
+  /* ──  FORMULARIO DE CONTACTO ─────────────────────────────── */
   var contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -159,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  /* ── 10. FUNCIÓN AUXILIAR: MOSTRAR ALERTA ─────────────────── */
+  /* ──  FUNCIÓN AUXILIAR: MOSTRAR ALERTA ─────────────────── */
   // Crea un toast (mensajito flotante) en la parte inferior
   function mostrarAlerta(mensaje, tipo) {
     // Crear el elemento del toast
@@ -201,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 3000);
   }
 
-  /* ── 11. MARCAR LINK ACTIVO EN NAVBAR AL HACER SCROLL ─────── */
+  /* ──  MARCAR LINK ACTIVO EN NAVBAR AL HACER SCROLL ─────── */
   // Detecta qué sección es visible y resalta su link en el navbar
   var sections = document.querySelectorAll('section[id]');
 
@@ -228,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  /* ── 12. ANIMACIÓN DE TARJETAS ARTISTAS AL HOVER ──────────── */
+  /* ──  ANIMACIÓN DE TARJETAS ARTISTAS AL HOVER ──────────── */
   // Efecto: el fondo del artista cambia al pasar el mouse
   var artistCards = document.querySelectorAll('.artist-card');
 
@@ -251,4 +241,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-}); // Fin del DOMContentLoaded
+}); 
