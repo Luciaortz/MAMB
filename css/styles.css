@@ -150,7 +150,7 @@ body::before {
   justify-content: center;
   font-family: "Fredoka One", cursive;
   font-size: 11px;
-  color: var(--tangerine);
+  color: black;
   line-height: 1.1;
   box-shadow: 0 3px 0 var(--butter-dark);
 }
