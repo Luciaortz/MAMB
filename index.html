@@ -1,0 +1,2452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAMBAQ IA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/lucide@latest">
+/* ============================
+   IA DE GESTOS - TEACHABLE MACHINE
+============================ */
+
+let gestureModel;
+let webcamElement;
+let isGestureRunning = false;
+
+const gestureLabels = {
+  like: "👍 Like",
+  paz: "✌️ Paz",
+  saludo: "👋 Saludo",
+  puno: "✊ Puño",
+  manos_arriba: "🙌 Ambas manos arriba",
+  señalar: "👉 Señalar"
+};
+
+async function initGestureAI(){
+
+  if(isGestureRunning) return;
+
+  isGestureRunning = true;
+
+  const modelURL = "./model/model.json";
+  const metadataURL = "./model/metadata.json";
+
+  gestureModel = await tmPose.load(modelURL, metadataURL);
+
+  webcamElement = document.getElementById("webcam");
+
+  const stream = await navigator.mediaDevices.getUserMedia({
+    video:true
+  });
+
+  webcamElement.srcObject = stream;
+
+  predictGesture();
+}
+
+async function predictGesture(){
+
+  if(!gestureModel) return;
+
+  const { pose, posenetOutput } = await gestureModel.estimatePose(webcamElement);
+  const prediction = await gestureModel.predict(posenetOutput);
+
+  let highest = prediction[0];
+
+  prediction.forEach(p=>{
+    if(p.probability > highest.probability){
+      highest = p;
+    }
+  });
+
+  let gestureName = highest.className;
+
+  if(gestureLabels[gestureName]){
+    gestureName = gestureLabels[gestureName];
+  }
+
+  document.getElementById("gestureResult").innerHTML = `
+  ${gestureName}<br>
+  <span style="font-size:14px;opacity:.7;">
+  ${(highest.probability * 100).toFixed(1)}% de confianza
+  </span>
+  `;
+
+  requestAnimationFrame(predictGesture);
+}
+
+/* DETECCIÓN POR IMAGEN */
+
+document
+.getElementById("gestureImageInput")
+.addEventListener("change", async function(e){
+
+  const file = e.target.files[0];
+
+  if(!file) return;
+
+  const img =
+  document.getElementById("gesturePreview");
+
+  img.src = URL.createObjectURL(file);
+
+  img.classList.remove("hidden");
+
+  if(!gestureModel){
+
+    const modelURL = "./model/model.json";
+    const metadataURL = "./model/metadata.json";
+
+    gestureModel = await tmPose.load(modelURL, metadataURL);
+  }
+
+  const { pose, posenetOutput } = await gestureModel.estimatePose(img);
+  const prediction = await gestureModel.predict(posenetOutput);
+
+  let highest = prediction[0];
+
+  prediction.forEach(p=>{
+
+    if(p.probability > highest.probability){
+      highest = p;
+    }
+
+  });
+
+  let gestureName = highest.className;
+
+  if(gestureLabels[gestureName]){
+    gestureName = gestureLabels[gestureName];
+  }
+
+  document.getElementById("gestureResult").innerHTML = `
+  ${gestureName}<br>
+  <span style="font-size:14px;opacity:.7;">
+  ${(highest.probability * 100).toFixed(1)}% de confianza
+  </span>
+  `;
+});
+
+
+
+
+/* DARK MODE */
+
+function toggleDarkMode(){
+
+  document.body.classList.toggle("dark-mode");
+
+}
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js">
+/* ============================
+   IA DE GESTOS - TEACHABLE MACHINE
+============================ */
+
+let gestureModel;
+let webcamElement;
+let isGestureRunning = false;
+
+const gestureLabels = {
+  like: "👍 Like",
+  paz: "✌️ Paz",
+  saludo: "👋 Saludo",
+  puno: "✊ Puño",
+  manos_arriba: "🙌 Ambas manos arriba",
+  señalar: "👉 Señalar"
+};
+
+async function initGestureAI(){
+
+  if(isGestureRunning) return;
+
+  isGestureRunning = true;
+
+  const modelURL = "./model/model.json";
+  const metadataURL = "./model/metadata.json";
+
+  gestureModel = await tmPose.load(modelURL, metadataURL);
+
+  webcamElement = document.getElementById("webcam");
+
+  const stream = await navigator.mediaDevices.getUserMedia({
+    video:true
+  });
+
+  webcamElement.srcObject = stream;
+
+  predictGesture();
+}
+
+async function predictGesture(){
+
+  if(!gestureModel) return;
+
+  const { pose, posenetOutput } = await gestureModel.estimatePose(webcamElement);
+  const prediction = await gestureModel.predict(posenetOutput);
+
+  let highest = prediction[0];
+
+  prediction.forEach(p=>{
+    if(p.probability > highest.probability){
+      highest = p;
+    }
+  });
+
+  let gestureName = highest.className;
+
+  if(gestureLabels[gestureName]){
+    gestureName = gestureLabels[gestureName];
+  }
+
+  document.getElementById("gestureResult").innerHTML = `
+  ${gestureName}<br>
+  <span style="font-size:14px;opacity:.7;">
+  ${(highest.probability * 100).toFixed(1)}% de confianza
+  </span>
+  `;
+
+  requestAnimationFrame(predictGesture);
+}
+
+/* DETECCIÓN POR IMAGEN */
+
+document
+.getElementById("gestureImageInput")
+.addEventListener("change", async function(e){
+
+  const file = e.target.files[0];
+
+  if(!file) return;
+
+  const img =
+  document.getElementById("gesturePreview");
+
+  img.src = URL.createObjectURL(file);
+
+  img.classList.remove("hidden");
+
+  if(!gestureModel){
+
+    const modelURL = "./model/model.json";
+    const metadataURL = "./model/metadata.json";
+
+    gestureModel = await tmPose.load(modelURL, metadataURL);
+  }
+
+  const { pose, posenetOutput } = await gestureModel.estimatePose(img);
+  const prediction = await gestureModel.predict(posenetOutput);
+
+  let highest = prediction[0];
+
+  prediction.forEach(p=>{
+
+    if(p.probability > highest.probability){
+      highest = p;
+    }
+
+  });
+
+  let gestureName = highest.className;
+
+  if(gestureLabels[gestureName]){
+    gestureName = gestureLabels[gestureName];
+  }
+
+  document.getElementById("gestureResult").innerHTML = `
+  ${gestureName}<br>
+  <span style="font-size:14px;opacity:.7;">
+  ${(highest.probability * 100).toFixed(1)}% de confianza
+  </span>
+  `;
+});
+
+
+
+
+/* DARK MODE */
+
+function toggleDarkMode(){
+
+  document.body.classList.toggle("dark-mode");
+
+}
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest">
+/* ============================
+   IA DE GESTOS - TEACHABLE MACHINE
+============================ */
+
+let gestureModel;
+let webcamElement;
+let isGestureRunning = false;
+
+const gestureLabels = {
+  like: "👍 Like",
+  paz: "✌️ Paz",
+  saludo: "👋 Saludo",
+  puno: "✊ Puño",
+  manos_arriba: "🙌 Ambas manos arriba",
+  señalar: "👉 Señalar"
+};
+
+async function initGestureAI(){
+
+  if(isGestureRunning) return;
+
+  isGestureRunning = true;
+
+  const modelURL = "./model/model.json";
+  const metadataURL = "./model/metadata.json";
+
+  gestureModel = await tmPose.load(modelURL, metadataURL);
+
+  webcamElement = document.getElementById("webcam");
+
+  const stream = await navigator.mediaDevices.getUserMedia({
+    video:true
+  });
+
+  webcamElement.srcObject = stream;
+
+  predictGesture();
+}
+
+async function predictGesture(){
+
+  if(!gestureModel) return;
+
+  const { pose, posenetOutput } = await gestureModel.estimatePose(webcamElement);
+  const prediction = await gestureModel.predict(posenetOutput);
+
+  let highest = prediction[0];
+
+  prediction.forEach(p=>{
+    if(p.probability > highest.probability){
+      highest = p;
+    }
+  });
+
+  let gestureName = highest.className;
+
+  if(gestureLabels[gestureName]){
+    gestureName = gestureLabels[gestureName];
+  }
+
+  document.getElementById("gestureResult").innerHTML = `
+  ${gestureName}<br>
+  <span style="font-size:14px;opacity:.7;">
+  ${(highest.probability * 100).toFixed(1)}% de confianza
+  </span>
+  `;
+
+  requestAnimationFrame(predictGesture);
+}
+
+/* DETECCIÓN POR IMAGEN */
+
+document
+.getElementById("gestureImageInput")
+.addEventListener("change", async function(e){
+
+  const file = e.target.files[0];
+
+  if(!file) return;
+
+  const img =
+  document.getElementById("gesturePreview");
+
+  img.src = URL.createObjectURL(file);
+
+  img.classList.remove("hidden");
+
+  if(!gestureModel){
+
+    const modelURL = "./model/model.json";
+    const metadataURL = "./model/metadata.json";
+
+    gestureModel = await tmPose.load(modelURL, metadataURL);
+  }
+
+  const { pose, posenetOutput } = await gestureModel.estimatePose(img);
+  const prediction = await gestureModel.predict(posenetOutput);
+
+  let highest = prediction[0];
+
+  prediction.forEach(p=>{
+
+    if(p.probability > highest.probability){
+      highest = p;
+    }
+
+  });
+
+  let gestureName = highest.className;
+
+  if(gestureLabels[gestureName]){
+    gestureName = gestureLabels[gestureName];
+  }
+
+  document.getElementById("gestureResult").innerHTML = `
+  ${gestureName}<br>
+  <span style="font-size:14px;opacity:.7;">
+  ${(highest.probability * 100).toFixed(1)}% de confianza
+  </span>
+  `;
+});
+
+
+
+
+/* DARK MODE */
+
+function toggleDarkMode(){
+
+  document.body.classList.toggle("dark-mode");
+
+}
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@latest">
+/* ============================
+   IA DE GESTOS - TEACHABLE MACHINE
+============================ */
+
+let gestureModel;
+let webcamElement;
+let isGestureRunning = false;
+
+const gestureLabels = {
+  like: "👍 Like",
+  paz: "✌️ Paz",
+  saludo: "👋 Saludo",
+  puno: "✊ Puño",
+  manos_arriba: "🙌 Ambas manos arriba",
+  señalar: "👉 Señalar"
+};
+
+async function initGestureAI(){
+
+  if(isGestureRunning) return;
+
+  isGestureRunning = true;
+
+  const modelURL = "./model/model.json";
+  const metadataURL = "./model/metadata.json";
+
+  gestureModel = await tmPose.load(modelURL, metadataURL);
+
+  webcamElement = document.getElementById("webcam");
+
+  const stream = await navigator.mediaDevices.getUserMedia({
+    video:true
+  });
+
+  webcamElement.srcObject = stream;
+
+  predictGesture();
+}
+
+async function predictGesture(){
+
+  if(!gestureModel) return;
+
+  const { pose, posenetOutput } = await gestureModel.estimatePose(webcamElement);
+  const prediction = await gestureModel.predict(posenetOutput);
+
+  let highest = prediction[0];
+
+  prediction.forEach(p=>{
+    if(p.probability > highest.probability){
+      highest = p;
+    }
+  });
+
+  let gestureName = highest.className;
+
+  if(gestureLabels[gestureName]){
+    gestureName = gestureLabels[gestureName];
+  }
+
+  document.getElementById("gestureResult").innerHTML = `
+  ${gestureName}<br>
+  <span style="font-size:14px;opacity:.7;">
+  ${(highest.probability * 100).toFixed(1)}% de confianza
+  </span>
+  `;
+
+  requestAnimationFrame(predictGesture);
+}
+
+/* DETECCIÓN POR IMAGEN */
+
+document
+.getElementById("gestureImageInput")
+.addEventListener("change", async function(e){
+
+  const file = e.target.files[0];
+
+  if(!file) return;
+
+  const img =
+  document.getElementById("gesturePreview");
+
+  img.src = URL.createObjectURL(file);
+
+  img.classList.remove("hidden");
+
+  if(!gestureModel){
+
+    const modelURL = "./model/model.json";
+    const metadataURL = "./model/metadata.json";
+
+    gestureModel = await tmPose.load(modelURL, metadataURL);
+  }
+
+  const { pose, posenetOutput } = await gestureModel.estimatePose(img);
+  const prediction = await gestureModel.predict(posenetOutput);
+
+  let highest = prediction[0];
+
+  prediction.forEach(p=>{
+
+    if(p.probability > highest.probability){
+      highest = p;
+    }
+
+  });
+
+  let gestureName = highest.className;
+
+  if(gestureLabels[gestureName]){
+    gestureName = gestureLabels[gestureName];
+  }
+
+  document.getElementById("gestureResult").innerHTML = `
+  ${gestureName}<br>
+  <span style="font-size:14px;opacity:.7;">
+  ${(highest.probability * 100).toFixed(1)}% de confianza
+  </span>
+  `;
+});
+
+
+
+
+/* DARK MODE */
+
+function toggleDarkMode(){
+
+  document.body.classList.toggle("dark-mode");
+
+}
+
+</script>
+
+<style>
+
+:root{
+  --orange:#ff8f1f;
+  --pink:#ff5e92;
+  --blue:#6698CC;
+  --green:#7dd957;
+  --bg:#fff7f2;
+  --shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#ffd5b5,#fff7f2);
+  font-family:'Fredoka',sans-serif;
+}
+
+.phone{
+  width:390px;
+  height:844px;
+  background:var(--bg);
+  border-radius:50px;
+  overflow:hidden;
+  position:relative;
+  border:5px solid #2a1b14;
+  box-shadow:
+  0 0 0 10px white,
+  0 0 0 12px #2a1b14,
+  0 30px 80px rgba(0,0,0,.25);
+}
+
+.notch{
+  width:140px;
+  height:34px;
+  background:#2a1b14;
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  border-radius:0 0 20px 20px;
+  z-index:999;
+}
+
+.screen{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+  transform:translateX(100%);
+  transition:.4s ease;
+  background:var(--bg);
+  display:flex;
+  flex-direction:column;
+}
+
+.screen.active{
+  opacity:1;
+  pointer-events:all;
+  transform:translateX(0);
+}
+
+.status{
+  height:46px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:0 24px 8px;
+  font-size:13px;
+  font-weight:700;
+  margin-top:10px;
+}
+
+.header{
+  padding:18px;
+  border-radius:0 0 35px 35px;
+  color:white;
+}
+
+.header h1{
+  font-size:30px;
+}
+
+.header p{
+  margin-top:5px;
+  opacity:.9;
+  font-size:13px;
+}
+
+.scroll{
+  flex:1;
+  overflow-y:auto;
+  padding:18px;
+}
+
+.scroll::-webkit-scrollbar{
+  display:none;
+}
+
+.hero{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#6698CC,#8cc1ff);
+  text-align:center;
+  padding:30px;
+}
+
+.logo{
+  width:160px;
+  height:160px;
+  background:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  box-shadow:var(--shadow);
+  margin-bottom:30px;
+  animation:floaty 3s infinite ease-in-out;
+}
+
+.logo h1{
+  font-size:60px;
+  color:var(--orange);
+}
+
+.logo span{
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.hero h2{
+  color:white;
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:white;
+  opacity:.9;
+  margin-bottom:28px;
+}
+
+.btn{
+  width:100%;
+  height:58px;
+  border:none;
+  border-radius:20px;
+  color:white;
+  cursor:pointer;
+  font-size:17px;
+  font-family:'Fredoka',sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  box-shadow:var(--shadow);
+  transition:.25s;
+}
+
+.btn:hover{
+  transform:translateY(-2px) scale(1.02);
+}
+
+.orange{
+  background:linear-gradient(135deg,#ff9f43,#ff7f11);
+}
+
+.green{
+  background:linear-gradient(135deg,#98ec65,#63d642);
+}
+
+.blue{
+  background:linear-gradient(135deg,#7ab6ff,#6698CC);
+}
+
+.pink{
+  background:linear-gradient(135deg,#ff80ab,#ff5e92);
+}
+
+.card{
+  background:white;
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+.camera-box{
+  width:100%;
+  aspect-ratio:1;
+  background:#222;
+  border-radius:28px;
+  overflow:hidden;
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.camera-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.placeholder{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  color:white;
+  opacity:.7;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.miniBtn{
+  flex:1;
+  height:56px;
+  border:none;
+  border-radius:18px;
+  background:white;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  font-family:'Fredoka',sans-serif;
+}
+
+.styles{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.style-card{
+  background:white;
+  border-radius:24px;
+  padding:14px;
+  cursor:pointer;
+  border:3px solid transparent;
+  box-shadow:var(--shadow);
+  transition:.25s;
+}
+
+.style-card:hover{
+  transform:scale(1.03);
+}
+
+.style-card.active{
+  border-color:var(--orange);
+}
+
+.style-preview{
+  height:90px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:10px;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.gallery-card{
+  background:white;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:.25s;
+}
+
+.gallery-card:hover{
+  transform:translateY(-4px);
+}
+
+.gallery-card img{
+  width:100%;
+  height:130px;
+  object-fit:cover;
+}
+
+.gallery-body{
+  padding:12px;
+}
+
+.bottom-nav{
+  position:absolute;
+  bottom:14px;
+  left:50%;
+  transform:translateX(-50%);
+  width:92%;
+  height:74px;
+  background:rgba(255,255,255,.95);
+  border-radius:28px;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  box-shadow:var(--shadow);
+  z-index:999;
+}
+
+.nav-btn{
+  background:none;
+  border:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  font-size:11px;
+  font-family:'Fredoka',sans-serif;
+  cursor:pointer;
+}
+
+.side-menu{
+  position:absolute;
+  top:0;
+  right:-260px;
+  width:240px;
+  height:100%;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(20px);
+  z-index:1000;
+  padding:100px 18px;
+  transition:.35s ease;
+}
+
+.side-menu.open{
+  right:0;
+}
+
+.menu-item{
+  width:100%;
+  height:56px;
+  border:none;
+  border-radius:18px;
+  margin-bottom:12px;
+  background:white;
+  box-shadow:var(--shadow);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:0 16px;
+  font-family:'Fredoka',sans-serif;
+  cursor:pointer;
+}
+
+.hidden{
+  display:none;
+}
+
+input{
+  height:54px;
+  border:none;
+  border-radius:18px;
+  padding:0 16px;
+  background:#fff4ec;
+  font-family:'Fredoka',sans-serif;
+}
+
+.notification-panel{
+  position:absolute;
+  top:90px;
+  right:16px;
+  width:300px;
+  max-height:420px;
+  overflow-y:auto;
+  background:white;
+  border-radius:28px;
+  padding:18px;
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+  z-index:2000;
+  animation:pop .25s ease;
+}
+
+.notification-panel.hidden{
+  display:none;
+}
+
+.notification-item{
+  background:#fff4ec;
+  border-radius:18px;
+  padding:14px;
+  margin-bottom:12px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.notification-icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:#ffe4ef;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+
+.notification-content{
+  flex:1;
+}
+
+.notification-content h4{
+  font-size:14px;
+  margin-bottom:4px;
+}
+
+.notification-content p{
+  font-size:12px;
+  opacity:.7;
+  line-height:1.4;
+}
+
+.like-btn{
+  transition:.25s;
+}
+
+.like-btn:hover{
+  transform:scale(1.05);
+}
+
+.logo{
+  animation:floaty 3s infinite ease-in-out;
+}
+
+@keyframes floaty{
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-8px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+}
+
+@keyframes pop{
+
+  0%{
+    transform:scale(.7);
+    opacity:0;
+  }
+
+  100%{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+
+
+.dark-mode{
+  --bg:#151515;
+}
+
+.dark-mode body{
+  background:linear-gradient(135deg,#111,#222);
+}
+
+.dark-mode .phone{
+  background:#1d1d1d;
+}
+
+.dark-mode .screen{
+  background:#1d1d1d;
+}
+
+.dark-mode .card,
+.dark-mode .miniBtn,
+.dark-mode .bottom-nav,
+.dark-mode .side-menu,
+.dark-mode .notification-panel{
+  background:#2b2b2b !important;
+  color:white;
+}
+
+.dark-mode input,
+.dark-mode #creationDate{
+  background:#3b3b3b;
+  color:white;
+}
+
+.dark-mode p,
+.dark-mode span,
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode div{
+  color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+
+<div class="notch"></div>
+
+<!-- MENU -->
+
+<div class="side-menu" id="sideMenu">
+
+<button class="menu-item" onclick="openNotifications();toggleMenu()">
+<i data-lucide="bell"></i>
+Notificaciones
+</button>
+
+<button class="menu-item" onclick="goTo('profile');toggleMenu()">
+<i data-lucide="user"></i>
+Mi Perfil
+</button>
+
+<button class="menu-item" onclick="toggleDarkMode()">
+<i data-lucide="moon"></i>
+Modo oscuro
+</button>
+
+</div>
+
+<div class="notification-panel hidden"
+id="notificationPanel">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:18px;">
+
+<h2 style="color:#ff8f1f;">
+🔔 Notificaciones
+</h2>
+
+<button onclick="closeNotifications()"
+style="
+border:none;
+background:#ffe4ef;
+width:36px;
+height:36px;
+border-radius:12px;
+cursor:pointer;">
+✖
+</button>
+
+</div>
+
+<div id="notificationList">
+
+<div style="
+text-align:center;
+padding:30px 10px;
+opacity:.6;">
+
+✨ No tienes notificaciones todavía 🎨
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HOME -->
+
+<section class="screen active" id="home">
+
+<div class="hero">
+
+<div class="logo">
+<h1>M</h1>
+<span>MAMBAQ</span>
+</div>
+
+<h2>
+🎨 ¡Crea arte con IA! ✨
+</h2>
+
+<p>
+🌈 Convierte tus fotos en obras mágicas y compártelas 💖
+</p>
+
+<button class="btn orange" style="width:240px" onclick="goTo('scanner')">
+Comenzar
+</button>
+
+</div>
+
+</section>
+
+<!-- SCANNER -->
+
+<section class="screen" id="scanner">
+
+<div class="status">
+
+<div>9:41</div>
+
+<button onclick="toggleMenu()" style="background:none;border:none;">
+<i data-lucide="ellipsis"></i>
+</button>
+
+</div>
+
+<div class="header" style="background:linear-gradient(135deg,#ff8f1f,#ff5e92)">
+<h1>Crear Obra</h1>
+<p>Sube una imagen divertida</p>
+</div>
+
+<div class="scroll">
+
+<div class="camera-box">
+
+<div class="placeholder" id="placeholder">
+
+<i data-lucide="image-plus"></i>
+
+<span>Selecciona una imagen</span>
+
+</div>
+
+<img id="previewImage" class="hidden">
+
+</div>
+
+<div class="actions">
+
+<button class="miniBtn" onclick="galleryInput.click()">
+Galería
+</button>
+
+<button class="miniBtn" onclick="cameraInput.click()">
+Cámara
+</button>
+
+</div>
+
+<input type="file" accept="image/*" id="galleryInput" class="hidden">
+<input type="file" accept="image/*" capture="environment" id="cameraInput" class="hidden">
+
+<button class="btn orange" onclick="goTo('styles')">
+Continuar
+</button>
+
+</div>
+
+</section>
+
+<!-- STYLES -->
+
+<section class="screen" id="styles">
+
+<div class="status">
+
+<div>9:41</div>
+
+<button onclick="toggleMenu()" style="background:none;border:none;">
+<i data-lucide="ellipsis"></i>
+</button>
+
+</div>
+
+<div class="header" style="background:linear-gradient(135deg,#7dd957,#44c767)">
+<h1>Estilos IA</h1>
+<p>Selecciona un estilo</p>
+</div>
+
+<div class="scroll">
+
+<div class="card" style="margin-bottom:18px;">
+
+<h3 style="margin-bottom:14px;color:var(--orange)">
+🎨 Datos de la obra
+</h3>
+
+<div style="display:flex;flex-direction:column;gap:12px;">
+
+<input id="artistName" type="text" placeholder="Tu nombre artístico">
+
+<input id="artName" type="text" placeholder="Nombre de la obra">
+
+<div id="creationDate"
+style="height:54px;background:#fff4ec;border-radius:18px;display:flex;align-items:center;padding:0 16px;">
+</div>
+
+</div>
+
+</div>
+
+<div class="styles">
+
+<div class="style-card active" data-style="anime">
+<div class="style-preview" style="background:#ffe3ef">
+✨🎀
+</div>
+Anime
+</div>
+
+<div class="style-card" data-style="comic">
+<div class="style-preview" style="background:#e6ffe1">
+⚡💥
+</div>
+Comic
+</div>
+
+<div class="style-card" data-style="retro">
+<div class="style-preview" style="background:#ffe9d6">
+📻🕹️
+</div>
+Retro
+</div>
+
+<div class="style-card" data-style="neon">
+<div class="style-preview" style="background:#efe3ff">
+🌈🪩
+</div>
+Neón
+</div>
+
+</div>
+
+<div style="height:20px"></div>
+
+<button class="btn green" onclick="generateArt()">
+Generar Arte
+</button>
+
+<div style="height:100px"></div>
+
+</div>
+
+</section>
+
+<!-- RESULT -->
+
+<section class="screen" id="result">
+
+<div class="status">
+
+<div>9:41</div>
+
+<button onclick="toggleMenu()" style="background:none;border:none;">
+<i data-lucide="ellipsis"></i>
+</button>
+
+</div>
+
+<div class="header" style="background:linear-gradient(135deg,#ff8f1f,#ff5e92)">
+<h1>Resultado</h1>
+<p>Tu obra está lista</p>
+</div>
+
+<div class="scroll">
+
+<div class="card" style="margin-bottom:18px;">
+
+<h3 style="margin-bottom:12px;color:var(--orange)">
+🧾 Ficha técnica
+</h3>
+
+<div style="display:flex;flex-direction:column;gap:10px;font-size:14px;">
+
+<div>👤 Artista: <span id="finalArtist"></span></div>
+<div>🖼️ Obra: <span id="finalArtwork"></span></div>
+<div>📅 Fecha: <span id="finalDate"></span></div>
+<div>✨ Estilo: <span id="finalStyle"></span></div>
+
+</div>
+
+</div>
+
+<div class="card" id="artworkCard">
+
+<img id="resultImage" style="width:100%;border-radius:20px;">
+
+</div>
+
+<div style="height:16px"></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+
+<button class="btn blue" onclick="downloadArtwork()">
+⬇️ Descargar
+</button>
+
+<button class="btn pink" onclick="shareArtwork()">
+📤 Compartir
+</button>
+
+</div>
+
+<div style="height:12px"></div>
+
+<button class="btn orange" onclick="saveToGallery()">
+💾 Guardar en galería
+</button>
+
+<div style="height:100px"></div>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section class="screen" id="gallery">
+
+<div class="status">
+
+<div>9:41</div>
+
+<button onclick="toggleMenu()" style="background:none;border:none;">
+<i data-lucide="ellipsis"></i>
+</button>
+
+</div>
+
+<div class="header" style="background:linear-gradient(135deg,#ff8f1f,#ffb347)">
+<h1>Galería</h1>
+<p>Arte de la comunidad</p>
+</div>
+
+<div class="scroll">
+
+<div class="gallery" id="galleryGrid"></div>
+
+<div style="height:100px"></div>
+
+</div>
+
+</section>
+
+
+<!-- GESTURES -->
+
+<section class="screen" id="gestures">
+
+<div class="status">
+
+<div>9:41</div>
+
+<button onclick="toggleMenu()" style="background:none;border:none;">
+<i data-lucide="ellipsis"></i>
+</button>
+
+</div>
+
+<div class="header" style="background:linear-gradient(135deg,#7a5cff,#45caff)">
+<h1>Gestos IA</h1>
+<p>Reconocimiento inteligente de manos</p>
+</div>
+
+<div class="scroll">
+
+<div class="card" style="margin-bottom:18px;text-align:center;">
+
+<h2 style="margin-bottom:10px;color:#7a5cff;">
+🖐️ Detector de Gestos
+</h2>
+
+<p style="font-size:14px;opacity:.7;margin-bottom:18px;line-height:1.6;">
+Muestra tu mano frente a la cámara y la IA reconocerá automáticamente el gesto.
+</p>
+
+<div id="gestureCamera" style="
+width:100%;
+aspect-ratio:1;
+background:#222;
+border-radius:28px;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:18px;
+">
+
+<video id="webcam" autoplay playsinline style="width:100%;height:100%;object-fit:cover;"></video>
+
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+
+<button class="btn blue" onclick="initGestureAI()">
+🎥 Cámara IA
+</button>
+
+<button class="btn pink" onclick="gestureImageInput.click()">
+🖼️ Galería
+</button>
+
+</div>
+
+<input type="file" id="gestureImageInput" accept="image/*" class="hidden">
+
+<div style="height:20px"></div>
+
+<img id="gesturePreview"
+class="hidden"
+style="
+width:100%;
+border-radius:20px;
+margin-bottom:18px;
+">
+
+<div style="
+background:#fff4ec;
+padding:18px;
+border-radius:20px;
+font-size:18px;
+font-weight:600;
+">
+
+✨ Gesto detectado:
+
+<div id="gestureResult"
+style="margin-top:12px;color:#ff5e92;font-size:24px;">
+Esperando...
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3 style="margin-bottom:12px;color:#6698CC;">
+📌 Gestos entrenados
+</h3>
+
+<div style="display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.5;">
+
+<div>👍 Like</div>
+<div>✌️ Paz</div>
+<div>👋 Saludo</div>
+<div>✊ Puño</div>
+<div>🙌 Ambas manos arriba</div>
+<div>👉 Señalar</div>
+
+</div>
+
+</div>
+
+<div style="height:100px"></div>
+
+</div>
+
+</section>
+
+
+<!-- INFO -->
+
+<section class="screen" id="info">
+
+<div class="status">
+
+<div>9:41</div>
+
+<button onclick="toggleMenu()" style="background:none;border:none;">
+<i data-lucide="ellipsis"></i>
+</button>
+
+</div>
+
+<div class="header" style="background:linear-gradient(135deg,#6698CC,#8db8e8)">
+<h1>Información</h1>
+<p>Conoce MAMBAQ</p>
+</div>
+
+<div class="scroll">
+
+<div class="card" style="margin-bottom:16px;">
+
+<h2 style="color:#6698CC;margin-bottom:12px;">
+🏛 About Us - Museo BQ
+</h2>
+
+<p style="line-height:1.6;font-size:14px;">
+Barranquilla, Colombia<br><br>
+<b>+500</b> Obras<br>
+<b>1970</b> Fundado<br>
+<b>10K</b> Visitantes<br><br>
+<b>📖 ¿Qué es el MAMB?</b><br>
+El Museo de Arte Moderno de Barranquilla es un espacio dedicado a la preservación, difusión y promoción del arte contemporáneo del Caribe colombiano y latinoamericano.
+</p>
+
+</div>
+
+<div class="card" style="background:#dff0ff;margin-bottom:16px;">
+
+<h2 style="color:#6698CC;margin-bottom:12px;">
+🎯 Misión
+</h2>
+
+<p style="line-height:1.6;font-size:14px;">
+Democratizar el acceso al arte moderno, especialmente para niños y jóvenes, usando tecnología innovadora.<br><br>
+📍 Cra 36 #6-90, Barranquilla
+</p>
+
+</div>
+
+<div class="card" style="margin-bottom:16px; border-left: 5px solid var(--orange);">
+
+<h2 style="color:var(--orange);margin-bottom:12px;">
+✍️ Álvaro Cepeda Samudio
+</h2>
+
+<p style="line-height:1.6;font-size:14px;">
+<b>Escritor & Artista</b> · Barranquilla, 1926-1972<br><br>
+🏷️ Literatura | Periodismo | Cine | Arte<br><br>
+<b>🌟 ¿Quién fue?</b><br>
+Álvaro Cepeda Samudio fue uno de los escritores más importantes de la Costa Caribe colombiana. Amigo de Gabriel García Márquez y figura clave del Boom latinoamericano.
+</p>
+
+<h4 style="margin-top:10px; margin-bottom:5px;">📅 Línea de Tiempo</h4>
+<p style="font-size:13px; line-height:1.6;">
+⭐ 1926: Nace en Barranquilla, Colombia<br>
+✍️ 1954: Publica su primer libro de cuentos<br>
+📚 1962: "La Casa Grande" — obra maestra<br>
+🌟 1972: Fallece en Nueva York, EE.UU.
+</p>
+
+</div>
+
+<div class="card" style="margin-bottom:16px;">
+
+<h2 style="color:#ff5e92;margin-bottom:12px;">
+🎓 About Us - UniSimón
+</h2>
+
+<p style="line-height:1.6;font-size:14px;">
+<b>Universidad Simón Bolívar</b><br>
+Barranquilla, Colombia<br>
+🌐 unisimon.edu.co<br><br>
+<b>🖥️ Ing. de Sistemas</b><br>
+Formación integral en desarrollo de software, arquitectura de sistemas y tecnologías emergentes.<br>
+(Dev Web · Bases de Datos · Redes · Software)
+</p>
+
+</div>
+
+<div class="card" style="margin-bottom:16px;">
+
+<h2 style="color:#ff5e92;margin-bottom:12px;">
+📊 Ing. de Datos e IA
+</h2>
+
+<p style="line-height:1.6;font-size:14px;">
+Machine Learning, inteligencia artificial y análisis avanzado de datos para resolver problemas reales.<br>
+(ML · Deep Learning · Big Data)
+</p>
+
+</div>
+
+<div class="card">
+
+<h2 style="color:#ff5e92;margin-bottom:12px;">
+🧠 Maestría en IA
+</h2>
+
+<p style="line-height:1.6;font-size:14px;">
+Posgrado especializado en inteligencia artificial aplicada a industrias creativas y culturales.<br>
+(NLP · Computer Vision · IA Generativa)
+</p>
+
+</div>
+
+<div style="height:100px"></div>
+
+</div>
+
+</section>
+
+<!-- PROFILE -->
+
+<section class="screen" id="profile">
+
+<div class="status">
+
+<div>9:41</div>
+
+<button onclick="toggleMenu()"
+style="background:none;border:none;">
+<i data-lucide="ellipsis"></i>
+</button>
+
+</div>
+
+<div class="header"
+style="background:linear-gradient(135deg,#ff5e92,#ff8f1f)">
+
+<h1>Mi Perfil</h1>
+<p>Gestiona tu cuenta</p>
+
+</div>
+
+<div class="scroll">
+
+<div id="guestProfile">
+
+<div class="card" style="text-align:center;">
+
+<div style="
+width:120px;
+height:120px;
+border-radius:50%;
+background:#ffe4ef;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:18px;">
+
+<i data-lucide="user"
+style="width:50px;height:50px;color:#ff5e92;">
+</i>
+
+</div>
+
+<h2 style="margin-bottom:10px;">
+¡Crea tu cuenta!
+</h2>
+
+<p style="
+font-size:14px;
+opacity:.7;
+margin-bottom:20px;">
+Guarda tus obras favoritas y personaliza tu perfil.
+</p>
+
+<button class="btn orange"
+onclick="showRegister()">
+Crear cuenta
+</button>
+
+</div>
+
+<div id="registerBox"
+class="card hidden"
+style="margin-top:16px;">
+
+<h3 style="
+margin-bottom:14px;
+color:var(--orange);">
+Registro rápido
+</h3>
+
+<div style="
+display:flex;
+flex-direction:column;
+gap:12px;">
+
+<input id="registerEmail"
+type="email"
+placeholder="Correo electrónico">
+
+<input id="registerPassword"
+type="password"
+placeholder="Contraseña">
+
+<button class="btn green"
+onclick="createAccount()">
+Continuar
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="userProfile"
+class="hidden">
+
+<div class="card">
+
+<div style="
+display:flex;
+flex-direction:column;
+align-items:center;">
+
+<label for="profilePhoto">
+
+<img id="profilePreview"
+src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+style="
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+cursor:pointer;
+margin-bottom:18px;">
+
+</label>
+
+<input type="file"
+id="profilePhoto"
+accept="image/*"
+class="hidden">
+
+<h2 style="margin-bottom:14px;">
+Usuario MAMBAQ
+</h2>
+
+</div>
+
+<div style="
+display:flex;
+flex-direction:column;
+gap:14px;
+margin-top:20px;">
+
+<div style="
+background:#fff4ec;
+padding:14px;
+border-radius:16px;">
+📧 <strong>Correo:</strong>
+<div id="profileEmail"></div>
+</div>
+
+<div style="
+background:#fff4ec;
+padding:14px;
+border-radius:16px;">
+🔒 <strong>Contraseña:</strong>
+<div id="profilePassword"></div>
+</div>
+
+<button class="btn pink" 
+style="margin-top:10px; height:48px; font-size:15px;" 
+onclick="logout()">
+Cerrar Sesión 🚪
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div style="height:100px"></div>
+
+</div>
+
+</section>
+
+<!-- NAV -->
+
+<div class="bottom-nav">
+
+<button class="nav-btn" onclick="goTo('gallery')">
+<i data-lucide="images"></i>
+<span>Galería</span>
+</button>
+
+<button class="nav-btn" onclick="goTo('scanner')">
+<i data-lucide="camera"></i>
+<span>Crear</span>
+</button>
+
+
+<button class="nav-btn" onclick="goTo('gestures')">
+<i data-lucide="hand"></i>
+<span>Gestos</span>
+</button>
+
+<button class="nav-btn" onclick="goTo('info')">
+<i data-lucide="info"></i>
+<span>Info</span>
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+lucide.createIcons();
+
+const today = new Date().toLocaleDateString();
+
+document.getElementById("creationDate").innerHTML =
+"📅 Fecha de creación: " + today;
+
+const screens = document.querySelectorAll(".screen");
+
+function goTo(id){
+
+  screens.forEach(screen=>{
+    screen.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+}
+
+function toggleMenu(){
+  document.getElementById("sideMenu").classList.toggle("open");
+}
+
+const galleryInput = document.getElementById("galleryInput");
+const cameraInput = document.getElementById("cameraInput");
+
+const previewImage = document.getElementById("previewImage");
+const placeholder = document.getElementById("placeholder");
+
+let selectedImage = null;
+let selectedStyle = "anime";
+
+function loadImage(file){
+
+  if(!file) return;
+
+  selectedImage = file;
+
+  const url = URL.createObjectURL(file);
+
+  previewImage.src = url;
+
+  previewImage.classList.remove("hidden");
+
+  placeholder.classList.add("hidden");
+}
+
+galleryInput.addEventListener("change",e=>{
+  loadImage(e.target.files[0]);
+});
+
+cameraInput.addEventListener("change",e=>{
+  loadImage(e.target.files[0]);
+});
+
+const styleCards = document.querySelectorAll(".style-card");
+
+styleCards.forEach(card=>{
+
+  card.addEventListener("click",()=>{
+
+    styleCards.forEach(c=>{
+      c.classList.remove("active");
+    });
+
+    card.classList.add("active");
+
+    selectedStyle = card.dataset.style;
+  });
+});
+
+function generateArt(){
+
+  const artist =
+  document.getElementById("artistName").value;
+
+  const artwork =
+  document.getElementById("artName").value;
+
+  if(!selectedImage){
+    alert("Selecciona una imagen.");
+    return;
+  }
+
+  if(!artist || !artwork){
+    alert("Completa los datos.");
+    return;
+  }
+
+  document.getElementById("finalArtist").innerText = artist;
+  document.getElementById("finalArtwork").innerText = artwork;
+  document.getElementById("finalDate").innerText = today;
+  document.getElementById("finalStyle").innerText =
+  selectedStyle.toUpperCase();
+
+  goTo("result");
+
+  const resultImage =
+  document.getElementById("resultImage");
+
+  const url = URL.createObjectURL(selectedImage);
+
+  resultImage.src = url;
+
+  switch(selectedStyle){
+
+    case "anime":
+      resultImage.style.filter =
+      "contrast(1.5) saturate(2)";
+    break;
+
+    case "comic":
+      resultImage.style.filter =
+      "contrast(2.5) saturate(3)";
+    break;
+
+    case "retro":
+      resultImage.style.filter =
+      "sepia(.9) contrast(1.6)";
+    break;
+
+    case "neon":
+      resultImage.style.filter =
+      "contrast(2) saturate(3) hue-rotate(40deg)";
+    break;
+  }
+}
+
+async function downloadArtwork(){
+
+  const artwork =
+  document.getElementById("artworkCard");
+
+  const canvas =
+  await html2canvas(artwork);
+
+  const link =
+  document.createElement("a");
+
+  link.download = "mambaq-art.png";
+
+  link.href = canvas.toDataURL();
+
+  link.click();
+}
+
+async function shareArtwork(){
+
+  const artwork =
+  document.getElementById("artworkCard");
+
+  const canvas =
+  await html2canvas(artwork);
+
+  canvas.toBlob(async(blob)=>{
+
+    const file = new File(
+      [blob],
+      "mambaq-art.png",
+      {type:"image/png"}
+    );
+
+    if(navigator.canShare &&
+      navigator.canShare({files:[file]})){
+
+      await navigator.share({
+        title:"MAMBAQ",
+        text:"Mira mi obra creada con IA",
+        files:[file]
+      });
+
+    }else{
+      alert("Tu navegador no soporta compartir.");
+    }
+
+  });
+}
+
+let notifications = [];
+
+function openNotifications(){
+
+  const panel =
+  document.getElementById("notificationPanel");
+
+  panel.classList.remove("hidden");
+
+  renderNotifications();
+}
+
+function closeNotifications(){
+
+  document
+    .getElementById("notificationPanel")
+    .classList
+    .add("hidden");
+}
+
+function renderNotifications(){
+
+  const list =
+  document.getElementById("notificationList");
+
+  if(notifications.length === 0){
+
+    list.innerHTML = `
+
+    <div style="
+    text-align:center;
+    padding:30px 10px;
+    opacity:.6;">
+
+    ✨ No tienes notificaciones todavía 🎨
+
+    </div>
+
+    `;
+
+    return;
+  }
+
+  list.innerHTML = "";
+
+  notifications.forEach(notification=>{
+
+    list.innerHTML += `
+
+    <div class="notification-item">
+
+      <div class="notification-icon">
+      💖
+      </div>
+
+      <div class="notification-content">
+
+        <h4>
+        ¡Nueva reacción! ✨
+        </h4>
+
+        <p>
+        ${notification}
+        </p>
+
+      </div>
+
+    </div>
+
+    `;
+  });
+}
+
+let gallery = [
+
+{
+img:'https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=1200&auto=format&fit=crop',
+style:'Anime',
+author:'Sofía',
+likes:12
+},
+
+{
+img:'https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1200&auto=format&fit=crop',
+style:'Retro',
+author:'Mateo',
+likes:8
+},
+
+{
+img:'https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=1200&auto=format&fit=crop',
+style:'Comic',
+author:'Camila',
+likes:17
+}
+
+];
+
+function saveToGallery(){
+
+  const img =
+  document.getElementById("resultImage").src;
+
+  gallery.unshift({
+    img,
+    style:selectedStyle,
+    author:'Tú',
+    likes:0
+  });
+
+  renderGallery();
+
+  alert("Obra guardada.");
+}
+
+function likePost(index){
+
+  gallery[index].likes++;
+
+  if(gallery[index].author === "Tú"){
+
+    notifications.unshift(
+      "💖 A alguien le encantó tu obra "
+      + gallery[index].style +
+      " ✨🎨🌈"
+    );
+  }
+
+  renderGallery();
+}
+
+function renderGallery(){
+
+  const grid =
+  document.getElementById("galleryGrid");
+
+  grid.innerHTML = "";
+
+  gallery.forEach((item,index)=>{
+
+    grid.innerHTML += `
+
+    <div class="gallery-card">
+
+      <img src="${item.img}">
+
+      <div class="gallery-body">
+
+        <h3>${item.style}</h3>
+
+        <p style="font-size:12px;opacity:.7;margin-top:4px;">
+        👤 ${item.author}
+        </p>
+
+        <button
+        onclick="likePost(${index})"
+        class="like-btn"
+        style="
+        width:100%;
+        height:46px;
+        border:none;
+        border-radius:14px;
+        margin-top:10px;
+        background:#ffe4ef;
+        cursor:pointer;
+        font-family:'Fredoka',sans-serif;
+        font-size:14px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+        ">
+        💖 ✨ ${item.likes} Likes
+        </button>
+
+      </div>
+
+    </div>
+
+    `;
+  });
+}
+
+renderGallery();
+
+/* PERFIL */
+
+let currentUser = null;
+
+function showRegister(){
+
+  document
+    .getElementById("registerBox")
+    .classList
+    .remove("hidden");
+}
+
+function encryptPassword(password){
+
+  return "*".repeat(password.length);
+}
+
+function createAccount(){
+
+  const email =
+  document.getElementById("registerEmail").value;
+
+  const password =
+  document.getElementById("registerPassword").value;
+
+  if(!email || !password){
+
+    alert("Completa todos los campos.");
+    return;
+  }
+
+  currentUser = {
+    email,
+    password
+  };
+
+  document
+    .getElementById("guestProfile")
+    .classList
+    .add("hidden");
+
+  document
+    .getElementById("userProfile")
+    .classList
+    .remove("hidden");
+
+  document
+    .getElementById("profileEmail")
+    .innerText = email;
+
+  document
+    .getElementById("profilePassword")
+    .innerText =
+    encryptPassword(password);
+
+  alert("Cuenta creada.");
+}
+
+function logout(){
+  
+  currentUser = null;
+  document.getElementById("registerEmail").value = "";
+  document.getElementById("registerPassword").value = "";
+  
+  document
+    .getElementById("userProfile")
+    .classList
+    .add("hidden");
+    
+  document
+    .getElementById("guestProfile")
+    .classList
+    .remove("hidden");
+    
+  document
+    .getElementById("registerBox")
+    .classList
+    .add("hidden");
+    
+  alert("Sesión cerrada 🎨✨");
+}
+
+document
+.getElementById("profilePhoto")
+.addEventListener("change",function(e){
+
+  const file = e.target.files[0];
+
+  if(!file) return;
+
+  const url =
+  URL.createObjectURL(file);
+
+  document
+    .getElementById("profilePreview")
+    .src = url;
+});
+
+
+/* ============================
+   IA DE GESTOS - TEACHABLE MACHINE
+============================ */
+
+let gestureModel;
+let webcamElement;
+let isGestureRunning = false;
+
+const gestureLabels = {
+  like: "👍 Like",
+  paz: "✌️ Paz",
+  saludo: "👋 Saludo",
+  puno: "✊ Puño",
+  manos_arriba: "🙌 Ambas manos arriba",
+  señalar: "👉 Señalar"
+};
+
+async function initGestureAI(){
+
+  if(isGestureRunning) return;
+
+  isGestureRunning = true;
+
+  const modelURL = "./model/model.json";
+  const metadataURL = "./model/metadata.json";
+
+  gestureModel = await tmPose.load(modelURL, metadataURL);
+
+  webcamElement = document.getElementById("webcam");
+
+  const stream = await navigator.mediaDevices.getUserMedia({
+    video:true
+  });
+
+  webcamElement.srcObject = stream;
+
+  predictGesture();
+}
+
+async function predictGesture(){
+
+  if(!gestureModel) return;
+
+  const { pose, posenetOutput } = await gestureModel.estimatePose(webcamElement);
+  const prediction = await gestureModel.predict(posenetOutput);
+
+  let highest = prediction[0];
+
+  prediction.forEach(p=>{
+    if(p.probability > highest.probability){
+      highest = p;
+    }
+  });
+
+  let gestureName = highest.className;
+
+  if(gestureLabels[gestureName]){
+    gestureName = gestureLabels[gestureName];
+  }
+
+  document.getElementById("gestureResult").innerHTML = `
+  ${gestureName}<br>
+  <span style="font-size:14px;opacity:.7;">
+  ${(highest.probability * 100).toFixed(1)}% de confianza
+  </span>
+  `;
+
+  requestAnimationFrame(predictGesture);
+}
+
+/* DETECCIÓN POR IMAGEN */
+
+document
+.getElementById("gestureImageInput")
+.addEventListener("change", async function(e){
+
+  const file = e.target.files[0];
+
+  if(!file) return;
+
+  const img =
+  document.getElementById("gesturePreview");
+
+  img.src = URL.createObjectURL(file);
+
+  img.classList.remove("hidden");
+
+  if(!gestureModel){
+
+    const modelURL = "./model/model.json";
+    const metadataURL = "./model/metadata.json";
+
+    gestureModel = await tmPose.load(modelURL, metadataURL);
+  }
+
+  const { pose, posenetOutput } = await gestureModel.estimatePose(img);
+  const prediction = await gestureModel.predict(posenetOutput);
+
+  let highest = prediction[0];
+
+  prediction.forEach(p=>{
+
+    if(p.probability > highest.probability){
+      highest = p;
+    }
+
+  });
+
+  let gestureName = highest.className;
+
+  if(gestureLabels[gestureName]){
+    gestureName = gestureLabels[gestureName];
+  }
+
+  document.getElementById("gestureResult").innerHTML = `
+  ${gestureName}<br>
+  <span style="font-size:14px;opacity:.7;">
+  ${(highest.probability * 100).toFixed(1)}% de confianza
+  </span>
+  `;
+});
+
+
+
+
+/* DARK MODE */
+
+function toggleDarkMode(){
+
+  document.body.classList.toggle("dark-mode");
+
+}
+
+</script>
+
+</body>
+</html>
