@@ -1,1 +1,113 @@
-null
+🎨 MAMBAQ IA
+Museo interactivo con Inteligencia Artificial y Reconocimiento de Gestos
+
+MAMBAQ IA es una aplicación web interactiva inspirada en el arte moderno y la innovación tecnológica, desarrollada como una experiencia digital creativa que combina:
+
+🧠 Inteligencia Artificial
+🎭 Estilos artísticos digitales
+🖐️ Reconocimiento de gestos con IA
+📷 Procesamiento de imágenes
+🎨 Experiencias visuales modernas
+
+El proyecto busca acercar el arte y la tecnología a niños, jóvenes y amantes de la creatividad digital mediante una interfaz dinámica, intuitiva y visualmente atractiva.
+
+✨ Características principales
+🎨 Generador de arte con IA
+
+Los usuarios pueden:
+
+Subir imágenes desde galería
+Tomar fotografías en tiempo real
+Aplicar estilos visuales como:
+Anime
+Comic
+Retro
+Neón
+
+La aplicación transforma las imágenes usando filtros inspirados en inteligencia artificial y arte digital.
+
+🖐️ Reconocimiento de gestos con IA
+
+Se integró un sistema de visión por computadora creado con Teachable Machine y TensorFlow.js.
+
+La IA permite detectar gestos de manos mediante:
+
+📷 Cámara en tiempo real
+🖼️ Imágenes subidas desde la galería
+Gestos entrenados
+✌️ Paz
+👋 Mano abierta
+✊ Puño
+
+El sistema analiza la pose de la mano y muestra automáticamente el gesto detectado junto con su porcentaje de confianza.
+
+🌙 Modo oscuro y claro
+
+La aplicación incluye un sistema dinámico de temas visuales:
+
+☀️ Modo claro
+🌑 Modo oscuro
+
+Mejorando la accesibilidad y la experiencia de usuario.
+
+🖼️ Galería interactiva
+
+Los usuarios pueden:
+
+Guardar sus creaciones
+Compartir obras
+Descargar imágenes
+Dar likes a publicaciones
+Recibir notificaciones de interacción
+🧠 Tecnologías utilizadas
+Frontend
+HTML5
+CSS3
+JavaScript
+Inteligencia Artificial
+TensorFlow.js
+Teachable Machine
+Pose Detection
+Librerías
+Lucide Icons
+html2canvas
+🎯 Objetivo del proyecto
+
+El objetivo principal de MAMBAQ IA es demostrar cómo la inteligencia artificial puede integrarse en experiencias culturales y artísticas modernas, creando plataformas más interactivas, educativas y accesibles.
+
+El proyecto conecta:
+
+Arte 🎨
+Tecnología 💻
+Innovación 🚀
+Experiencia de usuario ✨
+
+Todo dentro de una experiencia visual inspirada en museos digitales y aplicaciones creativas modernas.
+
+🏛 Inspiración
+
+El proyecto toma inspiración en:
+
+El Museo de Arte Moderno de Barranquilla
+Experiencias interactivas digitales
+Aplicaciones creativas impulsadas por IA
+Tecnologías de visión por computadora
+🚀 Futuras mejoras
+Reconocimiento de más gestos
+Control completo de la app mediante manos
+IA generativa real para estilos artísticos
+Integración con bases de datos
+Sistema de cuentas persistentes
+Ranking social de obras
+Animaciones avanzadas con IA
+👨‍💻 Desarrollado por
+
+Proyecto académico enfocado en:
+
+Desarrollo Web
+Inteligencia Artificial
+Visión por Computadora
+Experiencia de Usuario
+Innovación Digital
+
+💖 MAMBAQ IA — “Donde el arte y la inteligencia artificial se encuentran.”
