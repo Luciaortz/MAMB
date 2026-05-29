@@ -5,6 +5,8 @@ const cors = require("cors");
 
 const connectDB = require("./config/db");
 
+const artworkRoutes = require("./routes/artworkRoutes");
+
 const app = express();
 
 connectDB();
@@ -12,9 +14,11 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/artworks", artworkRoutes);
+
 app.get("/", (req, res) => {
 
-    res.send(" MAMB IA funcionando");
+    res.send("MAMB IA funcionando");
 
 });
 
