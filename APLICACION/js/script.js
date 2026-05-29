@@ -274,21 +274,67 @@ likes:17
 
 ];
 
-function saveToGallery(){
+async function saveToGallery(){
 
-  const img =
+  const nombreArtistico =
+  document.getElementById("artistName").value;
+
+  const nombreObra =
+  document.getElementById("artName").value;
+
+  const imagen =
   document.getElementById("resultImage").src;
 
-  gallery.unshift({
-    img,
-    style:selectedStyle,
-    author:'Tú',
-    likes:0
-  });
+  if(!nombreArtistico || !nombreObra){
 
-  renderGallery();
+    alert("Completa todos los campos.");
+    return;
+  }
 
-  alert("Obra guardada.");
+  try{
+
+    const response = await fetch(
+      "http://localhost:5000/api/artworks/save",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+
+          nombreObra,
+          nombreArtistico,
+          imagen
+
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    console.log(data);
+
+    gallery.unshift({
+
+      img: imagen,
+      style: nombreObra,
+      author: nombreArtistico,
+      likes: 0
+
+    });
+
+    renderGallery();
+
+    alert(" Obra guardada correctamente");
+
+  }catch(error){
+
+    console.error(error);
+
+    alert("Error al guardar la obra");
+
+  }
+
 }
 
 function likePost(index){

@@ -3,6 +3,14 @@ const router = express.Router();
 
 const Artwork = require("../models/Artwork");
 
+router.get("/test", (req,res)=>{
+
+    res.json({
+        mensaje:"API funcionando correctamente"
+    });
+
+});
+
 router.post("/save", async (req, res) => {
 
     try {
