@@ -1,113 +1,216 @@
 🎨 MAMBAQ IA
-Museo interactivo con Inteligencia Artificial y Reconocimiento de Gestos
+Donde el arte y la inteligencia artificial se encuentran
 
-MAMBAQ IA es una aplicación web interactiva inspirada en el arte moderno y la innovación tecnológica, desarrollada como una experiencia digital creativa que combina:
+> Plataforma web interactiva que fusiona arte digital, visión por computadora e inteligencia artificial, inspirada en el Museo de Arte Moderno de Barranquilla (MAMB).
 
-🧠 Inteligencia Artificial
-🎭 Estilos artísticos digitales
-🖐️ Reconocimiento de gestos con IA
-📷 Procesamiento de imágenes
-🎨 Experiencias visuales modernas
 
-El proyecto busca acercar el arte y la tecnología a niños, jóvenes y amantes de la creatividad digital mediante una interfaz dinámica, intuitiva y visualmente atractiva.
+📋 Tabla de contenidos
 
-✨ Características principales
-🎨 Generador de arte con IA
+- [Descripción general](#-descripción-general)
+- [Demo en vivo](#-demo-en-vivo)
+- [Características](#-características)
+- [Capturas de pantalla](#-capturas-de-pantalla)
+- [Tecnologías utilizadas](#-tecnologías-utilizadas)
+- [Estructura del proyecto](#-estructura-del-proyecto)
+- [Instalación y uso](#-instalación-y-uso)
+- [Guía de uso](#-guía-de-uso)
+- [Gestos reconocidos](#-gestos-reconocidos)
+- [Estilos artísticos](#-estilos-artísticos)
+- [Próximas mejoras](#-próximas-mejoras)
+- [Créditos e inspiración](#-créditos-e-inspiración)
 
-Los usuarios pueden:
+📖 Descripción general
 
-Subir imágenes desde galería
-Tomar fotografías en tiempo real
-Aplicar estilos visuales como:
-Anime
-Comic
-Retro
-Neón
+MAMBAQ IA es una aplicación web interactiva que acerca el arte y la tecnología a niños, jóvenes y amantes de la creatividad digital. Combina:
 
-La aplicación transforma las imágenes usando filtros inspirados en inteligencia artificial y arte digital.
+- 🧠 **Inteligencia Artificial** aplicada al arte y la detección de gestos
+- 🎨 **Transformación artística de imágenes** con estilos visuales únicos
+- 🖐️ **Reconocimiento de gestos en tiempo real** mediante visión por computadora
+- 🖼️ **Galería social interactiva** para compartir y guardar creaciones
+- 🌙 **Interfaz adaptable** con modo claro y oscuro
 
-🖐️ Reconocimiento de gestos con IA
+El proyecto busca demostrar cómo la inteligencia artificial puede integrarse en experiencias culturales modernas, haciendo el arte más accesible, educativo y entretenido.
 
-Se integró un sistema de visión por computadora creado con Teachable Machine y TensorFlow.js.
 
-La IA permite detectar gestos de manos mediante:
+✨ Características
 
-📷 Cámara en tiempo real
-🖼️ Imágenes subidas desde la galería
-Gestos entrenados
-✌️ Paz
-👋 Mano abierta
-✊ Puño
+🎨 Generador de Arte con IA
 
-El sistema analiza la pose de la mano y muestra automáticamente el gesto detectado junto con su porcentaje de confianza.
+Transforma cualquier imagen aplicando estilos artísticos digitales inspirados en IA.
 
-🌙 Modo oscuro y claro
+| Funcionalidad | Descripción |
+|---|---|
+| 📁 Subir desde galería | Carga imágenes desde tu dispositivo |
+| 📷 Captura en tiempo real | Toma fotos directamente desde la cámara |
+| 🖌️ Estilos artísticos | Aplica filtros de Anime, Cómic, Retro o Neón |
+| 💾 Guardar creación | Descarga tu obra generada |
 
-La aplicación incluye un sistema dinámico de temas visuales:
+🖐️ Reconocimiento de Gestos con IA
 
-☀️ Modo claro
-🌑 Modo oscuro
+Sistema de visión por computadora entrenado con **Teachable Machine** y **TensorFlow.js** que detecta gestos de manos en tiempo real.
 
-Mejorando la accesibilidad y la experiencia de usuario.
+| Funcionalidad | Descripción |
+|---|---|
+| 📷 Detección en vivo | Análisis mediante cámara web en tiempo real |
+| 🖼️ Análisis de imagen | Detecta gestos en imágenes subidas |
+| 📊 Confianza del modelo | Muestra el porcentaje de certeza de cada detección |
+
+🌙 Modo oscuro / claro
+
+Interfaz adaptable con dos temas visuales para mejorar la accesibilidad y comodidad del usuario.
 
 🖼️ Galería interactiva
 
-Los usuarios pueden:
+Espacio social donde los usuarios pueden compartir y descubrir creaciones artísticas.
 
-Guardar sus creaciones
-Compartir obras
-Descargar imágenes
-Dar likes a publicaciones
-Recibir notificaciones de interacción
+| Funcionalidad | Descripción |
+|---|---|
+| 💾 Guardar obras | Almacena tus creaciones en la galería |
+| 🔗 Compartir | Comparte tus obras con la comunidad |
+| ⬇️ Descargar | Exporta imágenes en alta resolución |
+| ❤️ Dar likes | Interactúa con las obras de otros usuarios |
+| 🔔 Notificaciones | Recibe avisos de interacciones |
+
+
 🧠 Tecnologías utilizadas
-Frontend
-HTML5
-CSS3
-JavaScript
-Inteligencia Artificial
-TensorFlow.js
-Teachable Machine
-Pose Detection
-Librerías
-Lucide Icons
-html2canvas
-🎯 Objetivo del proyecto
 
-El objetivo principal de MAMBAQ IA es demostrar cómo la inteligencia artificial puede integrarse en experiencias culturales y artísticas modernas, creando plataformas más interactivas, educativas y accesibles.
+### Frontend
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-El proyecto conecta:
+### Inteligencia Artificial
+![TensorFlow](https://img.shields.io/badge/TensorFlow.js-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
+![Teachable Machine](https://img.shields.io/badge/Teachable_Machine-4285F4?style=for-the-badge&logo=google&logoColor=white)
 
-Arte 🎨
-Tecnología 💻
-Innovación 🚀
-Experiencia de usuario ✨
+### Librerías
+![Lucide](https://img.shields.io/badge/Lucide_Icons-F56565?style=for-the-badge)
+![html2canvas](https://img.shields.io/badge/html2canvas-333333?style=for-the-badge)
 
-Todo dentro de una experiencia visual inspirada en museos digitales y aplicaciones creativas modernas.
 
-🏛 Inspiración
+📁 Estructura del proyecto
 
-El proyecto toma inspiración en:
+```
+APLICACION/
+│
+├── index.html              # Página principal
+├── styles/
+│   ├── main.css            # Estilos globales
+│   └── themes.css          # Variables de modo claro/oscuro
+│
+├── scripts/
+│   ├── app.js              # Lógica principal
+│   ├── gestures.js         # Reconocimiento de gestos (TensorFlow.js)
+│   ├── filters.js          # Aplicación de estilos artísticos
+│   └── gallery.js          # Gestión de la galería
+│
+├── model/                  # Modelo entrenado con Teachable Machine
+│   ├── model.json
+│   ├── metadata.json
+│   └── weights.bin
+│
+└── assets/
+    ├── icons/
+    └── screenshots/
+```
 
-El Museo de Arte Moderno de Barranquilla
-Experiencias interactivas digitales
-Aplicaciones creativas impulsadas por IA
-Tecnologías de visión por computadora
-🚀 Futuras mejoras
-Reconocimiento de más gestos
-Control completo de la app mediante manos
-IA generativa real para estilos artísticos
-Integración con bases de datos
-Sistema de cuentas persistentes
-Ranking social de obras
-Animaciones avanzadas con IA
-👨‍💻 Desarrollado por
+> ⚠️ *La estructura puede variar ligeramente. Actualiza este árbol si es necesario.*
 
-Proyecto académico enfocado en:
+---
 
-Desarrollo Web
-Inteligencia Artificial
-Visión por Computadora
-Experiencia de Usuario
-Innovación Digital
+⚙️ Instalación y uso
 
-💖 MAMBAQ IA — “Donde el arte y la inteligencia artificial se encuentran.”
+Esta aplicación es **100% frontend** — no requiere instalación de dependencias ni servidor backend.
+
+### Opción 1: Abrir localmente
+
+```bash
+# 1. Clona el repositorio
+git clone https://github.com/Luciaortz/MAMB.git
+
+# 2. Navega a la carpeta de la aplicación
+cd MAMB/APLICACION
+
+# 3. Abre index.html en tu navegador
+# (doble clic en el archivo, o usa Live Server en VS Code)
+```
+
+### Opción 2: Usar Live Server (recomendado)
+
+> Se recomienda usar [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) en VS Code para evitar restricciones de CORS al cargar el modelo de TensorFlow.js.
+
+1. Abre la carpeta `APLICACION/` en VS Code
+2. Haz clic derecho en `index.html`
+3. Selecciona **"Open with Live Server"**
+
+### Requisitos
+
+- Navegador moderno con soporte para **WebGL** y **MediaDevices API** (Chrome, Firefox, Edge)
+- Cámara web (para detección de gestos en tiempo real)
+- Conexión a internet (para cargar librerías CDN la primera vez)
+
+
+
+📖 Guía de uso
+ Generar arte con IA
+
+1. Abre la sección **"Generador de Arte"**
+2. Sube una imagen desde tu galería **o** toma una foto con la cámara
+3. Selecciona uno de los 4 estilos artísticos disponibles
+4. Descarga o guarda tu obra en la galería
+
+Reconocer gestos
+
+1. Abre la sección **"Reconocimiento de Gestos"**
+2. Permite el acceso a la cámara cuando el navegador lo solicite
+3. Coloca tu mano frente a la cámara
+4. La IA detectará el gesto automáticamente y mostrará el resultado
+
+
+🖐️ Gestos reconocidos
+
+El modelo fue entrenado con **Teachable Machine** para detectar los siguientes gestos:
+
+| Gesto | Emoji | Descripción |
+|---|---|---|
+| Paz | ✌️ | Dos dedos extendidos en forma de V |
+| Mano abierta | 🖐️ | Los cinco dedos extendidos |
+| Puño | ✊ | Mano cerrada completamente |
+
+
+
+🎨 Estilos artísticos
+
+| Estilo | Descripción visual |
+|---|---|
+| 🎌 Anime | Contornos suaves, colores vibrantes y saturados |
+| 💥 Cómic | Líneas de contorno marcadas, colores planos |
+| 📺 Retro | Paleta de colores reducida, textura envejecida |
+| 💡 Neón | Brillo intenso, colores neón sobre fondo oscuro |
+
+
+🚀 Próximas mejoras
+
+- [ ] Reconocimiento de más gestos para control total de la app con las manos
+- [ ] IA generativa real para la transformación de estilos artísticos
+- [ ] Integración con bases de datos (Firebase / Supabase)
+- [ ] Sistema de cuentas persistentes
+- [ ] Ranking social de obras
+- [ ] Animaciones avanzadas generadas con IA
+- [ ] Soporte para más idiomas
+
+
+🏛 Créditos e inspiración
+
+Este proyecto fue desarrollado tomando inspiración en:
+
+- 🏛️ [Museo de Arte Moderno de Barranquilla (MAMB)](https://www.museomamb.com)
+- 🤖 [Google Teachable Machine](https://teachablemachine.withgoogle.com/)
+- 📦 [TensorFlow.js](https://www.tensorflow.org/js)
+- 🎨 Experiencias interactivas digitales y museos virtuales modernos
+
+
+
+<p align="center">
+  <strong>💖 MAMBAQ IA — "Donde el arte y la inteligencia artificial se encuentran."</strong>
+</p>
