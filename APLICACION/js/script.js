@@ -335,13 +335,22 @@ let gestureStream    = null;
 let gestureAnimFrame = null;
 let gestureMode      = 'idle';
 
+const GESTURE_EMOJIS = {
+  'Mano abierta': '🖐️',
+  'Gesto paz':    '✌️',
+  'Puño':         '✊',
+};
+
 async function loadGestureModel() {
   if (gestureModel) return true;
   document.getElementById("gestureResult").innerText = "Cargando modelo... ⏳";
   try {
-    gestureModel = await tmPose.load("../model.json", "../metadata.json");
+    const modelURL    = "model.json";
+    const metadataURL = "metadata.json";
+    gestureModel = await tmImage.load(modelURL, metadataURL);
     return true;
   } catch (e) {
+    console.error(e);
     document.getElementById("gestureResult").innerText = "❌ Error al cargar el modelo";
     return false;
   }
@@ -399,12 +408,11 @@ if (gestureImageInputEl) {
 async function predictGesture(input) {
   if (!gestureModel) return;
   try {
-    const { posenetOutput } = await gestureModel.estimatePose(input);
-    const predictions = await gestureModel.predict(posenetOutput);
+    const predictions = await gestureModel.predict(input);
     const top = predictions.reduce((a, b) => a.probability > b.probability ? a : b);
     const pct = Math.round(top.probability * 100);
-    const emojis = { 'Paz': '✌️', 'Mano abierta': '🖐️', 'Puño': '✊' };
-    document.getElementById("gestureResult").innerText = `${emojis[top.className] || '🖐️'} ${top.className} (${pct}%)`;
+    const emoji = GESTURE_EMOJIS[top.className] || '🖐️';
+    document.getElementById("gestureResult").innerText = `${emoji} ${top.className} (${pct}%)`;
   } catch (e) {
     console.warn("Predict error:", e);
   }
