@@ -388,6 +388,121 @@ function showToast(msg) {
   toast._timer = setTimeout(() => { toast.style.opacity = "0"; }, 2800);
 }
 
+// ══════════════════════════════════
+// GESTOS IA
+// ══════════════════════════════════
 
+let gestureModel = null;
+let gestureStream = null;
+let gestureAnimFrame = null;
+let gestureMode = 'idle';
+
+const GESTURE_MODEL_URL     = '../model.json';
+const GESTURE_METADATA_URL  = '../metadata.json';
+
+const GESTURE_EMOJIS = {
+  'Paz':          '✌️',
+  'Mano abierta': '🖐️',
+  'Puño':         '✊',
+};
+
+async function loadGestureModel() {
+  if (gestureModel) return true;
+  try {
+    gestureModel = await tmPose.load(GESTURE_MODEL_URL, GESTURE_METADATA_URL);
+    return true;
+  } catch (e) {
+    console.error('Error cargando modelo:', e);
+    document.getElementById('gestureResult').innerText = '❌ Error al cargar el modelo';
+    return false;
+  }
+}
+
+async function initGestureAI() {
+  const ok = await loadGestureModel();
+  if (!ok) return;
+
+  stopGestureCamera();
+  gestureMode = 'camera';
+
+  try {
+    gestureStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+    const video = document.getElementById('webcam');
+    video.srcObject = gestureStream;
+    video.style.display = 'block';
+    document.getElementById('gestureCanvas').style.display = 'none';
+    document.getElementById('gesturePlaceholder').style.display = 'none';
+    document.getElementById('gesturePreview').classList.add('hidden');
+    document.getElementById('gestureResult').innerText = 'Detectando...';
+
+    video.onloadedmetadata = () => {
+      const canvas = document.getElementById('gestureCanvas');
+      canvas.width  = video.videoWidth;
+      canvas.height = video.videoHeight;
+      loopGesture();
+    };
+  } catch (e) {
+    showToast('No se pudo acceder a la cámara 📷');
+    gestureMode = 'idle';
+  }
+}
+
+async function loopGesture() {
+  if (gestureMode !== 'camera') return;
+  const video = document.getElementById('webcam');
+  if (video.readyState >= 2) await predictGesture(video);
+  gestureAnimFrame = requestAnimationFrame(loopGesture);
+}
+
+async function openCamera() {
+  document.getElementById('gestureImageInput').click();
+}
+
+document.getElementById('gestureImageInput').addEventListener('change', async function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  stopGestureCamera();
+  gestureMode = 'image';
+
+  const ok = await loadGestureModel();
+  if (!ok) return;
+
+  const preview = document.getElementById('gesturePreview');
+  preview.src = URL.createObjectURL(file);
+  preview.classList.remove('hidden');
+  document.getElementById('gesturePlaceholder').style.display = 'none';
+  document.getElementById('gestureResult').innerText = 'Analizando... ✨';
+
+  preview.onload = async () => {
+    await predictGesture(preview);
+  };
+});
+
+async function predictGesture(input) {
+  if (!gestureModel) return;
+  try {
+    const { pose, posenetOutput } = await gestureModel.estimatePose(input);
+    const predictions = await gestureModel.predict(posenetOutput);
+    const top = predictions.reduce((a, b) => a.probability > b.probability ? a : b);
+    const pct = Math.round(top.probability * 100);
+    const emoji = GESTURE_EMOJIS[top.className] || '🖐️';
+    document.getElementById('gestureResult').innerText = `${emoji} ${top.className} (${pct}%)`;
+  } catch (e) {
+    console.warn('Predict error:', e);
+  }
+}
+
+function stopGestureCamera() {
+  if (gestureAnimFrame) { cancelAnimationFrame(gestureAnimFrame); gestureAnimFrame = null; }
+  if (gestureStream) {
+    gestureStream.getTracks().forEach(t => t.stop());
+    gestureStream = null;
+  }
+  const video = document.getElementById('webcam');
+  video.srcObject = null;
+  video.style.display = 'none';
+  gestureMode = 'idle';
+}
 
 fetchGallery();
