@@ -143,9 +143,9 @@ async function saveToGallery() {
   const canvas = await html2canvas(document.getElementById("artworkCard"));
 
   const data = {
-    nombreObra:      artwork,
+    nombreObra:     artwork,
     nombreArtistico: artist,
-    imagen:          canvas.toDataURL("image/png")
+    imagen:         canvas.toDataURL("image/png")
   };
 
   try {
@@ -274,7 +274,7 @@ function createAccount() {
   const email    = document.getElementById("registerEmail").value;
   const password = document.getElementById("registerPassword").value;
   if (!email || !password) { alert("Completa todos los campos."); return; }
-  currentUser   = { email, password };
+  currentUser    = { email, password };
   currentAuthor = email;
   document.getElementById("guestProfile").classList.add("hidden");
   document.getElementById("userProfile").classList.remove("hidden");
@@ -285,9 +285,9 @@ function createAccount() {
 }
 
 function logout() {
-  currentUser   = null;
+  currentUser    = null;
   currentAuthor = null;
-  document.getElementById("registerEmail").value    = "";
+  document.getElementById("registerEmail").value     = "";
   document.getElementById("registerPassword").value = "";
   document.getElementById("userProfile").classList.add("hidden");
   document.getElementById("guestProfile").classList.remove("hidden");
@@ -295,11 +295,14 @@ function logout() {
   showToast("Sesión cerrada 🚪");
 }
 
-document.getElementById("profilePhoto").addEventListener("change", function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  document.getElementById("profilePreview").src = URL.createObjectURL(file);
-});
+const profilePhotoEl = document.getElementById("profilePhoto");
+if (profilePhotoEl) {
+  profilePhotoEl.addEventListener("change", function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    document.getElementById("profilePreview").src = URL.createObjectURL(file);
+  });
+}
 
 // ══════════════════════════════════
 // TOAST
@@ -375,20 +378,23 @@ async function openCamera() {
   document.getElementById("gestureImageInput").click();
 }
 
-document.getElementById("gestureImageInput").addEventListener("change", async function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  stopGestureCamera();
-  gestureMode = 'image';
-  const ok = await loadGestureModel();
-  if (!ok) return;
-  const preview = document.getElementById("gesturePreview");
-  preview.src = URL.createObjectURL(file);
-  preview.classList.remove("hidden");
-  document.getElementById("gesturePlaceholder").style.display = "none";
-  document.getElementById("gestureResult").innerText = "Analizando... ✨";
-  preview.onload = async () => await predictGesture(preview);
-});
+const gestureImageInputEl = document.getElementById("gestureImageInput");
+if (gestureImageInputEl) {
+  gestureImageInputEl.addEventListener("change", async function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    stopGestureCamera();
+    gestureMode = 'image';
+    const ok = await loadGestureModel();
+    if (!ok) return;
+    const preview = document.getElementById("gesturePreview");
+    preview.src = URL.createObjectURL(file);
+    preview.classList.remove("hidden");
+    document.getElementById("gesturePlaceholder").style.display = "none";
+    document.getElementById("gestureResult").innerText = "Analizando... ✨";
+    preview.onload = async () => await predictGesture(preview);
+  });
+}
 
 async function predictGesture(input) {
   if (!gestureModel) return;
