@@ -1,7 +1,4 @@
-
-
 const API = "https://mamb-backend.onrender.com";
-
 
 let USER_ID = localStorage.getItem("mambaq_user_id");
 if (!USER_ID) {
@@ -9,22 +6,16 @@ if (!USER_ID) {
   localStorage.setItem("mambaq_user_id", USER_ID);
 }
 
-
 lucide.createIcons();
 
 const today = new Date().toLocaleDateString();
-
-document.getElementById("creationDate").innerHTML =
-  "📅 Fecha de creación: " + today;
+document.getElementById("creationDate").innerHTML = "📅 Fecha de creación: " + today;
 
 const screens = document.querySelectorAll(".screen");
-
 
 function goTo(id) {
   screens.forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-
-  
   if (id === "gallery") fetchGallery();
 }
 
@@ -32,12 +23,26 @@ function toggleMenu() {
   document.getElementById("sideMenu").classList.toggle("open");
 }
 
+// ══════════════════════════════════
+// MODO OSCURO
+// ══════════════════════════════════
+let darkMode = false;
 
+function toggleDarkMode() {
+  darkMode = !darkMode;
+  document.querySelector(".phone").classList.toggle("dark-mode", darkMode);
+  document.getElementById("darkModeIcon").setAttribute("data-lucide", darkMode ? "sun" : "moon");
+  document.getElementById("darkModeLabel").innerText = darkMode ? "Modo claro" : "Modo oscuro";
+  lucide.createIcons();
+}
 
-const galleryInput  = document.getElementById("galleryInput");
-const cameraInput   = document.getElementById("cameraInput");
-const previewImage  = document.getElementById("previewImage");
-const placeholder   = document.getElementById("placeholder");
+// ══════════════════════════════════
+// IMAGEN Y ESTILOS
+// ══════════════════════════════════
+const galleryInput = document.getElementById("galleryInput");
+const cameraInput  = document.getElementById("cameraInput");
+const placeholder  = document.getElementById("placeholder");
+const previewImage = document.getElementById("previewImage");
 
 let selectedImage = null;
 let selectedStyle = "anime";
@@ -53,9 +58,7 @@ function loadImage(file) {
 galleryInput.addEventListener("change", e => loadImage(e.target.files[0]));
 cameraInput.addEventListener("change",  e => loadImage(e.target.files[0]));
 
-
 const styleCards = document.querySelectorAll(".style-card");
-
 styleCards.forEach(card => {
   card.addEventListener("click", () => {
     styleCards.forEach(c => c.classList.remove("active"));
@@ -64,9 +67,10 @@ styleCards.forEach(card => {
   });
 });
 
-
+// ══════════════════════════════════
+// GENERAR ARTE — dibuja en canvas
+// ══════════════════════════════════
 function generateArt() {
-
   const artist  = document.getElementById("artistName").value;
   const artwork = document.getElementById("artName").value;
 
@@ -80,20 +84,31 @@ function generateArt() {
 
   goTo("result");
 
-  const resultImage = document.getElementById("resultImage");
-  resultImage.src = URL.createObjectURL(selectedImage);
-
   const filters = {
-    anime:  "contrast(1.5) saturate(2)",
-    comic:  "contrast(2.5) saturate(3)",
-    retro:  "sepia(.9) contrast(1.6)",
-    neon:   "contrast(2) saturate(3) hue-rotate(40deg)",
+    anime: "contrast(1.5) saturate(2)",
+    comic: "contrast(2.5) saturate(3)",
+    retro: "sepia(.9) contrast(1.6)",
+    neon:  "contrast(2) saturate(3) hue-rotate(40deg)",
   };
 
-  resultImage.style.filter = filters[selectedStyle] || "";
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.getElementById("resultCanvas");
+    canvas.width  = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext("2d");
+
+    // Aplicar filtro CSS al canvas via drawImage con filter
+    ctx.filter = filters[selectedStyle] || "none";
+    ctx.drawImage(img, 0, 0);
+    ctx.filter = "none";
+  };
+  img.src = URL.createObjectURL(selectedImage);
 }
 
-
+// ══════════════════════════════════
+// DESCARGAR Y COMPARTIR
+// ══════════════════════════════════
 async function downloadArtwork() {
   const canvas = await html2canvas(document.getElementById("artworkCard"));
   const link   = document.createElement("a");
@@ -114,181 +129,110 @@ async function shareArtwork() {
   });
 }
 
-
+// ══════════════════════════════════
+// GUARDAR EN GALERÍA
+// ══════════════════════════════════
 async function saveToGallery() {
-  console.log("BOTON PRESIONADO");
-  const artist = document.getElementById("finalArtist").innerText;
+  const artist  = document.getElementById("finalArtist").innerText;
   const artwork = document.getElementById("finalArtwork").innerText;
 
-  const canvas = await html2canvas(
-    document.getElementById("artworkCard")
-  );
+  if (!artist || !artwork) { showToast("⚠️ Genera una obra primero"); return; }
+
+  showToast("Guardando... ✨");
+
+  const canvas = await html2canvas(document.getElementById("artworkCard"));
 
   const data = {
-
-    nombreObra: artwork,
-
+    nombreObra:      artwork,
     nombreArtistico: artist,
-
-    imagen: canvas.toDataURL("image/png")
-
+    imagen:          canvas.toDataURL("image/png")
   };
 
-  const res = await fetch(`${API}/api/artworks`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
-
-  console.log(await res.json());
-
+  try {
+    const res = await fetch(`${API}/api/artworks`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error();
+    showToast("¡Guardado en el museo! 🎨");
+  } catch {
+    showToast("❌ Error al guardar");
+  }
 }
 
+// ══════════════════════════════════
+// GALERÍA
+// ══════════════════════════════════
 async function fetchGallery() {
-
   const grid = document.getElementById("galleryGrid");
   grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:30px;opacity:.6;">Cargando... ✨</div>`;
-
   try {
-    const res = await fetch(`${API}/api/artworks`);
+    const res  = await fetch(`${API}/api/artworks`);
     if (!res.ok) throw new Error();
     const data = await res.json();
     renderGallery(data);
-
   } catch {
     grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:30px;opacity:.6;">⚠️ No se pudo cargar la galería</div>`;
   }
 }
 
 function renderGallery(items) {
-
   const grid = document.getElementById("galleryGrid");
   grid.innerHTML = "";
-
   if (!items || items.length === 0) {
     grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:30px;opacity:.6;">🎨 La galería está vacía. ¡Sé el primero!</div>`;
     return;
   }
-
   items.forEach(item => {
-
-    const imgSrc = item.imagen;
-
     grid.innerHTML += `
     <div class="gallery-card">
-
-      <img src="${imgSrc}" onerror="this.src='https://via.placeholder.com/300x200?text=MAMBAQ'">
-
+      <img src="${item.imagen}" onerror="this.src='https://via.placeholder.com/300x200?text=MAMBAQ'">
       <div class="gallery-body">
-
         <h3>${item.nombreObra}</h3>
-
-        <p style="font-size:12px;opacity:.7;margin-top:4px;">
-          👤 ${item.nombreArtistico}
-        </p>
-
-        <p style="font-size:11px;opacity:.5;margin-top:2px;">
-          📅 ${new Date(item.fechaCreacion).toLocaleDateString()}
-        </p>
-
-       
+        <p style="font-size:12px;opacity:.7;margin-top:4px;">👤 ${item.nombreArtistico}</p>
+        <p style="font-size:11px;opacity:.5;margin-top:2px;">📅 ${new Date(item.fechaCreacion).toLocaleDateString()}</p>
       </div>
-
-    </div>
-    `;
+    </div>`;
   });
 }
 
-
-async function likePost(artworkId, author) {
-
-  const btn = document.getElementById(`like-btn-${artworkId}`);
-  if (btn) btn.disabled = true;
-
-  const form = new FormData();
-  form.append("user_id", USER_ID);
-
-  try {
-    const res  = await fetch(`${API}/artworks/${artworkId}/like`, { method: "POST", body: form });
-    if (!res.ok) throw new Error();
-    const data = await res.json();
-
-    if (btn) {
-      btn.innerHTML = `💖 ✨ ${data.likes} Likes`;
-      btn.disabled = false;
-    }
-
-    if (data.action === "added") {
-      fetchNotifications();
-    }
-
-  } catch {
-    showToast("❌ Error al registrar el like");
-    if (btn) btn.disabled = false;
-  }
-}
-
-
-
-let currentAuthor = null;   // se actualiza cuando el usuario crea su cuenta
+// ══════════════════════════════════
+// NOTIFICACIONES
+// ══════════════════════════════════
+let currentAuthor = null;
 
 async function fetchNotifications() {
-
   if (!currentAuthor) return;
-
   try {
     const res  = await fetch(`${API}/notifications/${encodeURIComponent(currentAuthor)}`);
     if (!res.ok) throw new Error();
     const data = await res.json();
     renderNotifications(data);
-
-    // Mostrar badge si hay no leídas
     const unread = data.filter(n => !n.read).length;
     updateNotifBadge(unread);
-
   } catch {
     console.warn("No se pudieron cargar las notificaciones");
   }
 }
 
 function renderNotifications(items) {
-
   const list = document.getElementById("notificationList");
-
   if (!items || items.length === 0) {
-    list.innerHTML = `
-      <div style="text-align:center;padding:30px 10px;opacity:.6;">
-        ✨ No tienes notificaciones todavía 🎨
-      </div>`;
+    list.innerHTML = `<div style="text-align:center;padding:30px 10px;opacity:.6;">✨ No tienes notificaciones todavía 🎨</div>`;
     return;
   }
-
   list.innerHTML = "";
-
   items.forEach(notif => {
     list.innerHTML += `
     <div class="notification-item" style="${notif.read ? 'opacity:.6' : ''}">
-
       <div class="notification-icon">💖</div>
-
       <div class="notification-content">
         <h4>¡Nueva reacción! ✨</h4>
         <p>${notif.message}</p>
-        <p style="font-size:10px;opacity:.5;margin-top:4px;">
-          ${new Date(notif.created_at).toLocaleString()}
-        </p>
+        <p style="font-size:10px;opacity:.5;margin-top:4px;">${new Date(notif.created_at).toLocaleString()}</p>
       </div>
-
-      ${!notif.read ? `
-        <button onclick="markRead('${notif.id}')" style="
-          border:none;background:#ffe4ef;border-radius:10px;
-          padding:6px 10px;cursor:pointer;font-size:11px;
-          font-family:'Fredoka',sans-serif;">
-          ✓
-        </button>` : ""}
-
+      ${!notif.read ? `<button onclick="markRead('${notif.id}')" style="border:none;background:#ffe4ef;border-radius:10px;padding:6px 10px;cursor:pointer;font-size:11px;font-family:'Fredoka',sans-serif;">✓</button>` : ""}
     </div>`;
   });
 }
@@ -297,13 +241,10 @@ async function markRead(notifId) {
   try {
     await fetch(`${API}/notifications/${notifId}/read`, { method: "PATCH" });
     fetchNotifications();
-  } catch {
-    console.warn("Error al marcar como leída");
-  }
+  } catch { console.warn("Error al marcar como leída"); }
 }
 
 function updateNotifBadge(count) {
-  
   console.log(`Notificaciones sin leer: ${count}`);
 }
 
@@ -316,8 +257,9 @@ function closeNotifications() {
   document.getElementById("notificationPanel").classList.add("hidden");
 }
 
-
-
+// ══════════════════════════════════
+// PERFIL
+// ══════════════════════════════════
 let currentUser = null;
 
 function showRegister() {
@@ -329,21 +271,16 @@ function encryptPassword(password) {
 }
 
 function createAccount() {
-
   const email    = document.getElementById("registerEmail").value;
   const password = document.getElementById("registerPassword").value;
-
   if (!email || !password) { alert("Completa todos los campos."); return; }
-
   currentUser   = { email, password };
-  currentAuthor = email;   
-
+  currentAuthor = email;
   document.getElementById("guestProfile").classList.add("hidden");
   document.getElementById("userProfile").classList.remove("hidden");
   document.getElementById("profileEmail").innerText    = email;
   document.getElementById("profilePassword").innerText = encryptPassword(password);
-
-  fetchNotifications();   
+  fetchNotifications();
   showToast("¡Cuenta creada! 🎨✨");
 }
 
@@ -364,11 +301,11 @@ document.getElementById("profilePhoto").addEventListener("change", function(e) {
   document.getElementById("profilePreview").src = URL.createObjectURL(file);
 });
 
-
+// ══════════════════════════════════
+// TOAST
+// ══════════════════════════════════
 function showToast(msg) {
-
   let toast = document.getElementById("mambaq-toast");
-
   if (!toast) {
     toast = document.createElement("div");
     toast.id = "mambaq-toast";
@@ -381,8 +318,7 @@ function showToast(msg) {
     `;
     document.body.appendChild(toast);
   }
-
-  toast.innerText  = msg;
+  toast.innerText = msg;
   toast.style.opacity = "1";
   clearTimeout(toast._timer);
   toast._timer = setTimeout(() => { toast.style.opacity = "0"; }, 2800);
@@ -391,29 +327,19 @@ function showToast(msg) {
 // ══════════════════════════════════
 // GESTOS IA
 // ══════════════════════════════════
-
-let gestureModel = null;
-let gestureStream = null;
+let gestureModel     = null;
+let gestureStream    = null;
 let gestureAnimFrame = null;
-let gestureMode = 'idle';
-
-const GESTURE_MODEL_URL     = '../model.json';
-const GESTURE_METADATA_URL  = '../metadata.json';
-
-const GESTURE_EMOJIS = {
-  'Paz':          '✌️',
-  'Mano abierta': '🖐️',
-  'Puño':         '✊',
-};
+let gestureMode      = 'idle';
 
 async function loadGestureModel() {
   if (gestureModel) return true;
+  document.getElementById("gestureResult").innerText = "Cargando modelo... ⏳";
   try {
-    gestureModel = await tmPose.load(GESTURE_MODEL_URL, GESTURE_METADATA_URL);
+    gestureModel = await tmPose.load("../model.json", "../metadata.json");
     return true;
   } catch (e) {
-    console.error('Error cargando modelo:', e);
-    document.getElementById('gestureResult').innerText = '❌ Error al cargar el modelo';
+    document.getElementById("gestureResult").innerText = "❌ Error al cargar el modelo";
     return false;
   }
 }
@@ -421,88 +347,72 @@ async function loadGestureModel() {
 async function initGestureAI() {
   const ok = await loadGestureModel();
   if (!ok) return;
-
   stopGestureCamera();
   gestureMode = 'camera';
-
   try {
     gestureStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
-    const video = document.getElementById('webcam');
+    const video = document.getElementById("webcam");
     video.srcObject = gestureStream;
-    video.style.display = 'block';
-    document.getElementById('gestureCanvas').style.display = 'none';
-    document.getElementById('gesturePlaceholder').style.display = 'none';
-    document.getElementById('gesturePreview').classList.add('hidden');
-    document.getElementById('gestureResult').innerText = 'Detectando...';
-
-    video.onloadedmetadata = () => {
-      const canvas = document.getElementById('gestureCanvas');
-      canvas.width  = video.videoWidth;
-      canvas.height = video.videoHeight;
-      loopGesture();
-    };
-  } catch (e) {
-    showToast('No se pudo acceder a la cámara 📷');
+    video.style.display = "block";
+    document.getElementById("gesturePlaceholder").style.display = "none";
+    document.getElementById("gesturePreview").classList.add("hidden");
+    document.getElementById("gestureResult").innerText = "Detectando... 👀";
+    video.onloadedmetadata = () => loopGesture();
+  } catch {
+    showToast("No se pudo acceder a la cámara 📷");
     gestureMode = 'idle';
   }
 }
 
 async function loopGesture() {
   if (gestureMode !== 'camera') return;
-  const video = document.getElementById('webcam');
+  const video = document.getElementById("webcam");
   if (video.readyState >= 2) await predictGesture(video);
   gestureAnimFrame = requestAnimationFrame(loopGesture);
 }
 
 async function openCamera() {
-  document.getElementById('gestureImageInput').click();
+  document.getElementById("gestureImageInput").click();
 }
 
-document.getElementById('gestureImageInput').addEventListener('change', async function(e) {
+document.getElementById("gestureImageInput").addEventListener("change", async function(e) {
   const file = e.target.files[0];
   if (!file) return;
-
   stopGestureCamera();
   gestureMode = 'image';
-
   const ok = await loadGestureModel();
   if (!ok) return;
-
-  const preview = document.getElementById('gesturePreview');
+  const preview = document.getElementById("gesturePreview");
   preview.src = URL.createObjectURL(file);
-  preview.classList.remove('hidden');
-  document.getElementById('gesturePlaceholder').style.display = 'none';
-  document.getElementById('gestureResult').innerText = 'Analizando... ✨';
-
-  preview.onload = async () => {
-    await predictGesture(preview);
-  };
+  preview.classList.remove("hidden");
+  document.getElementById("gesturePlaceholder").style.display = "none";
+  document.getElementById("gestureResult").innerText = "Analizando... ✨";
+  preview.onload = async () => await predictGesture(preview);
 });
 
 async function predictGesture(input) {
   if (!gestureModel) return;
   try {
-    const { pose, posenetOutput } = await gestureModel.estimatePose(input);
+    const { posenetOutput } = await gestureModel.estimatePose(input);
     const predictions = await gestureModel.predict(posenetOutput);
     const top = predictions.reduce((a, b) => a.probability > b.probability ? a : b);
     const pct = Math.round(top.probability * 100);
-    const emoji = GESTURE_EMOJIS[top.className] || '🖐️';
-    document.getElementById('gestureResult').innerText = `${emoji} ${top.className} (${pct}%)`;
+    const emojis = { 'Paz': '✌️', 'Mano abierta': '🖐️', 'Puño': '✊' };
+    document.getElementById("gestureResult").innerText = `${emojis[top.className] || '🖐️'} ${top.className} (${pct}%)`;
   } catch (e) {
-    console.warn('Predict error:', e);
+    console.warn("Predict error:", e);
   }
 }
 
 function stopGestureCamera() {
   if (gestureAnimFrame) { cancelAnimationFrame(gestureAnimFrame); gestureAnimFrame = null; }
-  if (gestureStream) {
-    gestureStream.getTracks().forEach(t => t.stop());
-    gestureStream = null;
-  }
-  const video = document.getElementById('webcam');
-  video.srcObject = null;
-  video.style.display = 'none';
+  if (gestureStream) { gestureStream.getTracks().forEach(t => t.stop()); gestureStream = null; }
+  const video = document.getElementById("webcam");
+  if (video) { video.srcObject = null; video.style.display = "none"; }
   gestureMode = 'idle';
 }
 
+// ══════════════════════════════════
+// INIT
+// ══════════════════════════════════
 fetchGallery();
