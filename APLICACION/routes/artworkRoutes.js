@@ -3,24 +3,33 @@ const router = express.Router();
 
 const Artwork = require("../models/Artwork");
 
-router.get("/test", (req,res)=>{
+router.get("/", async (req, res) => {
 
-    res.json({
-        mensaje:"API funcionando correctamente"
-    });
+    try {
+
+        const artworks = await Artwork.find()
+        .sort({ fechaCreacion: -1 });
+
+        res.json(artworks);
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+
+    }
 
 });
 
 router.post("/save", async (req, res) => {
 
-    console.log("BODY RECIBIDO:");
-    console.log(req.body);
+    
 
     try {
 
         const artwork = await Artwork.create(req.body);
-
-        console.log("GUARDADO:", artwork);
+  
 
         res.status(201).json(artwork);
 
