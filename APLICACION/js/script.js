@@ -384,7 +384,23 @@ async function loopGesture() {
 }
 
 async function openCamera() {
-  document.getElementById("gestureImageInput").click();
+  stopGestureCamera();
+  gestureMode = 'camera';
+  const ok = await loadGestureModel();
+  if (!ok) return;
+  try {
+    gestureStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+    const video = document.getElementById("webcam");
+    video.srcObject = gestureStream;
+    video.style.display = "block";
+    document.getElementById("gesturePlaceholder").style.display = "none";
+    document.getElementById("gesturePreview").classList.add("hidden");
+    document.getElementById("gestureResult").innerText = "Detectando... 👀";
+    video.onloadedmetadata = () => loopGesture();
+  } catch {
+    showToast("No se pudo acceder a la cámara 📷");
+    gestureMode = 'idle';
+  }
 }
 
 const gestureImageInputEl = document.getElementById("gestureImageInput");
