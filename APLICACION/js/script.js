@@ -134,15 +134,13 @@ async function saveToGallery() {
 
   };
 
-  const res = await fetch(`${API}/api/artworks`),
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    }
-  );
+  const res = await fetch(`${API}/api/artworks`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
 
   console.log(await res.json());
 
