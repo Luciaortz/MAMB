@@ -1,4 +1,1 @@
-.DS_Store
-Thumbs.db
-*.zip
-node_modules/
+{"tfjsVersion":"1.7.4","tmVersion":"2.4.14","packageVersion":"0.8.4-alpha2","packageName":"@teachablemachine/image","timeStamp":"2026-05-29T03:13:36.025Z","userMetadata":{},"modelName":"tm-my-image-model","labels":["Mano abierta","Gesto paz","Puño"],"imageSize":224}
