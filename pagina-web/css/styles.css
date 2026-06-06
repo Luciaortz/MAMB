@@ -967,24 +967,24 @@ body::before {
 /* ── APP PHONES — ESCRITORIO Y TABLET (horizontal) ──────── */
 .app-content {
   display: grid;
-  grid-template-columns: 40% 60%;
-  gap: 30px;
+  grid-template-columns: 50% 50%;
+  gap: 20px;
   align-items: center;
 }
 
 .app-phones {
   display: flex;
-  flex-direction: row;
-  gap: 24px;
   justify-content: center;
   align-items: flex-end;
+  gap: 12px;
   flex-wrap: nowrap;
   overflow: visible;
-  min-width: 850px;
+  min-width: auto;
+  width: 100%;
 }
 
 .app-phones .phone-mockup {
-  width: 250px;
+  width: 180px;
   flex-shrink: 0;
 }
 
