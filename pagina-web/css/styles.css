@@ -908,6 +908,8 @@ body::before {
   z-index: 1;
   padding: 100px 0;
   background: var(--bg);
+  overflow: visible;
+
 }
 
 /* ── Asegura que la columna derecha no recorte ── */
@@ -966,7 +968,7 @@ body::before {
 .app-phones {
   display: flex;
   flex-direction: row;
-  gap: 12px;
+  gap: 8px;
   justify-content: center;
   align-items: flex-end;
   flex-wrap: nowrap;
@@ -974,7 +976,7 @@ body::before {
 }
 
 .app-phones .phone-mockup {
-  width: 155px;
+  width: 130px;
   flex-shrink: 1;
 }
 
