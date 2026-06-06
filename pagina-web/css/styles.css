@@ -909,10 +909,8 @@ body::before {
   padding: 100px 0;
   background: var(--bg);
   overflow: visible;
-
 }
 
-/* ── Asegura que la columna derecha no recorte ── */
 .app-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -965,27 +963,20 @@ body::before {
 }
 
 /* ── APP PHONES — ESCRITORIO Y TABLET (horizontal) ──────── */
-.app-content {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  gap: 20px;
-  align-items: center;
-}
-
 .app-phones {
   display: flex;
+  flex-direction: row;
+  gap: 12px;
   justify-content: center;
   align-items: flex-end;
-  gap: 12px;
   flex-wrap: nowrap;
   overflow: visible;
-  min-width: auto;
   width: 100%;
 }
 
 .app-phones .phone-mockup {
   width: 180px;
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 
 .app-phones .phone-mockup:nth-child(2) {
@@ -1526,7 +1517,6 @@ footer {
     gap: 10px !important;
   }
 
-  /* Resto móvil */
   .footer-grid {
     grid-template-columns: 1fr;
   }
