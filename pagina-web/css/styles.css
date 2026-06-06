@@ -396,7 +396,7 @@ body::before {
 .phone-screen {
   background: linear-gradient(160deg, var(--tangerine), #c44e08);
   padding: 12px;
-  min-height: 420px;
+  min-height: 520px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1511,7 +1511,7 @@ footer {
   }
 
   .phone-screen {
-    min-height: 340px !important;
+    min-height: 440px !important;
     padding: 12px !important;
     gap: 10px !important;
   }
@@ -1558,7 +1558,7 @@ footer {
   }
 
   .phone-screen {
-    min-height: 320px !important;
+    min-height: 400px !important;
     padding: 12px !important;
     gap: 8px !important;
   }
