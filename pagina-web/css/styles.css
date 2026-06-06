@@ -1508,7 +1508,7 @@ footer {
     flex-direction: row;
     justify-content: center;
     flex-wrap: nowrap;
-    gap: 15px;
+    gap: 12px;
   }
 
   .footer-grid {
@@ -1555,16 +1555,6 @@ footer {
     display: flex;
   }
 
-  .nav-logo-text {
-    font-size: 16px;
-  }
-
-  .nav-logo-badge {
-    width: 40px;
-    height: 40px;
-    font-size: 9px;
-  }
-
   .hero-actions {
     justify-content: center;
   }
@@ -1573,24 +1563,31 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  /* TELÉFONOS EN MÓVIL */
+  /* APP DEL MUSEO */
+
+  .app-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
   .app-phones {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
     flex-wrap: nowrap;
-    gap: 8px;
+    gap: 4px;
     overflow-x: auto;
     padding-bottom: 10px;
   }
 
   .phone-mockup {
-    width: 95px;
-    min-width: 95px;
+    width: 115px;
+    min-width: 115px;
+    flex-shrink: 0;
   }
 
   .phone-screen {
-    min-height: 220px;
+    min-height: 280px;
   }
 
   .app-phones .phone-mockup:nth-child(2) {
@@ -1631,13 +1628,17 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .app-phones {
+    gap: 2px;
+  }
+
   .phone-mockup {
-    width: 85px;
-    min-width: 85px;
+    width: 105px;
+    min-width: 105px;
   }
 
   .phone-screen {
-    min-height: 200px;
+    min-height: 260px;
   }
 }
 
