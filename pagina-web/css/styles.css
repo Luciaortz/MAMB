@@ -1,41 +1,25 @@
 /* ──  VARIABLES DE DISEÑO (tokens globales) ──────────────── */
 :root {
-  /* Colores principales */
   --tangerine: #f08c21;
-  /* Naranja principal */
   --tangerine-light: #fde8c4;
   --butter: #f2d88f;
-  /* Amarillo suave */
   --butter-dark: #d4a830;
   --blush: #e36888;
-  /* Rosa artístico */
   --blush-light: #fad4de;
   --sea: #6698cc;
-  /* Azul museístico */
   --sea-light: #d0e2f5;
   --matcha: #b4b534;
-  /* Verde tecnología */
   --matcha-light: #e8eaa0;
-
-  /* Neutros */
   --white: #ffffff;
   --offwhite: #fff9f5;
   --ink: #3a2418;
-  /* Texto oscuro */
   --muted: #9a7a6a;
-  /* Texto secundario */
   --bg: #fff5ee;
-  /* Fondo general */
-
-  /* Bordes y radios */
   --radius-sm: 12px;
   --radius-md: 20px;
   --radius-lg: 28px;
   --radius-xl: 40px;
-
-  /* Sombras */
-  --shadow-card:
-    0 6px 0 var(--butter-dark), 0 8px 24px rgba(240, 140, 33, 0.15);
+  --shadow-card: 0 6px 0 var(--butter-dark), 0 8px 24px rgba(240, 140, 33, 0.15);
   --shadow-sm: 0 3px 0 rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
@@ -47,7 +31,6 @@
 }
 
 html {
-  /* Hace que el scroll sea suave entre secciones */
   scroll-behavior: smooth;
 }
 
@@ -59,14 +42,11 @@ body {
   line-height: 1.6;
 }
 
-/* Fondo punteado artístico en toda la página */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle,
-      rgba(240, 140, 33, 0.12) 1.5px,
-      transparent 1.5px);
+  background-image: radial-gradient(circle, rgba(240, 140, 33, 0.12) 1.5px, transparent 1.5px);
   background-size: 28px 28px;
   pointer-events: none;
   z-index: 0;
@@ -84,7 +64,6 @@ body::before {
   margin-bottom: 60px;
 }
 
-/* Número decorativo antes del título de sección */
 .section-num {
   font-family: "Fredoka One", cursive;
   font-size: 80px;
@@ -95,7 +74,6 @@ body::before {
   margin-bottom: -20px;
 }
 
-/* Título principal de sección */
 .section-heading {
   font-family: "Fredoka One", cursive;
   font-size: clamp(28px, 4vw, 42px);
@@ -104,17 +82,13 @@ body::before {
   display: inline-block;
 }
 
-
-
 /* ── BARRA DE NAVEGACIÓN ────────────────────────────────── */
 .navbar {
   position: fixed;
-  /* Fija en la parte superior */
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  /* Encima de todo */
   background: var(--tangerine);
   border-bottom: 5px solid var(--butter-dark);
   padding: 0 32px;
@@ -125,12 +99,10 @@ body::before {
   transition: box-shadow 0.3s;
 }
 
-/* Sombra que aparece al hacer scroll */
 .navbar.scrolled {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Logo del museo */
 .nav-logo {
   display: flex;
   align-items: center;
@@ -170,7 +142,6 @@ body::before {
   text-transform: uppercase;
 }
 
-/* Links de navegación (escritorio) */
 .nav-links {
   display: flex;
   align-items: center;
@@ -185,19 +156,15 @@ body::before {
   font-size: 13px;
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  transition:
-    background 0.2s,
-    color 0.2s;
+  transition: background 0.2s, color 0.2s;
   letter-spacing: 0.3px;
 }
 
-/* Efecto hover en links del navbar */
 .nav-links a:hover {
   background: rgba(255, 255, 255, 0.2);
   color: var(--white);
 }
 
-/* Botón especial "App del Museo" */
 .nav-btn-app {
   background: var(--white) !important;
   color: var(--tangerine) !important;
@@ -205,9 +172,7 @@ body::before {
   padding: 8px 16px !important;
   font-size: 12px !important;
   box-shadow: 0 3px 0 var(--butter-dark);
-  transition:
-    transform 0.15s,
-    box-shadow 0.15s !important;
+  transition: transform 0.15s, box-shadow 0.15s !important;
 }
 
 .nav-btn-app:hover {
@@ -215,7 +180,6 @@ body::before {
   box-shadow: 0 5px 0 var(--butter-dark) !important;
 }
 
-/* Botón hamburguesa (móvil) */
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -230,9 +194,7 @@ body::before {
   height: 3px;
   background: var(--white);
   border-radius: 2px;
-  transition:
-    transform 0.3s,
-    opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 /* ──  HERO SECTION ───────────────────────────────────────── */
@@ -246,18 +208,13 @@ body::before {
   overflow: hidden;
 }
 
-/* Fondo degradado del hero */
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg,
-      var(--tangerine) 0%,
-      #f08c21 50%,
-      var(--blush) 100%);
+  background: linear-gradient(135deg, var(--tangerine) 0%, #f08c21 50%, var(--blush) 100%);
   z-index: -1;
 }
 
-/* Formas geométricas decorativas */
 .hero-shape {
   position: absolute;
   border-radius: 50%;
@@ -291,39 +248,24 @@ body::before {
   animation: float 7s ease-in-out infinite 2s;
 }
 
-/* Animación de flotación */
 @keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-20px) rotate(5deg);
-  }
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
   display: flex;
-  /* ← cambiar grid por flex */
   flex-direction: column;
-  /* ← agregar */
   align-items: center;
-  /* ← centra horizontalmente */
   justify-content: center;
-  /* ← centra verticalmente */
   max-width: 1400px;
-  /* ← reducir ancho */
   margin: 0 auto;
-  /* ← mantener */
-  padding: 30px 24px;
+  padding: 0px 40px;
   width: 100%;
   text-align: center;
- min-height: 180px;
-  padding: 0px 40px;
+  min-height: 180px;
 }
 
 .hero-eyebrow {
@@ -347,13 +289,13 @@ body::before {
   color: var(--white);
   text-align: center;
   margin-bottom: 20px;
-  text-shadow: 0 4px 0 rgba(0,0,0,.12);
+  text-shadow: 0 4px 0 rgba(0, 0, 0, .12);
 }
 
 .hero-title span {
   display: inline-block;
   background: transparent;
-  color:white;
+  color: white;
   padding: 6px 18px;
   border-radius: 10px;
   margin-top: 10px;
@@ -374,7 +316,6 @@ body::before {
   justify-content: center;
 }
 
-/* Botón primario */
 .btn-primary {
   background: var(--white);
   color: var(--tangerine);
@@ -390,9 +331,7 @@ body::before {
   align-items: center;
   gap: 8px;
   box-shadow: 0 5px 0 var(--butter-dark);
-  transition:
-    transform 0.15s,
-    box-shadow 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 .btn-primary:hover {
@@ -405,7 +344,6 @@ body::before {
   box-shadow: 0 2px 0 var(--butter-dark);
 }
 
-/* Botón secundario */
 .btn-outline {
   background: transparent;
   color: var(--white);
@@ -420,9 +358,7 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition:
-    background 0.2s,
-    border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .btn-outline:hover {
@@ -430,22 +366,18 @@ body::before {
   border-color: var(--white);
 }
 
-/* Panel derecho del hero: mockup de la app */
 .hero-visual {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Marco simulado de teléfono */
 .phone-mockup {
   width: clamp(220px, 28vw, 240px);
   background: var(--ink);
   border-radius: 36px;
   border: 5px solid rgba(255, 255, 255, 0.3);
-  box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.3),
-    0 0 0 2px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.1);
   overflow: hidden;
   position: relative;
 }
@@ -560,7 +492,6 @@ body::before {
   align-items: center;
 }
 
-/* Tarjeta de imagen del museo */
 .about-image-wrap {
   position: relative;
 }
@@ -574,7 +505,6 @@ body::before {
   box-shadow: 10px 10px 0 var(--butter-dark);
 }
 
-/* Imagen placeholder cuando no hay foto real */
 .about-image-placeholder {
   width: 100%;
   height: 420px;
@@ -599,7 +529,6 @@ body::before {
   color: var(--tangerine);
 }
 
-/* Badge flotante sobre la imagen */
 .about-badge {
   position: absolute;
   bottom: -20px;
@@ -630,7 +559,6 @@ body::before {
   font-weight: 600;
 }
 
-/* Grid de datos del museo (horarios, ubicación, etc.) */
 .about-info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -643,9 +571,7 @@ body::before {
   border-radius: var(--radius-md);
   padding: 16px;
   border: 3px solid var(--butter);
-  transition:
-    border-color 0.2s,
-    transform 0.2s;
+  transition: border-color 0.2s, transform 0.2s;
 }
 
 .info-card:hover {
@@ -687,34 +613,27 @@ body::before {
   gap: 28px;
 }
 
-/* Tarjeta de artista */
 .artist-card {
   background: var(--white);
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 4px solid var(--butter);
   box-shadow: var(--shadow-card);
-  transition:
-    transform 0.25s,
-    box-shadow 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
   cursor: pointer;
 }
 
 .artist-card:hover {
   transform: translateY(-8px);
-  box-shadow:
-    0 14px 0 var(--butter-dark),
-    0 20px 40px rgba(240, 140, 33, 0.2);
+  box-shadow: 0 14px 0 var(--butter-dark), 0 20px 40px rgba(240, 140, 33, 0.2);
 }
 
-/* Imagen del artista */
 .artist-img {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
-/* Placeholder de imagen artista */
 .artist-img-placeholder {
   width: 100%;
   height: 200px;
@@ -754,7 +673,6 @@ body::before {
   line-height: 1.5;
 }
 
-/* Obras como chips */
 .artist-works {
   display: flex;
   flex-wrap: wrap;
@@ -780,7 +698,6 @@ body::before {
   background: var(--white);
 }
 
-/* Tabs para cambiar entre "actuales" y "próximas" */
 .expo-tabs {
   display: flex;
   gap: 12px;
@@ -801,7 +718,6 @@ body::before {
   transition: all 0.2s;
 }
 
-/* Tab activo */
 .expo-tab.active {
   background: var(--tangerine);
   border-color: var(--butter-dark);
@@ -834,6 +750,15 @@ body::before {
   justify-content: center;
   font-size: 64px;
   position: relative;
+  overflow: hidden;
+}
+
+.expo-card-img img {
+  transition: transform 0.4s ease;
+}
+
+.expo-card:hover .expo-card-img img {
+  transform: scale(1.05);
 }
 
 .expo-card-status {
@@ -880,37 +805,17 @@ body::before {
   font-weight: 600;
 }
 
-/* =========================
-   FONDOS DE CADA EXPOSICIÓN
-========================= */
-
 .expo-matcha {
-  background: linear-gradient(
-    135deg,
-    var(--matcha-light),
-    var(--matcha)
-  );
+  background: linear-gradient(135deg, var(--matcha-light), var(--matcha));
 }
 
 .expo-sea {
-  background: linear-gradient(
-    135deg,
-    var(--sea-light),
-    var(--sea)
-  );
+  background: linear-gradient(135deg, var(--sea-light), var(--sea));
 }
 
 .expo-blush {
-  background: linear-gradient(
-    135deg,
-    #f8e1d5,
-    var(--blush)
-  );
+  background: linear-gradient(135deg, #f8e1d5, var(--blush));
 }
-
-/* =========================
-   IMÁGENES EXPOSICIONES
-========================= */
 
 .imagen-carnaval,
 .imagen-2050,
@@ -922,22 +827,6 @@ body::before {
   border-radius: 0;
 }
 
-/* =========================
-   EFECTO HOVER IMAGEN
-========================= */
-
-.expo-card-img {
-  overflow: hidden;
-}
-
-.expo-card-img img {
-  transition: transform 0.4s ease;
-}
-
-.expo-card:hover .expo-card-img img {
-  transform: scale(1.05);
-}
-
 /* ──  SECCIÓN SERVICIOS ──────────────────────────────────── */
 .services {
   position: relative;
@@ -947,14 +836,11 @@ body::before {
   overflow: hidden;
 }
 
-/* Fondo ondulado */
 .services::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle,
-      rgba(255, 255, 255, 0.08) 2px,
-      transparent 2px);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 2px, transparent 2px);
   background-size: 32px 32px;
 }
 
@@ -973,21 +859,18 @@ body::before {
 
 .services-grid {
   display: grid;
-  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 30px;
   margin: 0 auto;
 }
 
-/* Tarjeta de servicio */
 .service-card {
   background: rgba(255, 255, 255, 0.15);
   border: 3px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-lg);
   padding: 35px 30px;
   text-align: center;
-  transition:
-    background 0.2s,
-    transform 0.2s;
+  transition: background 0.2s, transform 0.2s;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -1051,7 +934,6 @@ body::before {
   margin-bottom: 28px;
 }
 
-/* Lista de características de la app */
 .app-features {
   list-style: none;
   padding: 0;
@@ -1077,17 +959,22 @@ body::before {
   flex-shrink: 0;
 }
 
-/* Grid de 3 phones mostrando pantallas de la app */
+/* ── APP PHONES — escritorio ─────────────────────────────── */
 .app-phones {
   display: flex;
+  flex-direction: row;
   gap: 16px;
   justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap:nowrap;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  overflow: visible;
 }
 
-/* El teléfono central se ve más grande */
+.app-phones .phone-mockup {
+  width: clamp(140px, 18vw, 200px);
+  flex-shrink: 0;
+}
+
 .app-phones .phone-mockup:nth-child(2) {
   transform: scale(1.08);
   z-index: 2;
@@ -1098,7 +985,6 @@ body::before {
   opacity: 0.85;
 }
 
-/* Colores de pantallas de la app */
 .screen-scanner {
   background: linear-gradient(160deg, var(--matcha), #8a8a28);
 }
@@ -1168,7 +1054,6 @@ body::before {
   font-weight: 800;
 }
 
-/* Mapa placeholder */
 .map-placeholder {
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, var(--sea-light), var(--matcha-light));
@@ -1214,7 +1099,6 @@ body::before {
   gap: 60px;
 }
 
-/* Tarjetas de contacto */
 .contact-card {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -1259,7 +1143,6 @@ body::before {
   color: var(--ink);
 }
 
-/* Formulario de contacto */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -1316,7 +1199,6 @@ footer {
   margin-bottom: 48px;
 }
 
-/* Columna principal del footer */
 .footer-brand .nav-logo-badge {
   margin-bottom: 16px;
 }
@@ -1329,15 +1211,13 @@ footer {
   margin-bottom: 20px;
 }
 
-/* Redes sociales */
 .social-links {
   display: flex;
   gap: 10px;
 }
 
 .social-btn {
-    border: none;
-
+  border: none;
 }
 
 .social-btn:hover {
@@ -1346,7 +1226,6 @@ footer {
   transform: translateY(-2px);
 }
 
-/* Títulos de columnas del footer */
 .footer-col h4 {
   font-family: "Fredoka One", cursive;
   font-size: 16px;
@@ -1384,7 +1263,6 @@ footer {
   color: var(--tangerine);
 }
 
-/* Línea divisoria del footer */
 .footer-bottom {
   border-top: 2px solid rgba(255, 255, 255, 0.1);
   padding-top: 24px;
@@ -1402,7 +1280,6 @@ footer {
 }
 
 /* ──  BOTÓN FLOTANTE "APP" ───────────────────────────────── */
-/* Botón redondo que flota en la esquina inferior derecha */
 .fab-btn {
   position: fixed;
   bottom: 32px;
@@ -1421,40 +1298,22 @@ footer {
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow:
-    0 6px 0 var(--butter-dark),
-    0 8px 24px rgba(240, 140, 33, 0.4);
+  box-shadow: 0 6px 0 var(--butter-dark), 0 8px 24px rgba(240, 140, 33, 0.4);
   animation: pulse-fab 3s ease-in-out infinite;
-  transition:
-    transform 0.15s,
-    box-shadow 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 .fab-btn:hover {
   transform: translateY(-3px);
-  box-shadow:
-    0 9px 0 var(--butter-dark),
-    0 12px 32px rgba(240, 140, 33, 0.5);
+  box-shadow: 0 9px 0 var(--butter-dark), 0 12px 32px rgba(240, 140, 33, 0.5);
 }
 
-/* Animación de pulso del botón flotante */
 @keyframes pulse-fab {
-
-  0%,
-  100% {
-    box-shadow:
-      0 6px 0 var(--butter-dark),
-      0 8px 24px rgba(240, 140, 33, 0.4);
-  }
-
-  50% {
-    box-shadow:
-      0 6px 0 var(--butter-dark),
-      0 8px 36px rgba(240, 140, 33, 0.7);
-  }
+  0%, 100% { box-shadow: 0 6px 0 var(--butter-dark), 0 8px 24px rgba(240, 140, 33, 0.4); }
+  50% { box-shadow: 0 6px 0 var(--butter-dark), 0 8px 36px rgba(240, 140, 33, 0.7); }
 }
 
-/* ──  SECCIÓN OCULTA (paneles de exposición al hacer clic en tabs) */
+/* ── PANELES EXPO ─────────────────────────────────────────── */
 .expo-panel {
   display: none;
 }
@@ -1467,20 +1326,62 @@ footer {
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── RESPONSIVE — TABLETS (max 1024px) ──────────────────── */
-@media (max-width: 1024px) {
+/* ── IMÁGENES ─────────────────────────────────────────────── */
+.imagen-museo {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
 
+.imagen-cecilia,
+.imagen-noe,
+.imagen-obregon,
+.imagen-cepeda {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+}
+
+.imagen-magdalena,
+.imagen-ia,
+.imagen-raices {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+}
+
+/* ──  SCROLL REVEAL ───────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal:nth-child(4) { transition-delay: 0.3s; }
+.reveal:nth-child(5) { transition-delay: 0.4s; }
+.reveal:nth-child(6) { transition-delay: 0.5s; }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE — TABLETS (max 1024px)
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
   .hero-content {
     grid-template-columns: 1fr;
     text-align: center;
@@ -1501,14 +1402,17 @@ footer {
 
   .app-content {
     grid-template-columns: 1fr;
+    text-align: center;
   }
 
   .app-phones {
     order: -1;
-    flex-direction: row;
     justify-content: center;
-    flex-wrap: nowrap;
     gap: 12px;
+  }
+
+  .app-phones .phone-mockup {
+    width: clamp(130px, 20vw, 180px);
   }
 
   .footer-grid {
@@ -1524,9 +1428,10 @@ footer {
   }
 }
 
-/* ── RESPONSIVE — MÓVILES (max 768px) ───────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE — MÓVILES (max 768px)
+═══════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-
   .nav-links {
     display: none;
     position: absolute;
@@ -1563,35 +1468,48 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  /* APP DEL MUSEO */
-
+  /* ── APP PHONES — móvil ── */
   .app-content {
     grid-template-columns: 1fr;
     text-align: center;
   }
 
   .app-phones {
-    display: grid;
-    grid-template-columns: repeat(2, 120px);
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    gap: 12px;
-    margin: 0 auto;
-
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 4px;
+    order: -1;
   }
 
-  .phone-mockup {
-    width: 120px;
-    min-width: 120px;
-    flex-shrink: 0;
+  .app-phones .phone-mockup {
+    width: calc((100vw - 72px) / 3);
+    min-width: 85px;
+    max-width: 130px;
+    flex-shrink: 1;
+  }
+
+  /* Mantener el scale del central pero más sutil en móvil */
+  .app-phones .phone-mockup:nth-child(2) {
+    transform: scale(1.05);
+    z-index: 2;
   }
 
   .phone-screen {
-    min-height: 280px;
+    min-height: 220px;
+    padding: 8px;
+    gap: 6px;
   }
 
+  /* Cancelar el grid-column que rompía el layout */
   .app-phones .phone-mockup:nth-child(3) {
-    grid-column: 1 / span 2;
-    justify-self: center;
+    grid-column: unset !important;
+    justify-self: unset !important;
   }
 
   .footer-grid {
@@ -1620,131 +1538,29 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.app-phones .phone-mockup:nth-child(3) {
-    grid-column: 1 / span 2;
-    justify-self: center;
-}
 
-/* ── MÓVILES PEQUEÑOS ───────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE — MÓVILES PEQUEÑOS (max 480px)
+═══════════════════════════════════════════════════════════ */
 @media (max-width: 480px) {
-
   .services-grid {
     grid-template-columns: 1fr;
   }
 
   .app-phones {
-    grid-template-columns: repeat(2, 105px);
-    gap: 10px;
-
+    gap: 6px;
+    padding: 0 2px;
   }
 
-  .phone-mockup {
-    width: 105px;
-    min-width: 105px;
+  .app-phones .phone-mockup {
+    width: calc((100vw - 60px) / 3);
+    min-width: 78px;
+    max-width: 110px;
   }
 
   .phone-screen {
-    min-height: 250px;
+    min-height: 190px;
+    padding: 6px;
+    gap: 5px;
   }
-}
-
-/* ──  SCROLL REVEAL (clases que agrega JS) ───────────────── */
-/* El elemento empieza invisible y abajo */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
-}
-
-/* Cuando JS le agrega .visible, aparece */
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Retrasos escalonados para animar los hijos en secuencia */
-.reveal:nth-child(2) {
-  transition-delay: 0.1s;
-}
-
-.reveal:nth-child(3) {
-  transition-delay: 0.2s;
-}
-
-.reveal:nth-child(4) {
-  transition-delay: 0.3s;
-}
-
-.reveal:nth-child(5) {
-  transition-delay: 0.4s;
-}
-
-.reveal:nth-child(6) {
-  transition-delay: 0.5s;
-}
-
-.imagen-museo {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  border-radius: 20px;
-  display: block;
-}
-
-.imagen-cecilia {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 15px;
-  display: block;
-}
-
-.imagen-noe {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 15px;
-  display: block;
-}
-
-.imagen-obregon {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 15px;
-  display: block;
-}
-
-.imagen-cepeda {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 15px;
-  display: block;
-}
-
-.imagen-magdalena{
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 0;
-    display: block;
-}
-
-.imagen-ia{
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 0;
-    display: block;
-}
-
-.imagen-raices{
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 0;
-    display: block;
 }
