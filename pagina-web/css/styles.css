@@ -910,11 +910,13 @@ body::before {
   background: var(--bg);
 }
 
+/* ── Asegura que la columna derecha no recorte ── */
 .app-content {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 80px;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
   align-items: center;
+  overflow: visible;
 }
 
 .app-text h2 {
@@ -964,7 +966,7 @@ body::before {
 .app-phones {
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: 12px;
   justify-content: center;
   align-items: flex-end;
   flex-wrap: nowrap;
@@ -972,8 +974,8 @@ body::before {
 }
 
 .app-phones .phone-mockup {
-  width: 180px;
-  flex-shrink: 0;
+  width: 155px;
+  flex-shrink: 1;
 }
 
 .app-phones .phone-mockup:nth-child(2) {
@@ -1410,7 +1412,6 @@ footer {
     order: -1;
     justify-content: center;
     gap: 12px;
-    /* Sigue siendo horizontal en tablet */
     flex-direction: row;
     flex-wrap: nowrap;
   }
@@ -1499,7 +1500,6 @@ footer {
     opacity: 1 !important;
   }
 
-  /* Quitar el scale del central para que no se vea raro en columna */
   .app-phones .phone-mockup:nth-child(2) {
     transform: none !important;
     z-index: 2;
