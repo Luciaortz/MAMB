@@ -960,7 +960,7 @@ body::before {
   flex-shrink: 0;
 }
 
-/* ── APP PHONES — ESCRITORIO ─────────────────────────────── */
+/* ── APP PHONES — ESCRITORIO Y TABLET (horizontal) ──────── */
 .app-phones {
   display: flex;
   flex-direction: row;
@@ -1410,6 +1410,9 @@ footer {
     order: -1;
     justify-content: center;
     gap: 12px;
+    /* Sigue siendo horizontal en tablet */
+    flex-direction: row;
+    flex-wrap: nowrap;
   }
 
   .app-phones .phone-mockup {
@@ -1430,7 +1433,7 @@ footer {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   RESPONSIVE — MÓVILES (max 768px)
+   RESPONSIVE — MÓVILES (max 768px)  →  TELÉFONOS EN VERTICAL
 ═══════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .nav-links {
@@ -1469,7 +1472,7 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  /* ── APP DEL MUSEO ── */
+  /* ── APP PHONES: vertical en móvil ── */
   .app-content {
     grid-template-columns: 1fr;
     text-align: center;
@@ -1478,39 +1481,39 @@ footer {
   .app-phones {
     order: -1;
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: column !important;
+    align-items: center !important;
     justify-content: center !important;
-    align-items: flex-end !important;
     flex-wrap: nowrap !important;
-    gap: 6px !important;
+    gap: 20px !important;
     width: 100% !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     padding: 0 !important;
   }
 
   .app-phones .phone-mockup {
-    width: 28vw !important;
+    width: 220px !important;
+    max-width: 260px !important;
     min-width: 0 !important;
-    max-width: 110px !important;
-    flex-shrink: 1 !important;
-    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    opacity: 1 !important;
   }
 
+  /* Quitar el scale del central para que no se vea raro en columna */
   .app-phones .phone-mockup:nth-child(2) {
-    transform: scale(1.04) !important;
+    transform: none !important;
     z-index: 2;
   }
 
+  .app-phones .phone-mockup:nth-child(1),
   .app-phones .phone-mockup:nth-child(3) {
-    grid-column: unset !important;
-    justify-self: unset !important;
-    opacity: 0.85;
+    opacity: 1 !important;
   }
 
   .phone-screen {
-    min-height: 210px !important;
-    padding: 8px !important;
-    gap: 6px !important;
+    min-height: 340px !important;
+    padding: 12px !important;
+    gap: 10px !important;
   }
 
   /* Resto móvil */
@@ -1550,13 +1553,13 @@ footer {
   }
 
   .app-phones .phone-mockup {
-    width: 27vw !important;
-    max-width: 95px !important;
+    width: 85vw !important;
+    max-width: 280px !important;
   }
 
   .phone-screen {
-    min-height: 185px !important;
-    padding: 6px !important;
-    gap: 4px !important;
+    min-height: 320px !important;
+    padding: 12px !important;
+    gap: 8px !important;
   }
 }
