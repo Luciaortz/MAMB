@@ -965,6 +965,13 @@ body::before {
 }
 
 /* ── APP PHONES — ESCRITORIO Y TABLET (horizontal) ──────── */
+.app-content {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  gap: 20px;
+  align-items: center;
+}
+
 .app-phones {
   display: flex;
   flex-direction: row;
@@ -973,18 +980,13 @@ body::before {
   align-items: flex-end;
   flex-wrap: nowrap;
   overflow: visible;
+  min-width: 720px;
 }
 
 .app-phones .phone-mockup {
-  width: 190px;
+  width: 220px;
   flex-shrink: 0;
 }
-
-.app-phones .phone-mockup:nth-child(2) {
-  transform: scale(1.08);
-  z-index: 2;
-}
-
 .app-phones .phone-mockup:nth-child(1),
 .app-phones .phone-mockup:nth-child(3) {
   opacity: 0.85;
