@@ -968,7 +968,7 @@ body::before {
 .app-phones {
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 18px;
   justify-content: center;
   align-items: flex-end;
   flex-wrap: nowrap;
@@ -976,8 +976,8 @@ body::before {
 }
 
 .app-phones .phone-mockup {
-  width: 130px;
-  flex-shrink: 1;
+  width: 190px;
+  flex-shrink: 0;
 }
 
 .app-phones .phone-mockup:nth-child(2) {
