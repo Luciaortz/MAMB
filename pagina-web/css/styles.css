@@ -439,7 +439,7 @@ body::before {
 
 /* Marco simulado de teléfono */
 .phone-mockup {
-  width: min(240px, 28vw);
+  width: clamp(220px, 28vw, 240px);
   background: var(--ink);
   border-radius: 36px;
   border: 5px solid rgba(255, 255, 255, 0.3);
@@ -1084,7 +1084,7 @@ body::before {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-    flex-wrap:nowrap;
+  flex-wrap:nowrap;
 }
 
 /* El teléfono central se ve más grande */
@@ -1480,6 +1480,7 @@ footer {
 
 /* ── RESPONSIVE — TABLETS (max 1024px) ──────────────────── */
 @media (max-width: 1024px) {
+
   .hero-content {
     grid-template-columns: 1fr;
     text-align: center;
@@ -1487,7 +1488,6 @@ footer {
 
   .hero-visual {
     display: none;
-    /* Ocultar teléfono en tablets pequeñas */
   }
 
   .about-grid {
@@ -1507,8 +1507,8 @@ footer {
     order: -1;
     flex-direction: row;
     justify-content: center;
-    flex-wrap: wrap;
-    /* Los teléfonos van arriba */
+    flex-wrap: nowrap;
+    gap: 15px;
   }
 
   .footer-grid {
@@ -1524,13 +1524,11 @@ footer {
   }
 }
 
-/* ──  RESPONSIVE — MÓVILES (max 768px) ───────────────────── */
+/* ── RESPONSIVE — MÓVILES (max 768px) ───────────────────── */
 @media (max-width: 768px) {
 
-  /* El navbar cambia a modo móvil */
   .nav-links {
     display: none;
-    /* Oculto por defecto */
     position: absolute;
     top: 70px;
     left: 0;
@@ -1543,7 +1541,6 @@ footer {
     z-index: 999;
   }
 
-  /* Se muestra cuando tiene la clase "open" */
   .nav-links.open {
     display: flex;
   }
@@ -1554,9 +1551,18 @@ footer {
     border-radius: var(--radius-sm);
   }
 
-  /* Botón hamburguesa visible en móvil */
   .nav-toggle {
     display: flex;
+  }
+
+  .nav-logo-text {
+    font-size: 16px;
+  }
+
+  .nav-logo-badge {
+    width: 40px;
+    height: 40px;
+    font-size: 9px;
   }
 
   .hero-actions {
@@ -1567,11 +1573,24 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  
-
+  /* TELÉFONOS EN MÓVIL */
   .app-phones {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+
+  .phone-mockup {
+    width: 95px;
+    min-width: 95px;
+  }
+
+  .phone-screen {
+    min-height: 220px;
   }
 
   .app-phones .phone-mockup:nth-child(2) {
@@ -1591,7 +1610,6 @@ footer {
     grid-template-columns: 1fr;
   }
 
-
   .fab-btn {
     bottom: 20px;
     right: 20px;
@@ -1600,13 +1618,26 @@ footer {
     max-width: 150px;
     white-space: nowrap;
   }
-.services-grid {
-      grid-template-columns: repeat(2, 1fr);
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ── MÓVILES PEQUEÑOS ───────────────────────────────────── */
 @media (max-width: 480px) {
+
   .services-grid {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .phone-mockup {
+    width: 85px;
+    min-width: 85px;
+  }
+
+  .phone-screen {
+    min-height: 200px;
   }
 }
 
