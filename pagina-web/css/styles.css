@@ -1571,10 +1571,9 @@ footer {
   }
 
   .app-phones {
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
+    display: grid;
     grid-template-columns: repeat(2, 120px);
+    justify-content: center;
     gap: 12px;
     margin: 0 auto;
 
@@ -1590,8 +1589,9 @@ footer {
     min-height: 280px;
   }
 
-  .app-phones .phone-mockup:nth-child(2) {
-    transform: none;
+  .app-phones .phone-mockup:nth-child(3) {
+    grid-column: 1 / span 2;
+    justify-self: center;
   }
 
   .footer-grid {
