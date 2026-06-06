@@ -159,7 +159,7 @@ async function shareArtwork() {
   canvas.toBlob(async blob => {
     const file = new File([blob], "mambaq-art.png", { type: "image/png" });
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      await navigator.share({ title: "MAMBAQ", text: "Mira mi obra creada con IA", files: [file] });
+      await navigator.share({ title: "MAMB", text: "Mira mi obra creada con IA", files: [file] });
     } else {
       alert("Tu navegador no soporta compartir.");
     }
