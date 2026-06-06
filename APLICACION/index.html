@@ -24,7 +24,6 @@
 
 <div class="notch"></div>
 
-<!-- MENU LATERAL -->
 <div class="side-menu" id="sideMenu">
 
   <button class="menu-item" onclick="openNotifications();toggleMenu()">
@@ -44,7 +43,6 @@
 
 </div>
 
-<!-- PANEL DE NOTIFICACIONES -->
 <div class="notification-panel hidden" id="notificationPanel">
 
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
@@ -60,7 +58,6 @@
 
 </div>
 
-<!-- HOME -->
 <section class="screen active" id="home">
 
   <div class="hero">
@@ -81,7 +78,6 @@
 
 </section>
 
-<!-- SCANNER -->
 <section class="screen" id="scanner">
 
   <div class="status">
@@ -104,11 +100,14 @@
         <span>Selecciona una imagen</span>
       </div>
       <img id="previewImage" class="hidden">
+      
+      <video id="scannerVideo" autoplay playsinline class="hidden" style="width:100%;border-radius:16px;"></video>
+      <button id="snapBtn" class="btn orange hidden" onclick="snapPhoto()" style="margin-top:8px;">📸 Tomar foto</button>
     </div>
 
     <div class="actions">
       <button class="miniBtn" onclick="galleryInput.click()">Galería</button>
-      <button class="miniBtn" onclick="cameraInput.click()">Cámara</button>
+      <button class="miniBtn" onclick="openScannerCamera()">Cámara</button>
     </div>
 
     <input type="file" accept="image/*" id="galleryInput" class="hidden">
@@ -120,7 +119,6 @@
 
 </section>
 
-<!-- STYLES -->
 <section class="screen" id="styles">
 
   <div class="status">
@@ -180,7 +178,6 @@
 
 </section>
 
-<!-- RESULT -->
 <section class="screen" id="result">
 
   <div class="status">
@@ -228,7 +225,6 @@
 
 </section>
 
-<!-- MUSEO INTERACTIVO -->
 <section class="screen" id="gallery">
 
   <div class="status">
@@ -250,7 +246,6 @@
 
 </section>
 
-<!-- GESTOS IA -->
 <section class="screen" id="gestures">
 
   <div class="status">
@@ -319,7 +314,6 @@
 
 </section>
 
-<!-- INFO -->
 <section class="screen" id="info">
 
   <div class="status">
@@ -407,7 +401,6 @@
 
 </section>
 
-<!-- PROFILE -->
 <section class="screen" id="profile">
 
   <div class="status">
@@ -494,7 +487,6 @@
 
 </section>
 
-<!-- BOTTOM NAV -->
 <div class="bottom-nav">
 
   <button class="nav-btn" onclick="goTo('gallery')">
@@ -519,9 +511,7 @@
 
 </div>
 
-</div><!-- /phone -->
-
-<script src="js/script.js"></script>
+</div><script src="js/script.js"></script>
 
 </body>
 </html>
