@@ -58,6 +58,44 @@ function loadImage(file) {
 galleryInput.addEventListener("change", e => loadImage(e.target.files[0]));
 cameraInput.addEventListener("change",  e => loadImage(e.target.files[0]));
 
+// --- Nuevas funciones de Cámara para el Escáner ---
+let scannerStream = null;
+
+async function openScannerCamera() {
+  try {
+    scannerStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+    const video = document.getElementById("scannerVideo");
+    video.srcObject = scannerStream;
+    video.classList.remove("hidden");
+    document.getElementById("placeholder").classList.add("hidden");
+    document.getElementById("previewImage").classList.add("hidden");
+    document.getElementById("snapBtn").classList.remove("hidden");
+  } catch {
+    showToast("No se pudo acceder a la cámara 📷");
+  }
+}
+
+function snapPhoto() {
+  const video = document.getElementById("scannerVideo");
+  const canvas = document.createElement("canvas");
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext("2d").drawImage(video, 0, 0);
+
+  canvas.toBlob(blob => {
+    selectedImage = new File([blob], "captura.png", { type: "image/png" });
+    const preview = document.getElementById("previewImage");
+    preview.src = URL.createObjectURL(blob);
+    preview.classList.remove("hidden");
+    document.getElementById("scannerVideo").classList.add("hidden");
+    document.getElementById("snapBtn").classList.add("hidden");
+    document.getElementById("placeholder").classList.add("hidden");
+
+    // Detener cámara
+    if (scannerStream) { scannerStream.getTracks().forEach(t => t.stop()); scannerStream = null; }
+  });
+}
+
 const styleCards = document.querySelectorAll(".style-card");
 styleCards.forEach(card => {
   card.addEventListener("click", () => {
@@ -98,7 +136,6 @@ function generateArt() {
     canvas.height = img.naturalHeight;
     const ctx = canvas.getContext("2d");
 
-    // Aplicar filtro CSS al canvas via drawImage con filter
     ctx.filter = filters[selectedStyle] || "none";
     ctx.drawImage(img, 0, 0);
     ctx.filter = "none";
@@ -287,7 +324,7 @@ function createAccount() {
 function logout() {
   currentUser    = null;
   currentAuthor = null;
-  document.getElementById("registerEmail").value     = "";
+  document.getElementById("registerEmail").value      = "";
   document.getElementById("registerPassword").value = "";
   document.getElementById("userProfile").classList.add("hidden");
   document.getElementById("guestProfile").classList.remove("hidden");
@@ -381,26 +418,6 @@ async function loopGesture() {
   const video = document.getElementById("webcam");
   if (video.readyState >= 2) await predictGesture(video);
   gestureAnimFrame = requestAnimationFrame(loopGesture);
-}
-
-async function openCamera() {
-  stopGestureCamera();
-  gestureMode = 'camera';
-  const ok = await loadGestureModel();
-  if (!ok) return;
-  try {
-    gestureStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
-    const video = document.getElementById("webcam");
-    video.srcObject = gestureStream;
-    video.style.display = "block";
-    document.getElementById("gesturePlaceholder").style.display = "none";
-    document.getElementById("gesturePreview").classList.add("hidden");
-    document.getElementById("gestureResult").innerText = "Detectando... 👀";
-    video.onloadedmetadata = () => loopGesture();
-  } catch {
-    showToast("No se pudo acceder a la cámara 📷");
-    gestureMode = 'idle';
-  }
 }
 
 const gestureImageInputEl = document.getElementById("gestureImageInput");
