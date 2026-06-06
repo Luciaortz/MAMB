@@ -1574,15 +1574,15 @@ footer {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    flex-wrap: nowrap;
-    gap: 4px;
-    overflow-x: auto;
-    padding-bottom: 10px;
+    grid-template-columns: repeat(2, 120px);
+    gap: 12px;
+    margin: 0 auto;
+
   }
 
   .phone-mockup {
-    width: 115px;
-    min-width: 115px;
+    width: 120px;
+    min-width: 120px;
     flex-shrink: 0;
   }
 
@@ -1620,6 +1620,10 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+.app-phones .phone-mockup:nth-child(3) {
+    grid-column: 1 / span 2;
+    justify-self: center;
+}
 
 /* ── MÓVILES PEQUEÑOS ───────────────────────────────────── */
 @media (max-width: 480px) {
@@ -1629,7 +1633,9 @@ footer {
   }
 
   .app-phones {
-    gap: 2px;
+    grid-template-columns: repeat(2, 105px);
+    gap: 10px;
+
   }
 
   .phone-mockup {
@@ -1638,7 +1644,7 @@ footer {
   }
 
   .phone-screen {
-    min-height: 260px;
+    min-height: 250px;
   }
 }
 
