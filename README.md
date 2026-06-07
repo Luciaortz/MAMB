@@ -253,6 +253,7 @@ Actualmente ambos módulos utilizan almacenamiento local.
 * LocalStorage.
 * Archivos JSON.
 * Modelos de TensorFlow.js almacenados localmente.
+* MongoDB
 
 ---
 
