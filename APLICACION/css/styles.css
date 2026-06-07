@@ -87,19 +87,16 @@ body {
 
 /* ---------- Status bar ---------- */
 .status {
-  height: auto;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: env(safe-area-inset-top, 12px) 24px 8px;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text);
+  padding: 8px 24px;
+  height: auto;
 }
 
-.status button svg {
-  color: var(--icon-color) !important;
-  stroke: var(--icon-color) !important;
+
+.status > div:first-child {
+  display: none;
 }
 
 /* ---------- Header ---------- */
@@ -278,7 +275,7 @@ body {
 
 /* ---------- Bottom Nav ---------- */
 .bottom-nav {
-  position: absolute;
+  position: fixed;
   bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
