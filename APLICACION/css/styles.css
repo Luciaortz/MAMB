@@ -416,7 +416,7 @@ input {
 .notification-content p  { font-size: 12px; opacity: .7; line-height: 1.4; color: var(--text); }
 
 /* ---------- Utilitarios ---------- */
-.hidden { display: none; }
+.hidden { display: none !important; }
 
 .like-btn { transition: .25s; }
 .like-btn:hover { transform: scale(1.05); }
