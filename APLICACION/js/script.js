@@ -16,6 +16,12 @@ const screens = document.querySelectorAll(".screen");
 function goTo(id) {
   screens.forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
+  const nav = document.querySelector(".bottom-nav");
+  if (id === "home") {
+    nav.classList.add("hidden-on-home");
+  } else {
+    nav.classList.remove("hidden-on-home");
+  }
   if (id === "gallery") fetchGallery();
 }
 

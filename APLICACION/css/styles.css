@@ -90,8 +90,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 8px 24px;
+  padding: 8px 18px 0;
   height: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
 }
 
 
@@ -102,8 +106,10 @@ body {
 /* ---------- Header ---------- */
 .header {
   padding: 18px;
+  padding-top: 36px;
   border-radius: 0 0 35px 35px;
   color: white;
+  position: relative;
 }
 
 .header h1 { font-size: 30px; }
@@ -304,6 +310,9 @@ body {
   color: var(--text);
 }
 
+.hidden { display: none !important; }
+
+.bottom-nav.hidden-on-home { display: none !important; }
 /* Iconos del nav */
 .nav-btn svg {
   color: var(--icon-color) !important;
