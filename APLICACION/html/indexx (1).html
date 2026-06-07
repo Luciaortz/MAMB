@@ -1,565 +1,573 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MAMB IA</title>
+    <title>MAMB IA</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<script src="https://unpkg.com/lucide@latest"></script>
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-<link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
 
 </head>
 
 <body>
 
-<div class="phone">
+    <div class="phone">
 
-<div class="notch"></div>
+        <div class="notch"></div>
 
-<!-- MENU -->
+        <!-- MENU -->
 
-<div class="side-menu" id="sideMenu">
+        <div class="side-menu" id="sideMenu">
 
-<button class="menu-item" onclick="openNotifications();toggleMenu()">
-<i data-lucide="bell"></i>
-Notificaciones
-</button>
+            <button class="menu-item" onclick="openNotifications();toggleMenu()">
+                <i data-lucide="bell"></i>
+                Notificaciones
+            </button>
 
-<button class="menu-item" onclick="goTo('profile');toggleMenu()">
-<i data-lucide="user"></i>
-Mi Perfil
-</button>
+            <button class="menu-item" onclick="goTo('profile');toggleMenu()">
+                <i data-lucide="user"></i>
+                Mi Perfil
+            </button>
 
-</div>
+        </div>
 
-<div class="notification-panel hidden"
-id="notificationPanel">
+        <div class="notification-panel hidden" id="notificationPanel">
 
-<div style="
+            <div style="
 display:flex;
 justify-content:space-between;
 align-items:center;
 margin-bottom:18px;">
 
-<h2 style="color:#ff8f1f;">
-🔔 Notificaciones
-</h2>
+                <h2 style="color:#ff8f1f;">
+                    🔔 Notificaciones
+                </h2>
 
-<button onclick="closeNotifications()"
-style="
+                <button onclick="closeNotifications()" style="
 border:none;
 background:#ffe4ef;
 width:36px;
 height:36px;
 border-radius:12px;
 cursor:pointer;">
-✖
-</button>
+                    ✖
+                </button>
 
-</div>
+            </div>
 
-<div id="notificationList">
+            <div id="notificationList">
 
-<div style="
+                <div style="
 text-align:center;
 padding:30px 10px;
 opacity:.6;">
 
-✨ No tienes notificaciones todavía 🎨
+                    ✨ No tienes notificaciones todavía 🎨
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<!-- HOME -->
+        <!-- HOME -->
 
-<section class="screen active" id="home">
+        <section class="screen active" id="home">
 
-<div class="hero">
+            <div class="hero">
 
-<div class="logo">
-<h1>M</h1>
-<span>MAMB</span>
-</div>
+                <div class="logo">
+                    <h1>M</h1>
+                    <span>MAMB</span>
+                </div>
 
-<h2>
-🎨 ¡Crea arte con IA! 
-</h2>
+                <h2>
+                    🎨 ¡Crea arte con IA!
+                </h2>
 
-<p>
-🌈 Convierte tus fotos en obras mágicas y compártelas 
-</p>
+                <p>
+                    🌈 Convierte tus fotos en obras mágicas y compártelas
+                </p>
 
-<button class="btn orange" style="width:240px" onclick="goTo('scanner')">
-Comenzar
-</button>
+                <button class="btn orange" style="width:240px" onclick="goTo('scanner')">
+                    Comenzar
+                </button>
 
-</div>
+            </div>
 
-</section>
+        </section>
 
-<!-- SCANNER -->
+        <!-- SCANNER -->
 
-<section class="screen" id="scanner">
+        <section class="screen" id="scanner">
 
-<div class="status">
+            <div class="status">
 
-<div>9:41</div>
+                <div>9:41</div>
 
-<button onclick="toggleMenu()" style="background:none;border:none;">
-<i data-lucide="ellipsis"></i>
-</button>
+                <button onclick="toggleMenu()" style="background:none;border:none;">
+                    <i data-lucide="ellipsis"></i>
+                </button>
 
-</div>
+            </div>
 
-<div class="header" style="background:linear-gradient(135deg,#ff8f1f,#ff5e92)">
-<h1>Crear Obra</h1>
-<p>Sube una imagen divertida</p>
-</div>
+            <div class="header" style="background:linear-gradient(135deg,#ff8f1f,#ff5e92)">
+                <h1>Crear Obra</h1>
+                <p>Sube una imagen divertida</p>
+            </div>
 
-<div class="scroll">
+            <div class="scroll">
 
-<div class="camera-box">
+                <div class="camera-box">
 
-<div class="placeholder" id="placeholder">
+                    <div class="placeholder" id="placeholder">
 
-<i data-lucide="image-plus"></i>
+                        <i data-lucide="image-plus"></i>
 
-<span>Selecciona una imagen</span>
+                        <span>Selecciona una imagen</span>
 
-</div>
+                    </div>
 
-<img id="previewImage" class="hidden">
+                    <img id="previewImage" class="hidden">
 
-</div>
+                </div>
 
-<div class="actions">
+                <div class="actions">
 
-<button class="miniBtn" onclick="galleryInput.click()">
-Galería
-</button>
+                    <button class="miniBtn" onclick="galleryInput.click()">
+                        Galería
+                    </button>
 
-<button class="miniBtn" onclick="cameraInput.click()">
-Cámara
-</button>
+                    <button class="miniBtn" onclick="cameraInput.click()">
+                        Cámara
+                    </button>
 
-</div>
+                </div>
 
-<input type="file" accept="image/*" id="galleryInput" class="hidden">
-<input type="file" accept="image/*" capture="environment" id="cameraInput" class="hidden">
+                <input type="file" accept="image/*" id="galleryInput" class="hidden">
+                <input type="file" accept="image/*" capture="environment" id="cameraInput" class="hidden">
 
-<button class="btn orange" onclick="goTo('styles')">
-Continuar
-</button>
+                <button class="btn orange" onclick="goTo('styles')">
+                    Continuar
+                </button>
 
-</div>
+            </div>
 
-</section>
+        </section>
 
-<!-- STYLES -->
+        <!-- STYLES -->
 
-<section class="screen" id="styles">
+        <section class="screen" id="styles">
 
-<div class="status">
+            <div class="status">
 
-<div>9:41</div>
+                <div>9:41</div>
 
-<button onclick="toggleMenu()" style="background:none;border:none;">
-<i data-lucide="ellipsis"></i>
-</button>
+                <button onclick="toggleMenu()" style="background:none;border:none;">
+                    <i data-lucide="ellipsis"></i>
+                </button>
 
-</div>
+            </div>
 
-<div class="header" style="background:linear-gradient(135deg,#7dd957,#44c767)">
-<h1>Estilos IA</h1>
-<p>Selecciona un estilo</p>
-</div>
+            <div class="header" style="background:linear-gradient(135deg,#7dd957,#44c767)">
+                <h1>Estilos IA</h1>
+                <p>Selecciona un estilo</p>
+            </div>
 
-<div class="scroll">
+            <div class="scroll">
 
-<div class="card" style="margin-bottom:18px;">
+                <div class="card" style="margin-bottom:18px;">
 
-<h3 style="margin-bottom:14px;color:var(--orange)">
- Datos de la obra
-</h3>
+                    <h3 style="margin-bottom:14px;color:var(--orange)">
+                        Datos de la obra
+                    </h3>
 
-<div style="display:flex;flex-direction:column;gap:12px;">
+                    <div style="display:flex;flex-direction:column;gap:12px;">
 
-<input id="artistName" type="text" placeholder="Tu nombre artístico">
+                        <input id="artistName" type="text" placeholder="Tu nombre artístico">
 
-<input id="artName" type="text" placeholder="Nombre de la obra">
+                        <input id="artName" type="text" placeholder="Nombre de la obra">
 
-<div id="creationDate"
-style="height:54px;background:#fff4ec;border-radius:18px;display:flex;align-items:center;padding:0 16px;">
-</div>
+                        <div id="creationDate"
+                            style="height:54px;background:#fff4ec;border-radius:18px;display:flex;align-items:center;padding:0 16px;">
+                        </div>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-<div class="styles">
+                <div class="styles">
 
-<div class="style-card active" data-style="anime">
-<div class="style-preview" style="background:#ffe3ef">
-✨🎀
-</div>
-Anime
-</div>
+                    <div class="style-card active" data-style="anime">
+                        <div class="style-preview" style="background:#ffe3ef">
+                            ✨🎀
+                        </div>
+                        Anime
+                    </div>
 
-<div class="style-card" data-style="comic">
-<div class="style-preview" style="background:#e6ffe1">
-⚡💥
-</div>
-Comic
-</div>
+                    <div class="style-card" data-style="comic">
+                        <div class="style-preview" style="background:#e6ffe1">
+                            ⚡💥
+                        </div>
+                        Comic
+                    </div>
 
-<div class="style-card" data-style="retro">
-<div class="style-preview" style="background:#ffe9d6">
-📻🕹️
-</div>
-Retro
-</div>
+                    <div class="style-card" data-style="retro">
+                        <div class="style-preview" style="background:#ffe9d6">
+                            📻🕹️
+                        </div>
+                        Retro
+                    </div>
 
-<div class="style-card" data-style="neon">
-<div class="style-preview" style="background:#efe3ff">
-🌈🪩
-</div>
-Neón
-</div>
+                    <div class="style-card" data-style="neon">
+                        <div class="style-preview" style="background:#efe3ff">
+                            🌈🪩
+                        </div>
+                        Neón
+                    </div>
 
-</div>
+                </div>
 
-<div style="height:20px"></div>
+                <div style="height:20px"></div>
 
-<button class="btn green" onclick="generateArt()">
-Generar Arte
-</button>
+                <button class="btn green" onclick="generateArt()">
+                    Generar Arte
+                </button>
 
-<div style="height:100px"></div>
+                <div style="height:100px"></div>
 
-</div>
+            </div>
 
-</section>
+        </section>
 
-<!-- RESULT -->
+        <!-- RESULT -->
 
-<section class="screen" id="result">
+        <section class="screen" id="result">
 
-<div class="status">
+            <div class="status">
 
-<div>9:41</div>
+                <div>9:41</div>
 
-<button onclick="toggleMenu()" style="background:none;border:none;">
-<i data-lucide="ellipsis"></i>
-</button>
+                <button onclick="toggleMenu()" style="background:none;border:none;">
+                    <i data-lucide="ellipsis"></i>
+                </button>
 
-</div>
+            </div>
 
-<div class="header" style="background:linear-gradient(135deg,#ff8f1f,#ff5e92)">
-<h1>Resultado</h1>
-<p>Tu obra está lista</p>
-</div>
+            <div class="header" style="background:linear-gradient(135deg,#ff8f1f,#ff5e92)">
+                <h1>Resultado</h1>
+                <p>Tu obra está lista</p>
+            </div>
 
-<div class="scroll">
+            <div class="scroll">
 
-<div class="card" style="margin-bottom:18px;">
+                <div class="card" style="margin-bottom:18px;">
 
-<h3 style="margin-bottom:12px;color:var(--orange)">
- Ficha técnica
-</h3>
+                    <h3 style="margin-bottom:12px;color:var(--orange)">
+                        Ficha técnica
+                    </h3>
 
-<div style="display:flex;flex-direction:column;gap:10px;font-size:14px;">
+                    <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;">
 
-<div>👤 Artista: <span id="finalArtist"></span></div>
-<div>🖼️ Obra: <span id="finalArtwork"></span></div>
-<div>📅 Fecha: <span id="finalDate"></span></div>
-<div>✨ Estilo: <span id="finalStyle"></span></div>
+                        <div>👤 Artista: <span id="finalArtist"></span></div>
+                        <div>🖼️ Obra: <span id="finalArtwork"></span></div>
+                        <div>📅 Fecha: <span id="finalDate"></span></div>
+                        <div>✨ Estilo: <span id="finalStyle"></span></div>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-<div class="card" id="artworkCard">
+                <div class="card" id="artworkCard">
 
-<img id="resultImage" style="width:100%;border-radius:20px;">
+                    <img id="resultImage" style="width:100%;border-radius:20px;">
 
-</div>
+                </div>
 
-<div style="height:16px"></div>
+                <div style="height:16px"></div>
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
 
-<button class="btn blue" onclick="downloadArtwork()">
- Descargar
-</button>
+                    <button class="btn blue" onclick="downloadArtwork()">
+                        Descargar
+                    </button>
 
-<button class="btn pink" onclick="shareArtwork()">
- Compartir
-</button>
+                    <button class="btn pink" onclick="shareArtwork()">
+                        Compartir
+                    </button>
 
-</div>
+                </div>
 
-<div style="height:12px"></div>
+                <div style="height:12px"></div>
 
-<button class="btn orange" onclick="saveToGallery()">
- Guardar en galería
-</button>
+                <button class="btn orange" onclick="saveToGallery()">
+                    Guardar en galería
+                </button>
 
-<div style="height:100px"></div>
+                <div style="height:100px"></div>
 
-</div>
+            </div>
 
-</section>
+        </section>
 
-<!-- GALLERY -->
+        <!-- GALLERY -->
 
-<section class="screen" id="gallery">
+        <section class="screen" id="gallery">
 
-<div class="status">
+            <div class="status">
 
-<div>9:41</div>
+                <div>9:41</div>
 
-<button onclick="toggleMenu()" style="background:none;border:none;">
-<i data-lucide="ellipsis"></i>
-</button>
+                <button onclick="toggleMenu()" style="background:none;border:none;">
+                    <i data-lucide="ellipsis"></i>
+                </button>
 
-</div>
+            </div>
 
-<div class="header" style="background:linear-gradient(135deg,#ff8f1f,#ffb347)">
-<h1>Galería</h1>
-<p>Arte de la comunidad</p>
-</div>
+            <div class="header" style="background:linear-gradient(135deg,#ff8f1f,#ffb347)">
+                <h1>Galería</h1>
+                <p>Arte de la comunidad</p>
+            </div>
 
-<div class="scroll">
+            <div class="scroll">
 
-<div class="gallery" id="galleryGrid"></div>
+                <div class="gallery" id="galleryGrid"></div>
 
-<div style="height:100px"></div>
+                <div style="height:100px"></div>
 
-</div>
+            </div>
 
-</section>
+        </section>
 
-<!-- INFO -->
+        <!-- INFO -->
 
-<section class="screen" id="info">
+        <section class="screen" id="info">
 
-<div class="status">
+            <div class="status">
 
-<div>9:41</div>
+                <div>9:41</div>
 
-<button onclick="toggleMenu()" style="background:none;border:none;">
-<i data-lucide="ellipsis"></i>
-</button>
+                <button onclick="toggleMenu()" style="background:none;border:none;">
+                    <i data-lucide="ellipsis"></i>
+                </button>
 
-</div>
+            </div>
 
-<div class="header" style="background:linear-gradient(135deg,#6698CC,#8db8e8)">
-<h1>Información</h1>
-<p>Conoce MAMB</p>
-</div>
+            <div class="header" style="background:linear-gradient(135deg,#6698CC,#8db8e8)">
+                <h1>Información</h1>
+                <p>Conoce MAMB</p>
+            </div>
 
-<div class="scroll">
+            <div class="scroll">
 
-<div class="card" style="margin-bottom:16px;">
+                <div class="card" style="margin-bottom:16px;">
 
-<h2 style="color:#6698CC;margin-bottom:12px;">
- About Us - Museo BQ
-</h2>
+                    <h2 style="color:#6698CC;margin-bottom:12px;">
+                        About Us - Museo BQ
+                    </h2>
 
-<p style="line-height:1.6;font-size:14px;">
-Barranquilla, Colombia<br><br>
-<b>+500</b> Obras<br>
-<b>1970</b> Fundado<br>
-<b>10K</b> Visitantes<br><br>
-<b> ¿Qué es el MAMB?</b><br>
-El Museo de Arte Moderno de Barranquilla es un espacio dedicado a la preservación, difusión y promoción del arte contemporáneo del Caribe colombiano y latinoamericano.
-</p>
+                    <p style="line-height:1.6;font-size:14px;">
+                        Barranquilla, Colombia<br><br>
+                        <b>+500</b> Obras<br>
+                        <b>1970</b> Fundado<br>
+                        <b>10K</b> Visitantes<br><br>
+                        <b> ¿Qué es el MAMB?</b><br>
+                        El Museo de Arte Moderno de Barranquilla es un espacio dedicado a la preservación, difusión y
+                        promoción del arte contemporáneo del Caribe colombiano y latinoamericano.
+                    </p>
 
-</div>
+                </div>
 
-<div class="card" style="background:#dff0ff;margin-bottom:16px;">
+                <div class="card" style="background:#dff0ff;margin-bottom:16px;">
 
-<h2 style="color:#6698CC;margin-bottom:12px;">
- Misión
-</h2>
+                    <h2 style="color:#6698CC;margin-bottom:12px;">
+                        Misión
+                    </h2>
 
-<p style="line-height:1.6;font-size:14px;">
-Democratizar el acceso al arte moderno, especialmente para niños y jóvenes, usando tecnología innovadora.<br><br>
-📍 Cra 36 #6-90, Barranquilla
-</p>
+                    <p style="line-height:1.6;font-size:14px;">
+                        Democratizar el acceso al arte moderno, especialmente para niños y jóvenes, usando tecnología
+                        innovadora.<br><br>
+                        📍 Cra 36 #6-90, Barranquilla
+                    </p>
 
-</div>
+                </div>
 
-<div class="card" style="margin-bottom:16px; border-left: 5px solid var(--orange);">
+                <div class="card" style="margin-bottom:16px; border-left: 5px solid var(--orange);">
 
-<h2 style="color:var(--orange);margin-bottom:12px;">
- Álvaro Cepeda Samudio
-</h2>
+                    <h2 style="color:var(--orange);margin-bottom:12px;">
+                        Álvaro Cepeda Samudio
+                    </h2>
 
-<p style="line-height:1.6;font-size:14px;">
-<b>Escritor & Artista</b> · Barranquilla, 1926-1972<br><br>
- Literatura | Periodismo | Cine | Arte<br><br>
-<b> ¿Quién fue?</b><br>
-Álvaro Cepeda Samudio fue uno de los escritores más importantes de la Costa Caribe colombiana. Amigo de Gabriel García Márquez y figura clave del Boom latinoamericano.
-</p>
+                    <p style="line-height:1.6;font-size:14px;">
+                        <b>Escritor & Artista</b> · Barranquilla, 1926-1972<br><br>
+                        Literatura | Periodismo | Cine | Arte<br><br>
+                        <b> ¿Quién fue?</b><br>
+                        Álvaro Cepeda Samudio fue uno de los escritores más importantes de la Costa Caribe colombiana.
+                        Amigo de Gabriel García Márquez y figura clave del Boom latinoamericano.
+                    </p>
 
-<h4 style="margin-top:10px; margin-bottom:5px;"> Línea de Tiempo</h4>
-<p style="font-size:13px; line-height:1.6;">
-1926: Nace en Barranquilla, Colombia<br>
-1954: Publica su primer libro de cuentos<br>
-1962: "La Casa Grande" — obra maestra<br>
-1972: Fallece en Nueva York, EE.UU.
-</p>
+                    <h4 style="margin-top:10px; margin-bottom:5px;"> Línea de Tiempo</h4>
+                    <p style="font-size:13px; line-height:1.6;">
+                        1926: Nace en Barranquilla, Colombia<br>
+                        1954: Publica su primer libro de cuentos<br>
+                        1962: "La Casa Grande" — obra maestra<br>
+                        1972: Fallece en Nueva York, EE.UU.
+                    </p>
 
-</div>
-<!-- Cecilia Porras -->
+                </div>
+                <!-- Cecilia Porras -->
 
-<div class="card" style="margin-bottom:16px; border-left:5px solid #6698CC;">
+                <div class="card" style="margin-bottom:16px; border-left:5px solid #6698CC;">
 
-<h2 style="color:#6698CC;margin-bottom:12px;">
- Cecilia Porras
-</h2>
+                    <h2 style="color:#6698CC;margin-bottom:12px;">
+                        Cecilia Porras
+                    </h2>
 
-<p style="line-height:1.6;font-size:14px;">
-<b>Pintora y artista plástica</b><br><br>
+                    <p style="line-height:1.6;font-size:14px;">
+                        <b>Pintora y artista plástica</b><br><br>
 
-Expresionismo | Acuarela | Retrato<br><br>
+                        Expresionismo | Acuarela | Retrato<br><br>
 
-<b> ¿Quién fue?</b><br>
-Cecilia Porras fue una de las figuras más importantes del arte moderno en Barranquilla. Su obra exploró la identidad femenina, el Caribe colombiano y las expresiones culturales de la región mediante colores intensos y composiciones innovadoras.
-</p>
+                        <b> ¿Quién fue?</b><br>
+                        Cecilia Porras fue una de las figuras más importantes del arte moderno en Barranquilla. Su obra
+                        exploró la identidad femenina, el Caribe colombiano y las expresiones culturales de la región
+                        mediante colores intensos y composiciones innovadoras.
+                    </p>
 
-</div>
+                </div>
 
-<!-- Noé León -->
+                <!-- Noé León -->
 
-<div class="card" style="margin-bottom:16px; border-left:5px solid #7dd957;">
+                <div class="card" style="margin-bottom:16px; border-left:5px solid #7dd957;">
 
-<h2 style="color:#44c767;margin-bottom:12px;">
- Noé León
-</h2>
+                    <h2 style="color:#44c767;margin-bottom:12px;">
+                        Noé León
+                    </h2>
 
-<p style="line-height:1.6;font-size:14px;">
-<b>Artista popular colombiano</b><br><br>
+                    <p style="line-height:1.6;font-size:14px;">
+                        <b>Artista popular colombiano</b><br><br>
 
- Arte Popular | Costumbrismo | Cultura Caribe<br><br>
+                        Arte Popular | Costumbrismo | Cultura Caribe<br><br>
 
-<b> ¿Quién fue?</b><br>
-Noé León destacó por representar la vida cotidiana del Caribe colombiano. Sus obras reflejan tradiciones, personajes y escenas populares llenas de color, humor e identidad regional.
-</p>
+                        <b> ¿Quién fue?</b><br>
+                        Noé León destacó por representar la vida cotidiana del Caribe colombiano. Sus obras reflejan
+                        tradiciones, personajes y escenas populares llenas de color, humor e identidad regional.
+                    </p>
 
-</div>
+                </div>
 
-<!-- Alejandro Obregón -->
+                <!-- Alejandro Obregón -->
 
-<div class="card" style="margin-bottom:16px; border-left:5px solid #ff5e92;">
+                <div class="card" style="margin-bottom:16px; border-left:5px solid #ff5e92;">
 
-<h2 style="color:#ff5e92;margin-bottom:12px;">
- Alejandro Obregón
-</h2>
+                    <h2 style="color:#ff5e92;margin-bottom:12px;">
+                        Alejandro Obregón
+                    </h2>
 
-<p style="line-height:1.6;font-size:14px;">
-<b>Pintor y escultor colombiano</b><br><br>
+                    <p style="line-height:1.6;font-size:14px;">
+                        <b>Pintor y escultor colombiano</b><br><br>
 
- Expresionismo | Surrealismo | Arte Moderno<br><br>
+                        Expresionismo | Surrealismo | Arte Moderno<br><br>
 
-<b> ¿Quién fue?</b><br>
-Alejandro Obregón es considerado uno de los grandes maestros del arte moderno colombiano. Sus pinturas combinan elementos del paisaje caribeño, la fauna y la identidad nacional con un estilo único y expresivo.
-</p>
+                        <b> ¿Quién fue?</b><br>
+                        Alejandro Obregón es considerado uno de los grandes maestros del arte moderno colombiano. Sus
+                        pinturas combinan elementos del paisaje caribeño, la fauna y la identidad nacional con un estilo
+                        único y expresivo.
+                    </p>
 
-</div>
+                </div>
 
-<div class="card" style="margin-bottom:16px;">
+                <div class="card" style="margin-bottom:16px;">
 
-<h2 style="color:#ff5e92;margin-bottom:12px;">
- About Us - UniSimón
-</h2>
+                    <h2 style="color:#ff5e92;margin-bottom:12px;">
+                        About Us - UniSimón
+                    </h2>
 
-<p style="line-height:1.6;font-size:14px;">
-<b>Universidad Simón Bolívar</b><br>
-Barranquilla, Colombia<br>
- unisimon.edu.co<br><br>
-<b> Ing. de Sistemas</b><br>
-Formación integral en desarrollo de software, arquitectura de sistemas y tecnologías emergentes.<br>
-(Dev Web · Bases de Datos · Redes · Software)
-</p>
+                    <p style="line-height:1.6;font-size:14px;">
+                        <b>Universidad Simón Bolívar</b><br>
+                        Barranquilla, Colombia<br>
+                        unisimon.edu.co<br><br>
+                        <b> Ing. de Sistemas</b><br>
+                        Formación integral en desarrollo de software, arquitectura de sistemas y tecnologías
+                        emergentes.<br>
+                        (Dev Web · Bases de Datos · Redes · Software)
+                    </p>
 
-</div>
+                </div>
 
-<div class="card" style="margin-bottom:16px;">
+                <div class="card" style="margin-bottom:16px;">
 
-<h2 style="color:#ff5e92;margin-bottom:12px;">
- Ing. de Datos e IA
-</h2>
+                    <h2 style="color:#ff5e92;margin-bottom:12px;">
+                        Ing. de Datos e IA
+                    </h2>
 
-<p style="line-height:1.6;font-size:14px;">
-Machine Learning, inteligencia artificial y análisis avanzado de datos para resolver problemas reales.<br>
-(ML · Deep Learning · Big Data)
-</p>
+                    <p style="line-height:1.6;font-size:14px;">
+                        Machine Learning, inteligencia artificial y análisis avanzado de datos para resolver problemas
+                        reales.<br>
+                        (ML · Deep Learning · Big Data)
+                    </p>
 
-</div>
+                </div>
 
-<div class="card">
+                <div class="card">
 
-<h2 style="color:#ff5e92;margin-bottom:12px;">
- Maestría en IA
-</h2>
+                    <h2 style="color:#ff5e92;margin-bottom:12px;">
+                        Maestría en IA
+                    </h2>
 
-<p style="line-height:1.6;font-size:14px;">
-Posgrado especializado en inteligencia artificial aplicada a industrias creativas y culturales.<br>
-(NLP · Computer Vision · IA Generativa)
-</p>
+                    <p style="line-height:1.6;font-size:14px;">
+                        Posgrado especializado en inteligencia artificial aplicada a industrias creativas y
+                        culturales.<br>
+                        (NLP · Computer Vision · IA Generativa)
+                    </p>
 
-</div>
+                </div>
 
-<div style="height:100px"></div>
+                <div style="height:100px"></div>
 
-</div>
+            </div>
 
-</section>
+        </section>
 
-<!-- PROFILE -->
+        <!-- PROFILE -->
 
-<section class="screen" id="profile">
+        <section class="screen" id="profile">
 
-<div class="status">
+            <div class="status">
 
-<div>9:41</div>
+                <div>9:41</div>
 
-<button onclick="toggleMenu()"
-style="background:none;border:none;">
-<i data-lucide="ellipsis"></i>
-</button>
+                <button onclick="toggleMenu()" style="background:none;border:none;">
+                    <i data-lucide="ellipsis"></i>
+                </button>
 
-</div>
+            </div>
 
-<div class="header"
-style="background:linear-gradient(135deg,#ff5e92,#ff8f1f)">
+            <div class="header" style="background:linear-gradient(135deg,#ff5e92,#ff8f1f)">
 
-<h1>Mi Perfil</h1>
-<p>Gestiona tu cuenta</p>
+                <h1>Mi Perfil</h1>
+                <p>Gestiona tu cuenta</p>
 
-</div>
+            </div>
 
-<div class="scroll">
+            <div class="scroll">
 
-<div id="guestProfile">
+                <div id="guestProfile">
 
-<div class="card" style="text-align:center;">
+                    <div class="card" style="text-align:center;">
 
-<div style="
+                        <div style="
 width:120px;
 height:120px;
 border-radius:50%;
@@ -570,79 +578,68 @@ align-items:center;
 justify-content:center;
 margin-bottom:18px;">
 
-<i data-lucide="user"
-style="width:50px;height:50px;color:#ff5e92;">
-</i>
+                            <i data-lucide="user" style="width:50px;height:50px;color:#ff5e92;">
+                            </i>
 
-</div>
+                        </div>
 
-<h2 style="margin-bottom:10px;">
-¡Crea tu cuenta!
-</h2>
+                        <h2 style="margin-bottom:10px;">
+                            ¡Crea tu cuenta!
+                        </h2>
 
-<p style="
+                        <p style="
 font-size:14px;
 opacity:.7;
 margin-bottom:20px;">
-Guarda tus obras favoritas y personaliza tu perfil.
-</p>
+                            Guarda tus obras favoritas y personaliza tu perfil.
+                        </p>
 
-<button class="btn orange"
-onclick="showRegister()">
-Crear cuenta
-</button>
+                        <button class="btn orange" onclick="showRegister()">
+                            Crear cuenta
+                        </button>
 
-</div>
+                    </div>
 
-<div id="registerBox"
-class="card hidden"
-style="margin-top:16px;">
+                    <div id="registerBox" class="card hidden" style="margin-top:16px;">
 
-<h3 style="
+                        <h3 style="
 margin-bottom:14px;
 color:var(--orange);">
-Registro rápido
-</h3>
+                            Registro rápido
+                        </h3>
 
-<div style="
+                        <div style="
 display:flex;
 flex-direction:column;
 gap:12px;">
 
-<input id="registerEmail"
-type="email"
-placeholder="Correo electrónico">
+                            <input id="registerEmail" type="email" placeholder="Correo electrónico">
 
-<input id="registerPassword"
-type="password"
-placeholder="Contraseña">
+                            <input id="registerPassword" type="password" placeholder="Contraseña">
 
-<button class="btn green"
-onclick="createAccount()">
-Continuar
-</button>
+                            <button class="btn green" onclick="createAccount()">
+                                Continuar
+                            </button>
 
-</div>
+                        </div>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-<div id="userProfile"
-class="hidden">
+                <div id="userProfile" class="hidden">
 
-<div class="card">
+                    <div class="card">
 
-<div style="
+                        <div style="
 display:flex;
 flex-direction:column;
 align-items:center;">
 
-<label for="profilePhoto">
+                            <label for="profilePhoto">
 
-<img id="profilePreview"
-src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-style="
+                                <img id="profilePreview" src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+                                    style="
 width:120px;
 height:120px;
 border-radius:50%;
@@ -650,82 +647,79 @@ object-fit:cover;
 cursor:pointer;
 margin-bottom:18px;">
 
-</label>
+                            </label>
 
-<input type="file"
-id="profilePhoto"
-accept="image/*"
-class="hidden">
+                            <input type="file" id="profilePhoto" accept="image/*" class="hidden">
 
-<h2 style="margin-bottom:14px;">
-Usuario MAMB
-</h2>
+                            <h2 style="margin-bottom:14px;">
+                                Usuario MAMB
+                            </h2>
 
-</div>
+                        </div>
 
-<div style="
+                        <div style="
 display:flex;
 flex-direction:column;
 gap:14px;
 margin-top:20px;">
 
-<div style="
+                            <div style="
 background:#fff4ec;
 padding:14px;
 border-radius:16px;">
-📧 <strong>Correo:</strong>
-<div id="profileEmail"></div>
-</div>
+                                📧 <strong>Correo:</strong>
+                                <div id="profileEmail"></div>
+                            </div>
 
-<div style="
+                            <div style="
 background:#fff4ec;
 padding:14px;
 border-radius:16px;">
-🔒 <strong>Contraseña:</strong>
-<div id="profilePassword"></div>
-</div>
+                                🔒 <strong>Contraseña:</strong>
+                                <div id="profilePassword"></div>
+                            </div>
 
-<button class="btn pink" 
-style="margin-top:10px; height:48px; font-size:15px;" 
-onclick="logout()">
-Cerrar Sesión 
-</button>
+                            <button class="btn pink" style="margin-top:10px; height:48px; font-size:15px;"
+                                onclick="logout()">
+                                Cerrar Sesión
+                            </button>
 
-</div>
+                        </div>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-<div style="height:100px"></div>
+                <div style="height:100px"></div>
 
-</div>
+            </div>
 
-</section>
+        </section>
 
-<!-- NAV -->
+        <!-- NAV -->
 
-<div class="bottom-nav hidden-on-home">
+        <div class="bottom-nav hidden-on-home">
 
-<button class="nav-btn" onclick="goTo('gallery')">
-<i data-lucide="images"></i>
-<span>Galería</span>
-</button>
+            <button class="nav-btn" onclick="goTo('gallery')">
+                <i data-lucide="images"></i>
+                <span>Galería</span>
+            </button>
 
-<button class="nav-btn" onclick="goTo('scanner')">
-<i data-lucide="camera"></i>
-<span>Crear</span>
-</button>
+            <button class="nav-btn" onclick="goTo('scanner')">
+                <i data-lucide="camera"></i>
+                <span>Crear</span>
+            </button>
 
-<button class="nav-btn" onclick="goTo('info')">
-<i data-lucide="info"></i>
-<span>Info</span>
-</button>
+            <button class="nav-btn" onclick="goTo('info')">
+                <i data-lucide="info"></i>
+                <span>Info</span>
+            </button>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
-<script src="../js/script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
+
 </html>

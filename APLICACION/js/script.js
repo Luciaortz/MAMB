@@ -27,7 +27,7 @@ function goTo(id) {
 
 function toggleMenu() {
   document.getElementById("sideMenu").classList.toggle("open");
-}
+} 
 
 // ══════════════════════════════════
 // MODO OSCURO
