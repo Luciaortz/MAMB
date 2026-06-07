@@ -204,6 +204,10 @@ async function saveToGallery() {
   }
 }
 
+window.addEventListener("DOMContentLoaded", () => {
+  const nav = document.querySelector(".bottom-nav");
+  nav.classList.add("hidden-on-home");
+});
 // ══════════════════════════════════
 // GALERÍA
 // ══════════════════════════════════
